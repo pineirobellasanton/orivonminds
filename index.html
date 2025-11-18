@@ -1,13 +1,20 @@
-<!-- Nueva versión mejorada de la landing Orivon Minds -->
-<!-- NOTA: Añade las imágenes en /images siguiendo las instrucciones marcadas en los comentarios. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Orivon Minds — Automatización Inteligente</title>
-  <meta name="description" content="Automatización con IA y n8n. Ahorra horas, evita errores y escala tus operaciones.">
+  <meta name="description" content="Automatización con IA y n8n. Ahorra entre 20 y 40 horas al mes con flujos reales y auditables. Auditoría gratuita.">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:title" content="Orivon Minds — Automatización Inteligente">
+  <meta property="og:description" content="Automatización con IA y n8n. Ahorra entre 20 y 40 horas al mes con flujos reales y auditables. Auditoría gratuita.">
+  <meta property="og:image" content="images/opengraph.png">
+  <meta property="og:type" content="website">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#F7F9FB;
@@ -19,287 +26,267 @@
       --radius:10px;
       --container:1200px;
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui;-webkit-font-smoothing:antialiased;background:var(--bg);color:var(--text)}
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      background:var(--bg);
+      font-family:Inter,system-ui;
+      color:var(--text);
+    }
+
     img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
     .container{width:92%;max-width:var(--container);margin:0 auto}
 
-    /* ---------- HEADER ---------- */
-    header{background:var(--card);border-bottom:1px solid rgba(0,0,0,0.06);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px)}
-    .nav{height:86px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.1rem}
-    .brand img{height:56px;transition:transform .25s}
-    .brand img:hover{transform:scale(1.05)}
-
-    .nav-right{display:flex;align-items:center;gap:14px}
-    .btn-ghost{padding:10px 14px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-weight:600;transition:all .25s}
-    .btn-ghost:hover{background:#f0f4ff;border-color:var(--primary)}
-    .btn-primary{background:var(--primary);color:#fff;padding:11px 16px;border-radius:8px;font-weight:700;transition:background .25s}
-    .btn-primary:hover{background:var(--accent)}
-
-    /* ---------- HERO ---------- */
-    .hero{padding:72px 0;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;position:relative;overflow:hidden}
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:url('images/hero-pattern.png'); /* Imagen patrón sutil, 1200x1200 PNG transparente */
-      opacity:0.11;
-      mix-blend-mode:overlay;
+    /* HEADER */
+    header{
+      background:var(--card);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      position:sticky;
+      top:0;z-index:1000;
+      backdrop-filter:blur(10px);
     }
-    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;position:relative;z-index:2}
-    .hero-title{font-size:2.9rem;line-height:1.05;margin-bottom:16px;font-weight:700;animation:fadeUp .7s ease both}
-    .hero-sub{font-size:1.1rem;color:rgba(255,255,255,0.9);animation:fadeUp .9s ease both}
-    @keyframes fadeUp{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+    .nav{height:86px;display:flex;justify-content:space-between;align-items:center}
+    .brand img{height:48px}
 
-    /* ---------- FORM ---------- */
-    .card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.08);animation:fadeUp 1s ease both}
-    .form-row{display:flex;gap:10px;margin-bottom:10px}
-    .form-row input,.form-row textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:0.95rem;transition:border .25s}
-    .form-row input:focus,.form-row textarea:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 2px rgba(0,123,255,0.15)}
-    .form-actions button{width:100%;padding:12px;border-radius:8px;border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer;transition:background .25s}
-    .form-actions button:hover{background:var(--accent)}
+    /* BUTTONS */
+    .btn-primary{
+      background:var(--primary);
+      padding:12px 18px;
+      border-radius:8px;
+      color:#fff;
+      font-weight:700;
+      transition:0.25s;
+      display:inline-block;
+    }
+    .btn-primary:hover{background:var(--accent)}
+    .btn-ghost{
+      border:1px solid rgba(0,0,0,.1);
+      padding:10px 14px;
+      border-radius:8px;
+      font-weight:600;
+    }
 
-    /* ---------- TRANSICIONES DE SECCIÓN ---------- */
-    section{scroll-margin-top:100px}
-    .fade-section{opacity:0;transform:translateY(20px);transition:all .7s}
-    .fade-section.visible{opacity:1;transform:translateY(0)}
+    /* HERO */
+    .hero{
+      padding:72px 0;
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      color:#fff;
+      text-align:center;
+    }
+    .hero h1{
+      font-size:2.9rem;
+      line-height:1.1;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+    .hero p{
+      color:rgba(255,255,255,0.9);
+      font-size:1.2rem;
+    }
 
-    /* ---------- UVP ---------- */
-    .uvp{padding:64px 0}
+    /* FORM SECTION */
+    .form-section{
+      padding:60px 0;
+    }
+    .form-box{
+      background:#fff;
+      padding:26px;
+      border-radius:14px;
+      box-shadow:0 12px 36px rgba(0,0,0,0.07);
+      max-width:520px;
+      margin:0 auto;
+    }
+    .form-box h2{
+      margin-bottom:6px;
+      text-align:center;
+    }
+    .form-box p{color:var(--muted);text-align:center;margin-bottom:20px}
+
+    .form-row{
+      margin-bottom:12px;
+    }
+    .form-row input, .form-row textarea{
+      width:100%;
+      padding:12px;
+      border:1px solid #ddd;
+      font-size:1rem;
+      border-radius:8px;
+    }
+    .form-actions{
+      position:relative;
+    }
+    .form-actions button{
+      width:100%;
+      padding:13px;
+      font-size:1.05rem;
+      border:none;
+      background:var(--primary);
+      color:#fff;
+      font-weight:700;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.25s;
+    }
+    .form-actions button:hover{
+      background:var(--accent);
+    }
+
+    /* SPINNER */
+    #heroSpinner{
+      display:none;
+      position:absolute;
+      right:16px;
+      top:50%;
+      transform:translateY(-50%);
+      width:18px;height:18px;
+      border:3px solid #fff;
+      border-top-color:transparent;
+      border-radius:50%;
+      animation:spin .75s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: translateY(-50%) rotate(0deg); }
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    /* UVP */
+    .uvp{padding:60px 0}
     .uvp-grid{display:flex;gap:20px;flex-wrap:wrap}
-    .uvp-card{flex:1 1 260px;background:var(--card);padding:20px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.05);transition:all .3s}
-    .uvp-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.08)}
+    .uvp-card{
+      flex:1 1 260px;
+      background:#fff;
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0 6px 16px rgba(0,0,0,0.05);
+    }
 
-    /* ---------- NUEVA SECCIÓN: Problemas ---------- */
-    .problems{padding:64px 0;background:#fff}
-    .problems-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .problem{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.04);border-left:4px solid var(--primary)}
+    /* FOOTER */
+    footer{
+      padding:36px 0;
+      background:#fff;
+      border-top:1px solid rgba(0,0,0,0.07);
+      text-align:center;
+      color:var(--muted);
+    }
 
-    /* ---------- NUEVA SECCIÓN: Stack ---------- */
-    .stack{padding:64px 0;text-align:center}
-    .stack-logos{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;margin-top:22px}
-    .stack-logos img{height:48px;opacity:.75;transition:all .25s}
-    .stack-logos img:hover{opacity:1;transform:scale(1.07)}
-
-    /* ---------- ABOUT ---------- */
-    .about{padding:64px 0}
-    .about-grid{display:flex;align-items:center;gap:32px;flex-wrap:wrap;max-width:900px;margin:0 auto}
-    .about img{width:260px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
-
-    /* ---------- SERVICES ---------- */
-    .services{padding:64px 0}
-    .services-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-    .service{background:var(--card);padding:24px;border-radius:12px;text-align:center;width:250px;box-shadow:0 8px 26px rgba(0,0,0,0.05);transition:all .3s}
-    .service:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,0.08)}
-
-    /* ---------- ACCORDION / FAQ ---------- */
-    .faq{padding:64px 0}
-    .faq-item{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.04);margin-bottom:12px}
-    .faq-question{width:100%;text-align:left;background:none;border:none;font-weight:700;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
-    .faq-answer{display:none;padding-top:8px;color:var(--muted)}
-    .arrow{transition:transform .25s}
-
-    /* ---------- FOOTER ---------- */
-    footer{padding:36px 0;background:#fff;border-top:1px solid rgba(0,0,0,0.08)}
-
-    @media (max-width:980px){.hero-grid{grid-template-columns:1fr}}
-    @media (max-width:600px){.problems-grid{grid-template-columns:1fr}}
+    @media(max-width:600px){
+      .hero h1{font-size:2.2rem}
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- ========= HEADER ========= -->
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <img src="images/logo-footer.png" alt="Orivon Minds">
-        Orivon Minds
-      </div>
-      <div class="nav-right">
-        <a class="btn-ghost" href="#services">Servicios</a>
-        <a class="btn-ghost" href="#process">Cómo trabajo</a>
-        <a class="btn-primary" href="#contact">Auditoría gratuita</a>
-      </div>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="images/logo-footer.png" alt="Orivon Minds">
     </div>
-  </header>
+    <div style="display:flex;gap:12px">
+      <a class="btn-ghost" href="#services">Servicios</a>
+      <a class="btn-primary" href="#contact">Auditoría gratuita</a>
+    </div>
+  </div>
+</header>
 
+<section class="hero">
+  <div class="container">
+    <h1>Automatizaciones con IA que reducen entre 20 y 40 horas al mes</h1>
+    <p>Automatización real con n8n y APIs oficiales. Resultados visibles en menos de 30 días.</p>
 
-  <!-- ========= HERO ========= -->
-  <section class="hero fade-section">
-    <div class="container hero-grid">
+    <div style="margin-top:26px">
+      <a href="#contact" class="btn-primary">Calcular ahorro (gratis)</a>
+    </div>
+  </div>
+</section>
 
-      <div>
-        <h1 class="hero-title">Automatizaciones con IA que reducen entre 20 y 40 horas al mes</h1>
-        <p class="hero-sub">Implemento flujos seguros con n8n y APIs oficiales. Resultados visibles en menos de 30 días y auditoría gratuita para estimar tu ROI.</p>
+<!-- FORM SECTION -->
+<section id="contact" class="form-section">
+  <div class="container">
+    <div class="form-box">
 
-        <div style="margin-top:20px;display:flex;gap:14px;flex-wrap:wrap">
-          <a class="btn-primary" href="#contact">Calcular ahorro (gratis)</a>
-          <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Escribir email</a>
+      <h2>Solicita tu auditoría gratuita</h2>
+      <p>Sin compromiso · Respuesta en menos de 24 horas</p>
+
+      <form id="heroForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="TU-KEY-AQUI">
+        <input type="checkbox" name="botcheck" style="display:none">
+
+        <div class="form-row"><input name="name" placeholder="Tu nombre" required></div>
+        <div class="form-row"><input type="email" name="email" placeholder="Tu correo" required></div>
+        <div class="form-row"><input name="company" placeholder="Empresa (opcional)"></div>
+        <div class="form-row"><textarea name="message" placeholder="¿Qué procesos quieres automatizar?" required></textarea></div>
+
+        <div class="form-actions">
+          <button type="submit" id="heroBtn">Calcular ahorro</button>
+          <div id="heroSpinner"></div>
         </div>
-      </div>
 
-      <aside class="card">
-        <h3 style="margin:0 0 4px;font-size:1.15rem">Solicita tu auditoría</h3>
-        <p style="margin:0 0 12px;color:var(--muted);font-size:0.92rem">Sin compromiso · Respuesta en menos de 24 horas</p>
+        <p id="heroStatus" style="margin-top:8px;font-size:.9rem;text-align:center;color:var(--muted)"></p>
+      </form>
 
-        <form id="heroForm">
-          <div class="form-row"><input name="name" placeholder="Tu nombre" required></div>
-          <div class="form-row"><input type="email" name="email" placeholder="Tu correo" required></div>
-          <div class="form-row"><input name="company" placeholder="Empresa (opcional)"></div>
-          <div class="form-row"><textarea name="message" placeholder="¿Qué procesos quieres automatizar?" required></textarea></div>
-          <div class="form-actions"><button>Calcular ahorro</button></div>
-          <p id="heroStatus" class="form-note"></p>
-        </form>
-      </aside>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- UVP -->
+<section class="uvp container">
+  <h2 style="text-align:center;margin-bottom:18px">Resultados que importan</h2>
 
-  <!-- ========= UVP ========= -->
-  <section class="uvp container fade-section">
-    <h2 style="text-align:center;margin-bottom:16px">Resultados que importan</h2>
-    <div class="uvp-grid">
-      <div class="uvp-card"><strong>Reduce tareas repetitivas</strong><p class="muted">Ahorra entre 20–40 horas mensuales con flujos automáticos.</p></div>
-      <div class="uvp-card"><strong>Automatización segura</strong><p class="muted">Integraciones auditables, GDPR-ready y sin riesgos.</p></div>
-      <div class="uvp-card"><strong>ROI claro antes de empezar</strong><p class="muted">Entregamos estimación de ahorro y retorno.</p></div>
-    </div>
-  </section>
+  <div class="uvp-grid">
+    <div class="uvp-card"><strong>Reduce tareas repetitivas</strong><p>Ahorra entre 20–40 horas mensuales.</p></div>
+    <div class="uvp-card"><strong>Automatización segura</strong><p>Integraciones auditables y GDPR-friendly.</p></div>
+    <div class="uvp-card"><strong>ROI claro antes de empezar</strong><p>Estimación precisa de retorno.</p></div>
+  </div>
+</section>
 
+<footer>
+  © 2025 Orivon Minds — Automatización con IA y n8n
+</footer>
 
-  <!-- ========= PROBLEMS ========= -->
-  <section class="problems fade-section">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:20px">¿Tu empresa se enfrenta a alguno de estos problemas?</h2>
-      <div class="problems-grid">
-        <div class="problem">Tareas repetitivas que consumen horas cada semana.</div>
-        <div class="problem">Errores por procesos manuales o dobles registros.</div>
-        <div class="problem">Datos dispersos entre herramientas sin integraciones.</div>
-        <div class="problem">Seguimiento de leads inconsistente o lento.</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ========= STACK ========= -->
-  <section class="stack fade-section">
-    <h2>Stack tecnológico</h2>
-    <p class="muted">Herramientas seguras, estables y escalables</p>
-    <div class="stack-logos">
-      <!-- Añadir logos PNG en /images en blanco o gris: 200x200px -->
-      <img src="images/n8n.png" alt="n8n">
-      <img src="images/openai.png" alt="OpenAI">
-      <img src="images/notion.png" alt="Notion API">
-      <img src="images/airtable.png" alt="Airtable">
-      <img src="images/slack.png" alt="Slack API">
-      <img src="images/google.png" alt="Google Workspace API">
-    </div>
-  </section>
-
-
-  <!-- ========= ABOUT ========= -->
-  <section class="about fade-section">
-    <div class="about-grid">
-      <img src="images/anton.jpg" alt="Antón Piñeiro - fundador">
-      <div>
-        <h2>Quién soy</h2>
-        <p>Soy <strong>Antón Piñeiro</strong>, consultor de automatización especializado en IA y n8n. Diseño flujos prácticos que reducen trabajo real dentro del equipo sin complicar más de la cuenta.</p>
-        <ul style="margin-top:12px;color:var(--muted)">
-          <li>+4 años implementando automatizaciones en empresas</li>
-          <li>Especialista en n8n, APIs oficiales y workflows avanzados</li>
-          <li>Primer flujo funcional en 7 días (quick-win)</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ========= SERVICES ========= -->
-  <section id="services" class="services fade-section container">
-    <h2 style="text-align:center;margin-bottom:20px">Servicios</h2>
-    <div class="services-grid">
-      <div class="service"><h3>Automatización de procesos</h3><p class="muted">Flujos que eliminan tareas repetitivas y evitan errores operativos.</p></div>
-      <div class="service"><h3>Integración de herramientas</h3><p class="muted">Conexiones seguras entre CRM, emails y bases de datos.</p></div>
-      <div class="service"><h3>Sistemas internos</h3><p class="muted">Automatización de reportes, stock, pedidos y CRM.</p></div>
-      <div class="service"><h3>Consultoría IA</h3><p class="muted">Optimización de procesos con IA aplicada.</p></div>
-    </div>
-  </section>
-
-
-  <!-- ========= FAQ ========= -->
-  <section class="faq fade-section container">
-    <h2 style="text-align:center;margin-bottom:20px">Preguntas frecuentes</h2>
-
-    <div class="faq-item">
-      <button class="faq-question">¿Qué herramientas usas? <span class="arrow">⌄</span></button>
-      <div class="faq-answer">n8n, APIs oficiales, IA aplicada y sistemas a medida.</div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">¿Cuánto tarda la implementación? <span class="arrow">⌄</span></button>
-      <div class="faq-answer">Flujos básicos en 1–4 semanas. Quick win en 7 días.</div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">¿Cómo se factura? <span class="arrow">⌄</span></button>
-      <div class="faq-answer">Pago por proyecto + fee mensual opcional para mantenimiento.</div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">¿Es seguro? <span class="arrow">⌄</span></button>
-      <div class="faq-answer">Sí: integraciones oficiales, entornos aislados y GDPR-ready.</div>
-    </div>
-  </section>
-
-
-  <!-- ========= CTA FINAL ========= -->
-  <section id="contact" class="fade-section" style="padding:72px 0;text-align:center">
-    <h2>¿Listo para automatizar?</h2>
-    <p class="muted">Pide tu auditoría gratuita y recibe una estimación de ahorro</p>
-    <div style="margin-top:16px;display:flex;justify-content:center;gap:14px">
-      <a class="btn-primary" href="#heroForm">Quiero mi auditoría</a>
-      <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Escríbeme</a>
-    </div>
-  </section>
-
-
-  <!-- ========= FOOTER ========= -->
-  <footer>
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
-      <div style="display:flex;align-items:center;gap:12px">
-        <img src="images/logo-footer.png" height="44" alt="Orivon Minds">
-        <div>
-          <strong>Orivon Minds</strong>
-          <div class="muted" style="font-size:.9rem">Automatización y IA para empresas</div>
-        </div>
-      </div>
-      <div class="muted" style="text-align:right;font-size:.9rem">
-        antonpineiro@orivonminds.com<br>
-        © 2025 Orivon Minds
-      </div>
-    </div>
-  </footer>
-
-
+<!-- SCRIPT FORM + SPINNER -->
 <script>
-  // FAQ ACORDEÓN
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const ans = btn.nextElementSibling;
-      const arrow = btn.querySelector('.arrow');
-      const open = ans.style.display === 'block';
-      ans.style.display = open ? 'none' : 'block';
-      arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
-    });
+  const heroForm = document.getElementById("heroForm");
+  const heroBtn = document.getElementById("heroBtn");
+  const heroSpinner = document.getElementById("heroSpinner");
+  const heroStatus = document.getElementById("heroStatus");
+
+  heroForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    heroBtn.disabled = true;
+    heroSpinner.style.display = "block";
+    heroStatus.textContent = "Enviando...";
+    heroStatus.style.color = "#6B7280";
+
+    const formData = new FormData(heroForm);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        heroStatus.textContent = "Mensaje enviado correctamente ✔️";
+        heroStatus.style.color = "green";
+        heroForm.reset();
+      } else {
+        heroStatus.textContent = "Error al enviar. Intenta de nuevo.";
+        heroStatus.style.color = "red";
+      }
+    } catch (error) {
+      heroStatus.textContent = "Error de conexión. Intenta más tarde.";
+      heroStatus.style.color = "red";
+    }
+
+    heroBtn.disabled = false;
+    heroSpinner.style.display = "none";
   });
-
-  // OBSERVER PARA TRANSICIONES
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); });
-  }, {threshold:0.1});
-
-  document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
 </script>
 
 </body>
