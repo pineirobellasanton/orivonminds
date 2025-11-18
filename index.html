@@ -1,10 +1,12 @@
+<!-- Nueva versión mejorada de la landing Orivon Minds -->
+<!-- NOTA: Añade las imágenes en /images siguiendo las instrucciones marcadas en los comentarios. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Orivon Minds — Automatización Inteligente</title>
-  <meta name="description" content="Automatización con IA, n8n y APIs oficiales. Auditoría gratuita y soluciones seguras para ahorrar tiempo y costes.">
+  <meta name="description" content="Automatización con IA y n8n. Ahorra horas, evita errores y escala tus operaciones.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -14,422 +16,291 @@
       --text:#0D1117;
       --primary:#007BFF;
       --accent:#00BFFF;
-      --radius:12px;
+      --radius:10px;
       --container:1200px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+    body{margin:0;font-family:Inter,system-ui;-webkit-font-smoothing:antialiased;background:var(--bg);color:var(--text)}
     img{max-width:100%;display:block}
-    a{color:inherit}
+    a{text-decoration:none;color:inherit}
+    .container{width:92%;max-width:var(--container);margin:0 auto}
 
-    .container{width:90%;max-width:var(--container);margin:0 auto}
+    /* ---------- HEADER ---------- */
+    header{background:var(--card);border-bottom:1px solid rgba(0,0,0,0.06);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px)}
+    .nav{height:86px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.1rem}
+    .brand img{height:56px;transition:transform .25s}
+    .brand img:hover{transform:scale(1.05)}
 
-    /* HEADER */
-    header{background:var(--card);border-bottom:1px solid rgba(13,17,23,0.06);}
-    .nav{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .brand img{height:70px}
-    .nav-right{display:flex;align-items:center;gap:12px}
-    .btn-ghost{padding:10px 14px;border-radius:10px;border:1px solid rgba(13,17,23,0.08);background:transparent;font-weight:600}
-    .btn-primary{background:var(--primary);color:#fff;padding:11px 16px;border-radius:10px;font-weight:700;border:none;cursor:pointer;transition:background 0.25s}
+    .nav-right{display:flex;align-items:center;gap:14px}
+    .btn-ghost{padding:10px 14px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-weight:600;transition:all .25s}
+    .btn-ghost:hover{background:#f0f4ff;border-color:var(--primary)}
+    .btn-primary{background:var(--primary);color:#fff;padding:11px 16px;border-radius:8px;font-weight:700;transition:background .25s}
     .btn-primary:hover{background:var(--accent)}
 
-    /* HERO */
-    .hero{padding:64px 0;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff}
-    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
-    .hero-title{font-size:2.4rem;line-height:1.03;margin-bottom:12px;font-weight:700}
-    .hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.95);margin-bottom:18px}
-    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+    /* ---------- HERO ---------- */
+    .hero{padding:72px 0;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;position:relative;overflow:hidden}
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url('images/hero-pattern.png'); /* Imagen patrón sutil, 1200x1200 PNG transparente */
+      opacity:0.11;
+      mix-blend-mode:overlay;
+    }
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;position:relative;z-index:2}
+    .hero-title{font-size:2.9rem;line-height:1.05;margin-bottom:16px;font-weight:700;animation:fadeUp .7s ease both}
+    .hero-sub{font-size:1.1rem;color:rgba(255,255,255,0.9);animation:fadeUp .9s ease both}
+    @keyframes fadeUp{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
 
-    /* Form */
-    .card{background:rgba(255,255,255,0.95);padding:20px;border-radius:14px;color:var(--text);box-shadow:0 10px 30px rgba(2,6,23,0.08)}
+    /* ---------- FORM ---------- */
+    .card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.08);animation:fadeUp 1s ease both}
     .form-row{display:flex;gap:10px;margin-bottom:10px}
-    .form-row input,.form-row textarea,select{width:100%;padding:12px;border-radius:8px;border:1px solid #e6edf4;font-size:0.95rem}
-    .form-row textarea{resize:vertical}
-    .form-actions{display:flex;gap:10px;align-items:center}
-    .form-note{font-size:0.9rem;color:var(--muted);margin-top:8px}
+    .form-row input,.form-row textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:0.95rem;transition:border .25s}
+    .form-row input:focus,.form-row textarea:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 2px rgba(0,123,255,0.15)}
+    .form-actions button{width:100%;padding:12px;border-radius:8px;border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer;transition:background .25s}
+    .form-actions button:hover{background:var(--accent)}
 
-    #heroForm input, #heroForm textarea { border:1px solid #ccc;padding:12px;border-radius:8px;font-size:0.95rem;width:100%;transition:border 0.2s}
-    #heroForm input:focus, #heroForm textarea:focus {border-color: var(--primary);outline: none}
-    #heroForm button {width:100%;padding:12px;font-weight:700;border-radius:10px;background: var(--primary);color:white;border:none;cursor:pointer;transition:background 0.2s}
-    #heroForm button:hover {background: var(--accent)}
+    /* ---------- TRANSICIONES DE SECCIÓN ---------- */
+    section{scroll-margin-top:100px}
+    .fade-section{opacity:0;transform:translateY(20px);transition:all .7s}
+    .fade-section.visible{opacity:1;transform:translateY(0)}
 
-    /* UVP */
-    .uvp{padding:48px 0;background:var(--bg)}
-    .uvp-grid{display:flex;gap:18px;flex-wrap:wrap}
-    .uvp-card{flex:1 1 260px;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(13,17,23,0.04);transition:all 0.25s}
-    .uvp-card:hover{transform:translateY(-4px);box-shadow:0 10px 25px rgba(0,0,0,0.06)}
-    .uvp-card h4{margin:8px 0}
-    .muted{color:var(--muted)}
+    /* ---------- UVP ---------- */
+    .uvp{padding:64px 0}
+    .uvp-grid{display:flex;gap:20px;flex-wrap:wrap}
+    .uvp-card{flex:1 1 260px;background:var(--card);padding:20px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.05);transition:all .3s}
+    .uvp-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.08)}
 
-    /* PROCESS */
-    .process{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-    .step{flex:1;min-width:180px;background:var(--card);padding:16px;border-radius:10px;text-align:center;border:1px solid rgba(13,17,23,0.03);transition:all 0.25s}
-    .step:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,0.05)}
+    /* ---------- NUEVA SECCIÓN: Problemas ---------- */
+    .problems{padding:64px 0;background:#fff}
+    .problems-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .problem{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.04);border-left:4px solid var(--primary)}
 
-    /* SERVICES */
-    .services{padding:42px 0}
-    .services-grid{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
-    .service{flex:1 1 240px;background:var(--card);padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 30px rgba(13,17,23,0.04);transition:all 0.25s}
-    .service:hover{transform:translateY(-4px);box-shadow:0 10px 25px rgba(0,0,0,0.06)}
-    .service img{height:64px;margin-bottom:12px;object-fit:contain}
+    /* ---------- NUEVA SECCIÓN: Stack ---------- */
+    .stack{padding:64px 0;text-align:center}
+    .stack-logos{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;margin-top:22px}
+    .stack-logos img{height:48px;opacity:.75;transition:all .25s}
+    .stack-logos img:hover{opacity:1;transform:scale(1.07)}
 
-    /* CASES */
-    .cases{background:#ffffff;padding:42px 0;border-top:1px solid rgba(13,17,23,0.05);border-bottom:1px solid rgba(13,17,23,0.05)}
-    .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .case{background:linear-gradient(180deg,#fbfdff,#f7fbff);padding:18px;border-radius:12px;border:1px solid rgba(2,6,23,0.03)}
+    /* ---------- ABOUT ---------- */
+    .about{padding:64px 0}
+    .about-grid{display:flex;align-items:center;gap:32px;flex-wrap:wrap;max-width:900px;margin:0 auto}
+    .about img{width:260px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
 
-    /* TESTIMONIALS */
-    .testimonials{padding:36px 0;background:linear-gradient(180deg,#f7faff 0%,#ffffff 100%)}
-    .test-grid{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-    .testimonial{flex:1 1 300px;background:linear-gradient(180deg,#ffffff,#f8fbff);padding:16px;border-radius:12px;border:1px solid rgba(2,6,23,0.03)}
+    /* ---------- SERVICES ---------- */
+    .services{padding:64px 0}
+    .services-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+    .service{background:var(--card);padding:24px;border-radius:12px;text-align:center;width:250px;box-shadow:0 8px 26px rgba(0,0,0,0.05);transition:all .3s}
+    .service:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,0.08)}
 
-    /* FAQ */
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#f9fafc;padding:32px;border-radius:16px}
-    .faq-item{background:var(--card);padding:14px;border-radius:10px}
+    /* ---------- ACCORDION / FAQ ---------- */
+    .faq{padding:64px 0}
+    .faq-item{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.04);margin-bottom:12px}
+    .faq-question{width:100%;text-align:left;background:none;border:none;font-weight:700;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+    .faq-answer{display:none;padding-top:8px;color:var(--muted)}
+    .arrow{transition:transform .25s}
 
-    /* FINAL CTA */
-    .final-cta{padding:48px 0;text-align:center}
+    /* ---------- FOOTER ---------- */
+    footer{padding:36px 0;background:#fff;border-top:1px solid rgba(0,0,0,0.08)}
 
-    /* QUIÉN SOY */
-    .bio-section{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin:60px 0}
-    .bio-section img{max-width:300px;border-radius:16px;object-fit:cover}
-    .bio-text{flex:1;min-width:240px}
-
-    footer{padding:28px 0;background:#fff;border-top:1px solid rgba(13,17,23,0.04)}
-    footer .foot-grid{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-
-    @media (max-width:980px){
-      .hero-grid{grid-template-columns:1fr}
-      .brand img{height:60px}
-    }
-    @media (max-width:520px){
-      .form-row{flex-direction:column}
-      .uvp-grid{flex-direction:column}
-      .case-grid{grid-template-columns:1fr}
-      .faq-grid{grid-template-columns:1fr}
-      .bio-section{flex-direction:column;align-items:center;text-align:center}
-    }
+    @media (max-width:980px){.hero-grid{grid-template-columns:1fr}}
+    @media (max-width:600px){.problems-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
+
+  <!-- ========= HEADER ========= -->
   <header>
     <div class="container nav">
       <div class="brand">
-        <img src="images/logo-footer.png" alt="Orivon Minds logo">
-        <div style="font-weight:700">Orivon Minds</div>
+        <img src="images/logo-footer.png" alt="Orivon Minds">
+        Orivon Minds
       </div>
       <div class="nav-right">
         <a class="btn-ghost" href="#services">Servicios</a>
         <a class="btn-ghost" href="#process">Cómo trabajo</a>
-        <a class="btn-primary" href="#contact">Solicitar auditoría gratuita</a>
+        <a class="btn-primary" href="#contact">Auditoría gratuita</a>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <h1 class="hero-title">Automatización con IA que ahorra tiempo y reduce costes</h1>
-          <p class="hero-sub">Ahorra hasta un 40% del tiempo operativo en menos de 90 días mediante soluciones seguras (n8n + APIs oficiales). Auditoría gratuita y propuesta con ROI estimado.</p>
 
-          <div class="hero-ctas">
-            <a class="btn-primary" href="#contact">Solicitar auditoría gratuita</a>
-            <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Enviar email</a>
-          </div>
+  <!-- ========= HERO ========= -->
+  <section class="hero fade-section">
+    <div class="container hero-grid">
 
-          <div style="margin-top:18px;color:rgba(255,255,255,0.92);font-size:0.95rem">Sin compromiso · Respuesta en <strong>24 horas</strong></div>
-        </div>
+      <div>
+        <h1 class="hero-title">Automatizaciones con IA que reducen entre 20 y 40 horas al mes</h1>
+        <p class="hero-sub">Implemento flujos seguros con n8n y APIs oficiales. Resultados visibles en menos de 30 días y auditoría gratuita para estimar tu ROI.</p>
 
-        <!-- FORM in HERO -->
-        <aside class="card" aria-labelledby="form-hero-title">
-          <h3 id="form-hero-title" style="margin:0 0 8px">Solicita tu auditoría (30s)</h3>
-          <p class="muted" style="margin:0 0 12px">Rellena tu nombre y email y te envío un plan inicial y estimación de ahorro.</p>
-
-          <form id="heroForm">
-            <div class="form-row">
-              <input type="text" name="name" placeholder="Tu nombre" required>
-            </div>
-            <div class="form-row">
-              <input type="email" name="email" placeholder="Tu correo" required>
-            </div>
-            <div class="form-row">
-              <input type="text" name="company" placeholder="Nombre de tu empresa">
-            </div>
-            <div class="form-row">
-              <textarea name="message" placeholder="¿Qué procesos te llevan más tiempo o crees que se podrían automatizar en tu empresa?" required></textarea>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn-primary">Solicitar auditoría gratuita</button>
-            </div>
-            <p id="heroStatus" class="form-note"></p>
-          </form>
-        </aside>
-      </div>
-    </section>
-
-    <!-- UVP -->
-    <section class="uvp container">
-      <div style="text-align:center;margin-bottom:18px">
-        <h2 style="font-size:1.6rem;margin-bottom:8px">Resultados que importan</h2>
-        <p class="muted">Soluciones seguras de automatización e IA diseñadas para reducir costes, evitar errores y liberar tiempo de tu equipo.</p>
-      </div>
-
-      <div class="uvp-grid">
-        <div class="uvp-card">
-          <strong>Ahorro de tiempo</strong>
-          <p class="muted">Automatiza tareas repetitivas para que tu equipo se centre en lo que genera ingresos.</p>
-        </div>
-        <div class="uvp-card">
-          <strong>Seguridad y fiabilidad</strong>
-          <p class="muted">Implementaciones con n8n y APIs oficiales, siguiendo buenas prácticas y protección de datos.</p>
-        </div>
-        <div class="uvp-card">
-          <strong>ROI claro</strong>
-          <p class="muted">Propuestas basadas en impacto real y ahorro estimado — pagas según el valor que aportamos.</p>
+        <div style="margin-top:20px;display:flex;gap:14px;flex-wrap:wrap">
+          <a class="btn-primary" href="#contact">Calcular ahorro (gratis)</a>
+          <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Escribir email</a>
         </div>
       </div>
-    </section>
 
-    <!-- PROCESS -->
-    <section id="process" class="container">
-      <h2 style="text-align:center">Cómo trabajamos</h2>
-      <div class="process">
-        <div class="step">
-          <strong>1. Auditoría</strong>
-          <p class="muted">Analizamos tus procesos y estimamos horas y costes a ahorrar.</p>
-        </div>
-        <div class="step">
-          <strong>2. Propuesta</strong>
-          <p class="muted">Propuesta personalizada con solución y ROI estimado.</p>
-        </div>
-        <div class="step">
-          <strong>3. Implementación</strong>
-          <p class="muted">Desarrollo con n8n, IA y APIs oficiales. Pruebas y puesta en producción.</p>
-        </div>
-        <div class="step">
-          <strong>4. Mantenimiento</strong>
-          <p class="muted">Soporte y optimizaciones con fee mensual.</p>
-        </div>
-      </div>
-    </section>
+      <aside class="card">
+        <h3 style="margin:0 0 4px;font-size:1.15rem">Solicita tu auditoría</h3>
+        <p style="margin:0 0 12px;color:var(--muted);font-size:0.92rem">Sin compromiso · Respuesta en menos de 24 horas</p>
 
-    <!-- SERVICES -->
-    <section id="services" class="services container">
-      <h2 style="text-align:center">Servicios</h2>
-      <div class="services-grid">
-        <div class="service">
-          <img src="images/automatizacion.png" alt="Automatización" loading="lazy">
-          <h3>Automatización de procesos</h3>
-          <p class="muted">Flujos que eliminan trabajo repetitivo y reducen errores operativos.</p>
-        </div>
-
-        <div class="service">
-          <img src="images/integracion.png" alt="Integración" loading="lazy">
-          <h3>Integración de herramientas</h3>
-          <p class="muted">Conexión segura entre CRM, emails, formularios y bases de datos.</p>
-        </div>
-
-        <div class="service">
-          <img src="images/optimizacion.png" alt="Optimización" loading="lazy">
-          <h3>Optimización de flujos</h3>
-          <p class="muted">Reorganizamos procesos para maximizar velocidad y calidad.</p>
-        </div>
-
-        <div class="service">
-          <img src="images/consultoria.png" alt="Consultoría" loading="lazy">
-          <h3>Consultoría con IA</h3>
-          <p class="muted">Soluciones estratégicas adaptadas a tu sector y tamaño de empresa.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- QUIÉN SOY -->
-<section class="about" aria-labelledby="about-title" style="padding: 2rem;">
-  <div class="about-grid" style="display: flex; align-items: flex-start; gap: 2rem; max-width:1000px; margin:0 auto;">
-    
-    <!-- Imagen -->
-    <div class="about-figure" aria-hidden="false">
-      <img src="images/anton.jpg" alt="Antón Piñeiro - fundador de Orivon Minds"
-           style="width: 200px; height: auto; border-radius: 8px; object-fit: cover;">
+        <form id="heroForm">
+          <div class="form-row"><input name="name" placeholder="Tu nombre" required></div>
+          <div class="form-row"><input type="email" name="email" placeholder="Tu correo" required></div>
+          <div class="form-row"><input name="company" placeholder="Empresa (opcional)"></div>
+          <div class="form-row"><textarea name="message" placeholder="¿Qué procesos quieres automatizar?" required></textarea></div>
+          <div class="form-actions"><button>Calcular ahorro</button></div>
+          <p id="heroStatus" class="form-note"></p>
+        </form>
+      </aside>
     </div>
+  </section>
 
-    <!-- Texto -->
-    <div class="about-copy" style="flex: 1;">
-      <h2 id="about-title">Quién soy</h2>
-      <p>Soy <strong>Antón Piñeiro</strong>, fundador de Orivon Minds. Me especializo en automatización práctica con IA y n8n: soluciones que no complican más de la cuenta y que liberan tiempo real dentro del equipo.</p>
-      <p style="margin-top:12px; color:#666;">Normalmente empiezo con una auditoría corta y concreta para detectar los “pequeños robahoras” —esas tareas repetitivas que suman mucho al final del mes— y diseño un plan para automatizarlas de forma segura y escalable.</p>
+
+  <!-- ========= UVP ========= -->
+  <section class="uvp container fade-section">
+    <h2 style="text-align:center;margin-bottom:16px">Resultados que importan</h2>
+    <div class="uvp-grid">
+      <div class="uvp-card"><strong>Reduce tareas repetitivas</strong><p class="muted">Ahorra entre 20–40 horas mensuales con flujos automáticos.</p></div>
+      <div class="uvp-card"><strong>Automatización segura</strong><p class="muted">Integraciones auditables, GDPR-ready y sin riesgos.</p></div>
+      <div class="uvp-card"><strong>ROI claro antes de empezar</strong><p class="muted">Entregamos estimación de ahorro y retorno.</p></div>
     </div>
-
-  </div>
-</section>
+  </section>
 
 
-    <!-- CASES -->
-    <section class="cases container">
-      <h2 style="text-align:center">Casos de éxito</h2>
-      <div class="case-grid" style="margin-top:16px">
-        <div class="case">
-          <strong>Agencia de marketing — Automatización de lead flow</strong>
-          <p class="muted">Problema: muchas leads perdidas por procesos manuales. Solución: flujo automático que captura, enriquece y distribuye leads. Resultado: +30% de conversiones y -50% en tiempo manual.</p>
-        </div>
-        <div class="case">
-          <strong>Consultoría — Integración de herramientas</strong>
-          <p class="muted">Problema: datos dispersos y errores de sincronización. Solución: integraciones seguras y centralizadas. Resultado: reducción del 40% de errores y mejor visibilidad operativa.</p>
-        </div>
-        <div class="case">
-          <strong>Startup tecnológica — CRM automatizado</strong>
-          <p class="muted">Problema: seguimiento manual de clientes. Solución: automatización de CRM y notificaciones. Resultado: +25% en eficiencia del equipo comercial.</p>
-        </div>
-        <div class="case">
-          <strong>E-commerce — Control de stock y pedidos</strong>
-          <p class="muted">Problema: errores y retrasos en pedidos. Solución: flujo automático de gestión de inventario y envío. Resultado: reducción de errores al 5% y tiempos de entrega más rápidos.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials container">
-      <h2 style="text-align:center">Lo que dicen</h2>
-      <div class="test-grid" style="margin-top:16px">
-        <div class="testimonial">
-          <p>“No sabíamos por dónde empezar con la automatización. Antón nos acompañó paso a paso y ahora tenemos un flujo que ahorra horas cada semana.”</p>
-        </div>
-        <div class="testimonial">
-          <p>“El proceso fue muy claro y rápido. Hemos ganado tiempo para centrarnos en tareas más estratégicas.”</p>
-        </div>
-        <div class="testimonial">
-          <p>“Antes dependíamos de hojas de cálculo y emails. Ahora todo está automatizado y funciona sin errores.”</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-<section class="container faq">
-  <h2 style="text-align:center">Preguntas frecuentes</h2>
-  <div class="faq-grid" style="margin-top:12px; max-width:600px; margin-left:auto; margin-right:auto;">
-
-    <div class="faq-item" style="margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:8px;">
-      <button class="faq-question" style="width:100%; text-align:left; background:none; border:none; font-weight:bold; font-size:1rem; cursor:pointer; padding:8px 0;">
-        ¿Qué herramientas usas?
-      </button>
-      <div class="faq-answer" style="display:none; padding-left:8px; color:#666;">
-        Principalmente n8n y APIs oficiales. Uso IA cuando aporta valor y siempre priorizando seguridad.
+  <!-- ========= PROBLEMS ========= -->
+  <section class="problems fade-section">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:20px">¿Tu empresa se enfrenta a alguno de estos problemas?</h2>
+      <div class="problems-grid">
+        <div class="problem">Tareas repetitivas que consumen horas cada semana.</div>
+        <div class="problem">Errores por procesos manuales o dobles registros.</div>
+        <div class="problem">Datos dispersos entre herramientas sin integraciones.</div>
+        <div class="problem">Seguimiento de leads inconsistente o lento.</div>
       </div>
     </div>
+  </section>
 
-    <div class="faq-item" style="margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:8px;">
-      <button class="faq-question" style="width:100%; text-align:left; background:none; border:none; font-weight:bold; font-size:1rem; cursor:pointer; padding:8px 0;">
-        ¿Cuánto tardáis en implementar?
-      </button>
-      <div class="faq-answer" style="display:none; padding-left:8px; color:#666;">
-        Depende del alcance; muchas automatizaciones básicas se implementan en 1–4 semanas.
+
+  <!-- ========= STACK ========= -->
+  <section class="stack fade-section">
+    <h2>Stack tecnológico</h2>
+    <p class="muted">Herramientas seguras, estables y escalables</p>
+    <div class="stack-logos">
+      <!-- Añadir logos PNG en /images en blanco o gris: 200x200px -->
+      <img src="images/n8n.png" alt="n8n">
+      <img src="images/openai.png" alt="OpenAI">
+      <img src="images/notion.png" alt="Notion API">
+      <img src="images/airtable.png" alt="Airtable">
+      <img src="images/slack.png" alt="Slack API">
+      <img src="images/google.png" alt="Google Workspace API">
+    </div>
+  </section>
+
+
+  <!-- ========= ABOUT ========= -->
+  <section class="about fade-section">
+    <div class="about-grid">
+      <img src="images/anton.jpg" alt="Antón Piñeiro - fundador">
+      <div>
+        <h2>Quién soy</h2>
+        <p>Soy <strong>Antón Piñeiro</strong>, consultor de automatización especializado en IA y n8n. Diseño flujos prácticos que reducen trabajo real dentro del equipo sin complicar más de la cuenta.</p>
+        <ul style="margin-top:12px;color:var(--muted)">
+          <li>+4 años implementando automatizaciones en empresas</li>
+          <li>Especialista en n8n, APIs oficiales y workflows avanzados</li>
+          <li>Primer flujo funcional en 7 días (quick-win)</li>
+        </ul>
       </div>
     </div>
+  </section>
 
-    <div class="faq-item" style="margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:8px;">
-      <button class="faq-question" style="width:100%; text-align:left; background:none; border:none; font-weight:bold; font-size:1rem; cursor:pointer; padding:8px 0;">
-        ¿Cómo se factura?
-      </button>
-      <div class="faq-answer" style="display:none; padding-left:8px; color:#666;">
-        Pago por implementación y fee mensual para mantenimiento y mejoras.
-      </div>
+
+  <!-- ========= SERVICES ========= -->
+  <section id="services" class="services fade-section container">
+    <h2 style="text-align:center;margin-bottom:20px">Servicios</h2>
+    <div class="services-grid">
+      <div class="service"><h3>Automatización de procesos</h3><p class="muted">Flujos que eliminan tareas repetitivas y evitan errores operativos.</p></div>
+      <div class="service"><h3>Integración de herramientas</h3><p class="muted">Conexiones seguras entre CRM, emails y bases de datos.</p></div>
+      <div class="service"><h3>Sistemas internos</h3><p class="muted">Automatización de reportes, stock, pedidos y CRM.</p></div>
+      <div class="service"><h3>Consultoría IA</h3><p class="muted">Optimización de procesos con IA aplicada.</p></div>
+    </div>
+  </section>
+
+
+  <!-- ========= FAQ ========= -->
+  <section class="faq fade-section container">
+    <h2 style="text-align:center;margin-bottom:20px">Preguntas frecuentes</h2>
+
+    <div class="faq-item">
+      <button class="faq-question">¿Qué herramientas usas? <span class="arrow">⌄</span></button>
+      <div class="faq-answer">n8n, APIs oficiales, IA aplicada y sistemas a medida.</div>
     </div>
 
-    <div class="faq-item" style="margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:8px;">
-      <button class="faq-question" style="width:100%; text-align:left; background:none; border:none; font-weight:bold; font-size:1rem; cursor:pointer; padding:8px 0;">
-        ¿Es seguro?
-      </button>
-      <div class="faq-answer" style="display:none; padding-left:8px; color:#666;">
-        Sí. Integraciones oficiales, entornos aislados y prácticas de protección de datos (GDPR-ready).
-      </div>
+    <div class="faq-item">
+      <button class="faq-question">¿Cuánto tarda la implementación? <span class="arrow">⌄</span></button>
+      <div class="faq-answer">Flujos básicos en 1–4 semanas. Quick win en 7 días.</div>
     </div>
 
-  </div>
-</section>
+    <div class="faq-item">
+      <button class="faq-question">¿Cómo se factura? <span class="arrow">⌄</span></button>
+      <div class="faq-answer">Pago por proyecto + fee mensual opcional para mantenimiento.</div>
+    </div>
 
-<script>
-  // Selecciona todos los botones de las preguntas
-  const faqButtons = document.querySelectorAll('.faq-question');
+    <div class="faq-item">
+      <button class="faq-question">¿Es seguro? <span class="arrow">⌄</span></button>
+      <div class="faq-answer">Sí: integraciones oficiales, entornos aislados y GDPR-ready.</div>
+    </div>
+  </section>
 
-  faqButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const answer = button.nextElementSibling;
 
-      // Alterna mostrar/ocultar
-      if(answer.style.display === "none" || answer.style.display === "") {
-        answer.style.display = "block";
-      } else {
-        answer.style.display = "none";
-      }
-    });
-  });
-</script>
+  <!-- ========= CTA FINAL ========= -->
+  <section id="contact" class="fade-section" style="padding:72px 0;text-align:center">
+    <h2>¿Listo para automatizar?</h2>
+    <p class="muted">Pide tu auditoría gratuita y recibe una estimación de ahorro</p>
+    <div style="margin-top:16px;display:flex;justify-content:center;gap:14px">
+      <a class="btn-primary" href="#heroForm">Quiero mi auditoría</a>
+      <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Escríbeme</a>
+    </div>
+  </section>
 
-    <!-- FINAL CTA -->
-    <section id="contact" class="final-cta container">
-      <h2>Listo para automatizar? Solicita tu auditoría gratuita</h2>
-      <p class="muted">Rellena el formulario o envía un email. Respuesta en menos de 24 horas.</p>
-      <div style="margin-top:18px">
-        <a class="btn-primary" href="#heroForm">Solicitar auditoría gratuita</a>
-        <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Escríbeme</a>
-      </div>
-    </section>
-  </main>
 
+  <!-- ========= FOOTER ========= -->
   <footer>
-    <div class="container foot-grid">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
       <div style="display:flex;align-items:center;gap:12px">
-        <img src="images/logo-footer.png" alt="Orivon Minds" height="46">
+        <img src="images/logo-footer.png" height="44" alt="Orivon Minds">
         <div>
-          <div style="font-weight:700">Orivon Minds</div>
-          <div style="color:var(--muted)">Automatización y IA segura para empresas</div>
+          <strong>Orivon Minds</strong>
+          <div class="muted" style="font-size:.9rem">Automatización y IA para empresas</div>
         </div>
       </div>
-
-      <div style="text-align:right;color:var(--muted)">
-        <div>antonpineiro@orivonminds.com</div>
-        <div style="font-size:0.9rem;margin-top:6px">© Orivon Minds 2025 · <a href="#">Política de privacidad</a></div>
+      <div class="muted" style="text-align:right;font-size:.9rem">
+        antonpineiro@orivonminds.com<br>
+        © 2025 Orivon Minds
       </div>
     </div>
   </footer>
 
-  <!-- FORM HANDLER -->
-  <script>
-  (function(){
-    const scriptURL = 'https://api.web3forms.com/submit';
-    const form = document.getElementById('heroForm');
-    const status = document.getElementById('heroStatus');
-    const apiKey = 'ce4be113-b8bd-4229-84e5-a8c8b08e61bf';
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      status.textContent = 'Enviando…';
-
-      const data = new FormData(form);
-      data.append('access_key', apiKey);
-      data.append('subject', 'Nueva auditoría solicitada');
-      data.append('redirect', window.location.href);
-
-      fetch(scriptURL, { method: 'POST', body: data })
-        .then(response => response.json())
-        .then(data => {
-          if(data.success){
-            status.textContent = '✅ Mensaje enviado. Te respondo en menos de 24h.';
-            form.reset();
-          } else {
-            status.innerHTML = '❌ Error al enviar. Intenta de nuevo o escribe a <a href="mailto:antonpineiro@orivonminds.com">antonpineiro@orivonminds.com</a>';
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          status.innerHTML = '❌ Error al enviar. Intenta de nuevo o escribe a <a href="mailto:antonpineiro@orivonminds.com">antonpineiro@orivonminds.com</a>';
-        });
+<script>
+  // FAQ ACORDEÓN
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ans = btn.nextElementSibling;
+      const arrow = btn.querySelector('.arrow');
+      const open = ans.style.display === 'block';
+      ans.style.display = open ? 'none' : 'block';
+      arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
     });
-  })();
-  </script>
+  });
+
+  // OBSERVER PARA TRANSICIONES
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); });
+  }, {threshold:0.1});
+
+  document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
+</script>
+
 </body>
 </html>
