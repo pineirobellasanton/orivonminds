@@ -149,29 +149,24 @@
           <h3 id="form-hero-title" style="margin:0 0 8px">Solicita tu auditoría (30s)</h3>
           <p class="muted" style="margin:0 0 12px">Rellena tu nombre y email y te envío un plan inicial y estimación de ahorro.</p>
 
-         <form id="heroForm">
-  <input type="hidden" name="from_name" value="Orivon Minds Web">
-
-  <div class="form-row">
-    <input type="text" name="name" placeholder="Tu nombre" required>
-  </div>
-  <div class="form-row">
-    <input type="email" name="email" placeholder="Tu correo" required>
-  </div>
-  <div class="form-row">
-    <input type="text" name="company" placeholder="Nombre de tu empresa">
-  </div>
-  <div class="form-row">
-    <textarea name="message" placeholder="¿Qué procesos te llevan tiempo?" required></textarea>
-  </div>
-
-  <div class="form-actions">
-    <button type="submit" class="btn-primary">Solicitar auditoría gratuita</button>
-  </div>
-
-  <p id="heroStatus" class="form-note"></p>
-</form>
-
+          <form id="heroForm">
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-row">
+              <input type="email" name="email" placeholder="Tu correo" required>
+            </div>
+            <div class="form-row">
+              <input type="text" name="company" placeholder="Nombre de tu empresa">
+            </div>
+            <div class="form-row">
+              <textarea name="message" placeholder="¿Qué procesos te llevan más tiempo o crees que se podrían automatizar en tu empresa?" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Solicitar auditoría gratuita</button>
+            </div>
+            <p id="heroStatus" class="form-note"></p>
+          </form>
         </aside>
       </div>
     </section>
@@ -405,35 +400,36 @@
   <!-- FORM HANDLER -->
   <script>
   (function(){
-  const scriptURL = 'https://api.web3forms.com/submit';
-  const form = document.getElementById('heroForm');
-  const status = document.getElementById('heroStatus');
-  const apiKey = 'ce4be113-b8bd-4229-84e5-a8c8b08e61bf';
+    const scriptURL = 'https://api.web3forms.com/submit';
+    const form = document.getElementById('heroForm');
+    const status = document.getElementById('heroStatus');
+    const apiKey = 'ce4be113-b8bd-4229-84e5-a8c8b08e61bf';
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    status.textContent = 'Enviando…';
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      status.textContent = 'Enviando…';
 
-    const data = new FormData(form);
-    data.append('access_key', apiKey);
-    data.append('subject', 'Nueva auditoría solicitada');
+      const data = new FormData(form);
+      data.append('access_key', apiKey);
+      data.append('subject', 'Nueva auditoría solicitada');
+      data.append('redirect', window.location.href);
 
-    fetch(scriptURL, { method: 'POST', body: data })
-      .then(response => response.json())
-      .then(data => {
-        if(data.success){
-          status.textContent = '✅ Mensaje enviado. Te respondo en menos de 24h.';
-          form.reset();
-        } else {
-          status.innerHTML = '❌ Error al enviar.';
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        status.innerHTML = '❌ Error inesperado.';
-      });
-  });
-})();
+      fetch(scriptURL, { method: 'POST', body: data })
+        .then(response => response.json())
+        .then(data => {
+          if(data.success){
+            status.textContent = '✅ Mensaje enviado. Te respondo en menos de 24h.';
+            form.reset();
+          } else {
+            status.innerHTML = '❌ Error al enviar. Intenta de nuevo o escribe a <a href="mailto:antonpineiro@orivonminds.com">antonpineiro@orivonminds.com</a>';
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          status.innerHTML = '❌ Error al enviar. Intenta de nuevo o escribe a <a href="mailto:antonpineiro@orivonminds.com">antonpineiro@orivonminds.com</a>';
+        });
+    });
+  })();
   </script>
 </body>
 </html>
