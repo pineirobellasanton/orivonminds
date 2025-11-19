@@ -579,19 +579,36 @@
       });
     });
 
-    // OBSERVER CON DEBOUNCING
-    let observerTimeout;
-    const observer = new IntersectionObserver(entries => {
-      clearTimeout(observerTimeout);
-      observerTimeout = setTimeout(() => {
-        entries.forEach(e => { 
-          if(e.isIntersecting) e.target.classList.add('visible'); 
-        });
-      }, 100);
-    }, {threshold:0.1, rootMargin: '0px 0px -50px 0px'});
-    
-    document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
+const initScrollDetector = () => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px',
+      trackVisibility: true,
+      delay: 100
+    }
+  );
 
+  document.querySelectorAll('.fade-section').forEach(section => {
+    observer.observe(section);
+  });
+
+  // Fallback por si acaso
+  setTimeout(() => {
+    document.querySelectorAll('.fade-section:not(.visible)').forEach(section => {
+      section.classList.add('visible');
+    });
+  }, 1000);
+};
+
+document.addEventListener('DOMContentLoaded', initScrollDetector);
     // MODAL FORM
     function openModal() {
       const modal = document.getElementById('modalForm');
