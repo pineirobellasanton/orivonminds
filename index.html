@@ -319,18 +319,54 @@
 
 
   <!-- ========= STACK ---------- -->
-  <section class="stack fade-section">
-    <h2>Stack tecnológico</h2>
-    <p class="muted">Herramientas seguras, estables y escalables</p>
-    <div class="stack-logos">
-      <a href="https://n8n.io" target="_blank" rel="noopener"><img src="images/n8n.png" alt="n8n"></a>
-      <a href="https://openai.com" target="_blank" rel="noopener"><img src="images/openai.png" alt="OpenAI"></a>
-      <a href="https://notion.so" target="_blank" rel="noopener"><img src="images/notion.png" alt="Notion"></a>
-      <a href="https://airtable.com" target="_blank" rel="noopener"><img src="images/airtable.png" alt="Airtable"></a>
-      <a href="https://slack.com" target="_blank" rel="noopener"><img src="images/slack.png" alt="Slack"></a>
-      <a href="https://workspace.google.com" target="_blank" rel="noopener"><img src="images/google.png" alt="Google Workspace"></a>
-    </div>
-  </section>
+ <!-- ========= STACK TECNOLÓGICO (CORREGIDO) ========= -->
+<section class="stack fade-section">
+  <h2 style="text-align:center;margin-bottom:12px">Stack tecnológico</h2>
+  <p class="muted" style="text-align:center;margin-bottom:24px">Herramientas seguras, estables y escalables</p>
+  
+  <div class="stack-logos" style="display:flex;flex-wrap:wrap;gap:32px;justify-content:center;align-items:center">
+    <a href="https://n8n.io" target="_blank" rel="noopener"><img src="images/n8n.png" alt="n8n"></a>
+    <a href="https://openai.com" target="_blank" rel="noopener"><img src="images/openai.png" alt="OpenAI"></a>
+    <a href="https://notion.so" target="_blank" rel="noopener"><img src="images/notion.png" alt="Notion"></a>
+    <a href="https://airtable.com" target="_blank" rel="noopener"><img src="images/airtable.png" alt="Airtable"></a>
+    <a href="https://slack.com" target="_blank" rel="noopener"><img src="images/slack.png" alt="Slack"></a>
+    <a href="https://workspace.google.com" target="_blank" rel="noopener"><img src="images/google.png" alt="Google Workspace"></a>
+  </div>
+</section>
+
+/* Centrado completo del stack */
+.stack {
+  text-align: center;
+}
+
+.stack-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.stack-logos a {
+  display: inline-block;
+  transition: all .25s;
+}
+
+.stack-logos a:hover {
+  transform: translateY(-3px);
+}
+
+.stack-logos img {
+  height: 48px;
+  opacity: .75;
+  transition: all .25s;
+}
+
+.stack-logos img:hover {
+  opacity: 1;
+  transform: scale(1.07);
+}
 
 
   <!-- ========= ABOUT ---------- -->
