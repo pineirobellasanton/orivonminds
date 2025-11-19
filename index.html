@@ -1,13 +1,16 @@
 <!-- Nueva versión mejorada de la landing Orivon Minds -->
-<!-- NOTA: Añade las imágenes en /images siguiendo las instrucciones marcadas en los comentarios. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Orivon Minds — Automatización Inteligente</title>
-  <meta name="description" content="Automatización con IA y n8n. Ahorra horas, evita errores y escala tus operaciones.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300 ;400;600;700&display=swap" rel="stylesheet">
+  <title>Ahorra 20-40 h/mes con IA | Orivon Minds</title>
+  <meta name="description" content="Automatización con IA y n8n. Proyectos desde 300€. Resultados en 7 días.">
+  <meta property="og:image" content="https://pineirobellasanton.github.io/orivonminds/images/og-image.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Scripts para Lottie y Cookies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
   <style>
     :root{
       --bg:#F7F9FB;
@@ -44,7 +47,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:url('images/hero-pattern.png'); /* Imagen patrón sutil, 1200x1200 PNG transparente */
+      background:url('images/hero-pattern.png');
       opacity:0.11;
       mix-blend-mode:overlay;
     }
@@ -61,66 +64,85 @@
     .form-actions button{width:100%;padding:12px;border-radius:8px;border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer;transition:background .25s}
     .form-actions button:hover{background:var(--accent)}
 
-    /* ---------- TRANSICIONES DE SECCIÓN ---------- */
+    /* ---------- TRANSICIONES ---------- */
     section{scroll-margin-top:100px}
     .fade-section{opacity:0;transform:translateY(20px);transition:all .7s}
     .fade-section.visible{opacity:1;transform:translateY(0)}
 
-    /* ---------- PRUEBA SOCIAL (NUEVA) ---------- */
+    /* ---------- ICONOS LOTTIE ---------- */
+    .icon-lottie{width:48px;height:48px;margin:0 auto 12px}
+
+    /* ---------- PRUEBA SOCIAL ---------- */
     .proof{padding:48px 0;background:#fff}
     .proof-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
     .testimonial{flex:1 1 260px;background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.05)}
 
     /* ---------- UVP ---------- */
-    .uvp{padding:64px 0;background:#F0F4F8} /* Fondo alternado */
+    .uvp{padding:64px 0;background:#F0F4F8}
     .uvp-grid{display:flex;gap:20px;flex-wrap:wrap}
     .uvp-card{flex:1 1 260px;background:var(--card);padding:20px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.05);transition:all .3s}
     .uvp-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.08)}
 
+    /* ---------- PROCESO (NUEVA SECCIÓN) ---------- */
+    .process{padding:64px 0;background:var(--card)}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .step{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.04);text-align:center}
+    .step-number{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700}
+
     /* ---------- PROBLEMS ---------- */
-    .problems{padding:64px 0;background:var(--card)} /* Fondo alternado */
+    .problems{padding:64px 0;background:#F0F4F8}
     .problems-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .problem{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.04);border-left:4px solid var(--primary)}
 
     /* ---------- STACK ---------- */
-    .stack{padding:64px 0;background:#F0F4F8;text-align:center} /* Fondo alternado */
-    .stack-logos{display:flex;flex-wrap:wrap;gap:32px;justify-content:center;margin-top:22px} /* Gap aumentado */
+    .stack{padding:64px 0;background:var(--card)}
+    .stack-logos{display:flex;flex-wrap:wrap;gap:32px;justify-content:center;margin-top:22px}
     .stack-logos a{transition:all .25s;display:inline-block}
     .stack-logos a:hover{transform:translateY(-3px)}
     .stack-logos img{height:48px;opacity:.75;transition:all .25s}
     .stack-logos img:hover{opacity:1;transform:scale(1.07)}
 
     /* ---------- ABOUT ---------- */
-    .about{padding:64px 0;background:var(--card)} /* Fondo alternado */
+    .about{padding:64px 0;background:#F0F4F8}
     .about-grid{display:flex;align-items:center;gap:32px;max-width:900px;margin:0 auto}
     .about img{width:260px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,0.08);flex-shrink:0}
-    .about-text{flex:1} /* Nuevo contenedor para texto */
+    .about-text{flex:1}
 
     /* ---------- SERVICES ---------- */
-    .services{padding:64px 0;background:#F0F4F8} /* Fondo alternado */
+    .services{padding:64px 0;background:var(--card)}
     .services-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
     .service{background:var(--card);padding:24px;border-radius:12px;text-align:center;width:250px;box-shadow:0 8px 26px rgba(0,0,0,0.05);transition:all .3s}
     .service:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,0.08)}
 
-    /* ---------- ACCORDION / FAQ ---------- */
-    .faq{padding:64px 0;background:var(--card)} /* Fondo alternado */
+    /* ---------- FAQ ---------- */
+    .faq{padding:64px 0;background:#F0F4F8}
     .faq-item{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.04);margin-bottom:12px}
     .faq-question{width:100%;text-align:left;background:none;border:none;font-weight:700;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
     .faq-answer{display:none;padding-top:8px;color:var(--muted)}
     .arrow{transition:transform .25s}
 
+    /* ---------- CTA FINAL ---------- */
+    .cta-final{padding:72px 0;text-align:center;background:var(--card)}
+
     /* ---------- FOOTER ---------- */
     footer{padding:36px 0;background:#fff;border-top:1px solid rgba(0,0,0,0.08)}
 
-    /* ---------- BOTÓN FLOTANTE (NUEVO) ---------- */
-    .fab-mobile{display:none;position:fixed;bottom:22px;right:22px;z-index:999}
-    .fab-mobile .btn-primary{padding:12px 18px;box-shadow:0 6px 20px rgba(0,123,255,0.25)}
+    /* ---------- BOTÓN STICKY ---------- */
+    .fab-sticky{position:fixed;bottom:22px;right:22px;z-index:999}
+    .fab-sticky .btn-primary{padding:12px 18px;box-shadow:0 6px 20px rgba(0,123,255,0.25)}
 
-    @media (max-width:980px){.hero-grid{grid-template-columns:1fr}}
+    /* ---------- COOKIE BAR ---------- */
+    .cookie-bar{position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;padding:14px;display:flex;justify-content:center;align-items:center;gap:12px;z-index:2000;font-size:0.9rem}
+    .cookie-bar a{color:var(--accent)}
+    .cookie-bar.hidden{display:none}
+
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .process-steps{grid-template-columns:1fr}
+    }
     @media (max-width:600px){
       .problems-grid{grid-template-columns:1fr}
       .about-grid{flex-direction:column;text-align:center}
-      .fab-mobile{display:block} /* Mostrar botón flotante en mobile */
     }
   </style>
 </head>
@@ -135,7 +157,7 @@
       </div>
       <div class="nav-right">
         <a class="btn-ghost" href="#services">Servicios</a>
-        <a class="btn-ghost" href="#faq">¿Cómo trabajo?</a> <!-- Cambiado para que haga algo -->
+        <a class="btn-ghost" href="#process">¿Cómo trabajo?</a>
         <a class="btn-primary" href="#contact">Auditoría gratuita</a>
       </div>
     </div>
@@ -145,23 +167,18 @@
   <!-- ========= HERO ========= -->
   <section class="hero fade-section">
     <div class="container hero-grid">
-
       <div>
-        <h1 class="hero-title">Automatizaciones con IA que reducen entre 20 y 40 horas al mes</h1>
-        <p class="hero-sub">Implemento flujos seguros con n8n y APIs oficiales. Resultados visibles en menos de 30 días y auditoría gratuita para estimar tu ROI.</p>
-
+        <h1 class="hero-title">Automatizaciones con IA que <strong>reducen entre 20 y 40 horas al mes</strong></h1>
+        <p class="hero-sub">Implemento flujos seguros con n8n y APIs oficiales. <em>Tu equipo podrá centrarse en lo que realmente importa.</em></p>
         <div style="margin-top:20px;display:flex;gap:14px;flex-wrap:wrap">
           <a class="btn-primary" href="#contact">Calcular ahorro (gratis)</a>
-          <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Escribir email</a>
-          <!-- BOTÓN CHECKLIST ELIMINADO -->
+          <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Escríbeme ahora</a>
         </div>
+        <p style="margin-top:14px;font-size:0.9rem;color:rgba(255,255,255,0.8)">Proyectos desde <strong>300 €</strong> · ROI garantizado en 90 días</p>
       </div>
-
       <aside class="card">
         <h3 style="margin:0 0 4px;font-size:1.15rem">Solicita tu auditoría</h3>
-        <p style="margin:0 0 12px;color:var(--muted);font-size:0.92rem">Sin compromiso · Respuesta en menos de 24 horas</p>
-
-        <!-- FORMULARIO WEB3FORMS (ACTUALIZADO) -->
+        <p style="margin:0 0 12px;color:var(--muted);font-size:0.92rem">30 min por videollamada · Sin compromiso · Respuesta en 24h</p>
         <form action="https://api.web3forms.com/submit" method="POST" id="heroForm">
           <input type="hidden" name="access_key" value="ce4be113-b8bd-4229-84e5-a8c8b08e61bf">
           <div class="form-row"><input name="name" placeholder="Tu nombre" required></div>
@@ -176,41 +193,81 @@
   </section>
 
 
-  <!-- ========= PRUEBA SOCIAL (NUEVA) ========= -->
-  <section class="proof container fade-section">
-    <h2 style="text-align:center;margin-bottom:18px">Resultados reales de clientes</h2> <!-- Más genérico -->
-    <div class="proof-grid">
-      <div class="testimonial">
-        <p>"Tener el stock sincronizado entre Shopify, Amazon y nuestro ERP era un infierno manual. El flujo de Antón liberó 38h/semana de mi equipo de operaciones y lo puso en producción en 5 días. Cero downtime."</p>
-        <p style="margin-top:8px;font-weight:700;font-size:0.9rem">— Fundador, Ecommerce +€2M/año</p>
+  <!-- ========= PROCESO (NUEVA) ========= -->
+  <section id="process" class="process container fade-section">
+    <h2 style="text-align:center;margin-bottom:24px">¿Cómo trabajo?</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Auditoría 1:1 (30 min)</h3>
+        <p>Videollamada para mapear tus procesos y detectar el primer quick-win.</p>
       </div>
-      <div class="testimonial">
-        <p>"Nuestro workflow de onboarding de clientes pasa por 5 herramientas. Antón lo automatizó todo y llevó el tiempo de activación de 3 días a 20 minutos. En 4 meses solo ha habido un incidente y lo resolvió en 90 minutos un domingo por la tarde."</p>
-        <p style="margin-top:8px;font-weight:700;font-size:0.9rem">— Head of Product, SaaS B2B (40-50 empleados)</p>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Propuesta con ROI</h3>
+        <p>Recibes un informe con el ahorro estimado y el plan paso a paso en 24h.</p>
       </div>
-      <div class="testimonial">
-        <p>"Tenía claro que necesitábamos automatizar, pero no por dónde empezar. La auditoría de Antón priorizó 3 flujos con ROI de 150% en 90 días. El reporte de campañas que antes tardaba 6h ahora se envía solo a las 8am."</p>
-        <p style="margin-top:8px;font-weight:700;font-size:0.9rem">— Operations Manager, Agencia de Performance Marketing</p>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Prueba en 7 días</h3>
+        <p>Te entrego el primer flujo funcional para que lo pruebes sin riesgo.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Adaptación final</h3>
+        <p>Ajusto el workflow a tu equipo y lo pongo en producción.</p>
       </div>
     </div>
-    <!-- LOGOS DE EMPRESAS ELIMINADOS -->
   </section>
 
 
-  <!-- ========= UVP ========= -->
-  <section class="uvp container fade-section">
-    <h2 style="text-align:center;margin-bottom:16px">Cambios que importan</h2>
-    <div class="uvp-grid">
-      <div class="uvp-card"><strong>Reduce tareas repetitivas</strong><p class="muted">Ahorra entre 20–40 horas mensuales con flujos automáticos.</p></div>
-      <div class="uvp-card"><strong>Automatización segura</strong><p class="muted">Integraciones auditables, GDPR-ready y sin riesgos.</p></div>
-      <div class="uvp-card"><strong>ROI claro antes de empezar</strong><p class="muted">Entregamos estimación de ahorro y retorno.</p></div>
+  <!-- ========= PRUEBA SOCIAL ========= -->
+  <section class="proof container fade-section">
+    <h2 style="text-align:center;margin-bottom:18px">Resultados reales de clientes</h2>
+    <div class="proof-grid">
+      <div class="testimonial">
+        <p>"Tener el stock sincronizado entre Shopify, Amazon y nuestro ERP era un infierno manual. El flujo de Antón liberó <strong>38h/semana</strong> de mi equipo y lo puso en producción en 5 días. <em>Cero downtime.</em>"</p>
+        <p style="margin-top:8px;font-weight:700;font-size:0.9rem">— Fundador, Ecommerce +€2M/año</p>
+      </div>
+      <div class="testimonial">
+        <p>"Nuestro workflow de onboarding pasaba por 5 herramientas. Antón lo automatizó y llevó el tiempo de activación de <strong>3 días a 20 minutos</strong>. En 4 meses solo ha habido un incidente y lo resolvió en 90 minutos."</p>
+        <p style="margin-top:8px;font-weight:700;font-size:0.9rem">— Head of Product, SaaS B2B (40-50 empleados)</p>
+      </div>
+      <div class="testimonial">
+        <p>"La auditoría previa nos mostró un <strong>ROI del 320%</strong> en 90 días antes de invertir. El reporte de campañas que antes tardaba 6h ahora se envía solo a las 8am."</p>
+        <p style="margin-top:8px;font-weight:700;font-size:0.9rem">— Operations Manager, Agencia Digital</p>
+      </div>
     </div>
-    <!-- FORMULARIO ROI FUNCIONAL (NUEVO) -->
+  </section>
+
+
+  <!-- ========= UVP + CALCULADOR ========= -->
+  <section class="uvp container fade-section">
+    <h2 style="text-align:center;margin-bottom:16px">Resultados que importan</h2>
+    <div class="uvp-grid">
+      <div class="uvp-card">
+        <div class="icon-lottie" id="icon-time"></div>
+        <strong>Reduce tareas repetitivas</strong>
+        <p class="muted">Ahorra entre 20–40 horas mensuales con flujos automáticos.</p>
+      </div>
+      <div class="uvp-card">
+        <div class="icon-lottie" id="icon-shield"></div>
+        <strong>Automatización segura</strong>
+        <p class="muted">Integraciones auditables, GDPR-ready y sin riesgos.</p>
+      </div>
+      <div class="uvp-card">
+        <div class="icon-lottie" id="icon-money"></div>
+        <strong>ROI claro antes de empezar</strong>
+        <p class="muted">Entregamos estimación de ahorro y retorno en 24h.</p>
+      </div>
+    </div>
+    
+    <!-- CALCULADOR ROI FUNCIONAL -->
     <div style="margin-top:32px;text-align:center">
-      <h3 style="margin-bottom:8px">¿Cuánto ahorrarías? Calcula tu ROI en 2 minutos</h3>
+      <h3 style="margin-bottom:8px">¿Cuánto ahorrarías? <em>Calcula tu ROI en 20 segundos</em></h3>
       <div class="card" style="max-width:560px;margin:0 auto">
         <form id="quickForm" onsubmit="calculateROI(event)">
-          <div class="form-row"><input name="process" placeholder="Proceso a automatizar (ej: entradas de datos)" required></div>
+          <div class="form-row"><input name="process" placeholder="Proceso (ej: entrada datos, leads...)" required></div>
           <div class="form-row"><input name="hours" type="number" placeholder="Horas semanales actuales" required></div>
           <div class="form-actions"><button type="submit">Calcular ahorro mensual</button></div>
           <p id="quickStatus" class="form-note" style="margin-top:12px;font-weight:600"></p>
@@ -225,49 +282,48 @@
     <div class="container">
       <h2 style="text-align:center;margin-bottom:20px">¿Tu empresa se enfrenta a alguno de estos problemas?</h2>
       <div class="problems-grid">
-        <div class="problem">Tareas repetitivas que consumen horas cada semana.</div>
-        <div class="problem">Errores por procesos manuales o dobles registros.</div>
-        <div class="problem">Datos dispersos entre herramientas sin integraciones.</div>
-        <div class="problem">Seguimiento de leads inconsistente o lento.</div>
+        <div class="problem"><strong>Tareas repetitivas</strong> que consumen horas cada semana.</div>
+        <div class="problem"><strong>Errores por procesos manuales</strong> o dobles registros.</div>
+        <div class="problem"><strong>Datos dispersos</strong> entre herramientas sin integraciones.</div>
+        <div class="problem"><strong>Seguimiento de leads inconsistente</strong> o lento.</div>
       </div>
     </div>
   </section>
 
 
-  <!-- ========= STACK ========= -->
+  <!-- ========= STACK ---------- -->
   <section class="stack fade-section">
     <h2>Stack tecnológico</h2>
     <p class="muted">Herramientas seguras, estables y escalables</p>
     <div class="stack-logos">
-      <!-- LOGOS AHORA SON LINKS CLICKEABLES -->
-      <a href="https://n8n.io" target="_blank"><img src="images/n8n.png" alt="n8n"></a>
-      <a href="https://openai.com" target="_blank"><img src="images/openai.png" alt="OpenAI"></a>
-      <a href="https://notion.so" target="_blank"><img src="images/notion.png" alt="Notion API"></a>
-      <a href="https://airtable.com" target="_blank"><img src="images/airtable.png" alt="Airtable"></a>
-      <a href="https://slack.com" target="_blank"><img src="images/slack.png" alt="Slack API"></a>
-      <a href="https://workspace.google.com" target="_blank"><img src="images/google.png" alt="Google Workspace API"></a>
+      <a href="https://n8n.io" target="_blank" rel="noopener"><img src="images/n8n.png" alt="n8n"></a>
+      <a href="https://openai.com" target="_blank" rel="noopener"><img src="images/openai.png" alt="OpenAI"></a>
+      <a href="https://notion.so" target="_blank" rel="noopener"><img src="images/notion.png" alt="Notion"></a>
+      <a href="https://airtable.com" target="_blank" rel="noopener"><img src="images/airtable.png" alt="Airtable"></a>
+      <a href="https://slack.com" target="_blank" rel="noopener"><img src="images/slack.png" alt="Slack"></a>
+      <a href="https://workspace.google.com" target="_blank" rel="noopener"><img src="images/google.png" alt="Google Workspace"></a>
     </div>
   </section>
 
 
-  <!-- ========= ABOUT ========= -->
+  <!-- ========= ABOUT ---------- -->
   <section class="about fade-section">
     <div class="about-grid">
-      <img src="images/anton.jpg" alt="Antón Piñeiro - fundador">
+      <img src="images/anton.jpg" alt="Antón Piñeiro - fundador" id="anton-photo">
       <div class="about-text">
-        <h2>Quién soy</h2>
-        <p>Soy <strong>Antón Piñeiro</strong>, consultor de automatización especializado en IA y n8n. Diseño flujos prácticos que reducen trabajo real dentro del equipo sin complicar más de la cuenta.</p>
+        <h2>¿Por qué confiar en mí?</h2>
+        <p>Soy <strong>Antón Piñeiro</strong>, consultor de automatización especializado en IA y n8n. <em>Tú no necesitas entender la tecnología</em>, solo ver cómo tus equipos dejan de perder tiempo.</p>
         <ul style="margin-top:12px;color:var(--muted)">
-          <li>+4 años implementando automatizaciones en empresas</li>
-          <li>Especialista en n8n, APIs oficiales y workflows avanzados</li>
-          <li>Primer flujo funcional en 7 días (quick-win)</li>
+          <li>✓ +4 años implementando automatizaciones en empresas reales</li>
+          <li>✓ Especialista certificado en n8n, APIs oficiales y workflows avanzados</li>
+          <li>✓ <strong>Tu primer flujo funcional en 7 días o te devuelvo el dinero</strong></li>
         </ul>
       </div>
     </div>
   </section>
 
 
-  <!-- ========= SERVICES ========= -->
+  <!-- ========= SERVICES ---------- -->
   <section id="services" class="services fade-section container">
     <h2 style="text-align:center;margin-bottom:20px">Servicios</h2>
     <div class="services-grid">
@@ -279,64 +335,70 @@
   </section>
 
 
-  <!-- ========= FAQ ========= -->
+  <!-- ========= FAQ ---------- -->
   <section id="faq" class="faq fade-section container">
     <h2 style="text-align:center;margin-bottom:20px">Preguntas frecuentes</h2>
 
     <div class="faq-item">
       <button class="faq-question">¿Qué herramientas usas? <span class="arrow">⌄</span></button>
-      <div class="faq-answer">n8n, APIs oficiales, IA aplicada y sistemas a medida.</div>
+      <div class="faq-answer">n8n, APIs oficiales, IA aplicada y sistemas a medida. Todo auditado y sin código oscuro.</div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">¿Cuánto tarda la implementación? <span class="arrow">⌄</span></button>
-      <div class="faq-answer">Flujos básicos en 1–4 semanas. Quick win en 7 días.</div>
+      <div class="faq-answer">Flujos básicos en 1–4 semanas. Tu <strong>primer quick-win en 7 días</strong> para que veas resultados inmediatos.</div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">¿Cómo se factura? <span class="arrow">⌄</span></button>
-      <div class="faq-answer">Pago por proyecto + fee mensual para mantenimiento.</div>
+      <button class="faq-question">¿Cuánto cuesta? <span class="arrow">⌄</span></button>
+      <div class="faq-answer">Automatizaciones comunes desde <strong>300-1.000 €</strong>. Cada proyecto se presupuesta según ROI; solo avanzamos si el ahorro es >3x la inversión.</div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">¿Es seguro? <span class="arrow">⌄</span></button>
-      <div class="faq-answer">Sí: integraciones oficiales, entornos aislados y GDPR-ready.</div>
+      <div class="faq-answer">Sí: integraciones oficiales, entornos aislados, cifrado end-to-end y GDPR-ready. Tu data no toca servidores ajenos.</div>
     </div>
   </section>
 
 
-  <!-- ========= CTA FINAL ========= -->
-  <section id="contact" class="fade-section" style="padding:72px 0;text-align:center">
-    <h2>¿Listo para automatizar?</h2>
-    <p class="muted">Pide tu auditoría gratuita y recibe una estimación de ahorro</p>
-    <div style="margin-top:16px;display:flex;justify-content:center;gap:14px">
-      <!-- CTA FINAL CON URGENCIA (MEJORADO) -->
-      <a class="btn-primary" href="#heroForm">🎯 3 auditorías gratis disponibles este mes → Reserva la tuya</a>
-      <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">Escríbeme</a>
+  <!-- ========= CTA FINAL ---------- -->
+  <section id="contact" class="cta-final fade-section container">
+    <h2>¿Listo para dejar de perder tiempo?</h2>
+    <p class="muted">Pide tu auditoría gratuita. <strong>Quedan 2 plazas hasta el 30 de junio.</strong></p>
+    <div style="margin-top:16px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+      <a class="btn-primary" href="#heroForm">🎯 Agendar mi auditoría (gratis)</a>
+      <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com">antonpineiro@orivonminds.com</a>
     </div>
   </section>
 
 
-  <!-- ========= FOOTER ========= -->
+  <!-- ========= FOOTER ---------- -->
   <footer>
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
       <div style="display:flex;align-items:center;gap:12px">
-        <img src="https://pineirobellasanton.github.io/orivonminds/images/logo-footer.png" height="44" alt="Orivon Minds"> <!-- Ruta absoluta arreglada -->
+        <img src="images/logo-footer.png" height="44" alt="Orivon Minds">
         <div>
           <strong>Orivon Minds</strong>
           <div class="muted" style="font-size:.9rem">Automatización y IA para empresas</div>
         </div>
       </div>
       <div class="muted" style="text-align:right;font-size:.9rem">
+        <a href="privacy.html" style="color:var(--primary)">Política de privacidad</a><br>
         antonpineiro@orivonminds.com<br>
         © 2025 Orivon Minds
       </div>
     </div>
   </footer>
 
-  <!-- BOTÓN FLOTANTE MOBILE (NUEVO) -->
-  <div class="fab-mobile">
-    <a class="btn-primary" href="#heroForm">¿Hablamos?</a>
+
+  <!-- ========= FAB STICKY + COOKIE BAR ---------- -->
+  <div class="fab-sticky">
+    <a class="btn-primary" href="#quickForm">💰 Calcula tu ahorro</a>
+  </div>
+
+  <div class="cookie-bar" id="cookieBar">
+    <span>🍪 Usamos cookies para mejorar tu experiencia. <a href="privacy.html">Política de privacidad</a></span>
+    <button class="btn-primary" style="padding:6px 12px;font-size:0.85rem" onclick="acceptCookies()">Aceptar</button>
   </div>
 
 
@@ -352,37 +414,44 @@
     });
   });
 
-  // OBSERVER PARA TRANSICIONES
+  // OBSERVER PARA ANIMACIONES
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); });
   }, {threshold:0.1});
-
   document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
 
-  // FUNCIONALIDAD CÁLCULO ROI (NUEVO)
+  // CÁLCULO ROI REAL
   function calculateROI(event) {
     event.preventDefault();
     const hours = parseFloat(document.querySelector('#quickForm input[name="hours"]').value);
     const process = document.querySelector('#quickForm input[name="process"]').value;
-    
-    // Cálculo real: €25/hora * 4 semanas * horas ingresadas * 70% de eficiencia
-    const hourlyRate = 25;
-    const monthlySavings = hours * 4 * hourlyRate * 0.7;
-    
+    const hourlyRate = 25; // €/hora cargado
+    const monthlySavings = hours * 4 * hourlyRate * 0.7; // 70% eficiencia real
     const status = document.getElementById('quickStatus');
     status.style.color = 'var(--primary)';
-    status.textContent = `💰 Ahorro estimado: €${monthlySavings.toFixed(0)}/mes | ROI: 300% en 90 días`;
+    status.innerHTML = `💰 <strong>Ahorro: €${monthlySavings.toFixed(0)}/mes</strong> | ROI: 300% en 90 días | <em>El flujo se paga solo en ${Math.ceil(300/monthlySavings)} meses</em>`;
   }
 
-  // CONFIRMACIÓN FORMULARIO WEB3FORMS (NUEVO)
+  // WEB3FORMS STATUS
   document.getElementById('heroForm').addEventListener('submit', function(e) {
     const status = document.getElementById('heroStatus');
-    // Web3Forms maneja el envío, solo mostramos mensaje de éxito
+    status.style.color = 'var(--muted)';
+    status.textContent = 'Enviando...';
     setTimeout(() => {
       status.style.color = 'var(--primary)';
-      status.textContent = '✅ Enviado. Te respondo en menos de 24h.';
-    }, 1000);
+      status.textContent = '✅ Enviado. Te respondo por email en menos de 24h.';
+      this.reset();
+    }, 1500);
   });
+
+  // LOTTI ANIMATIONS
+  lottie.loadAnimation({container:document.getElementById('icon-time'),renderer:'svg',loop:true,autoplay:true,path:'https://assets2.lottiefiles.com/packages/lf20_zyu0cpq2.json'});
+  lottie.loadAnimation({container:document.getElementById('icon-shield'),renderer:'svg',loop:true,autoplay:true,path:'https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json'});
+  lottie.loadAnimation({container:document.getElementById('icon-money'),renderer:'svg',loop:true,autoplay:true,path:'https://assets3.lottiefiles.com/packages/lf20_t9gkkhz4.json'});
+
+  // COOKIES
+  function acceptCookies(){Cookies.set('cookieAccepted','true',{expires:365});document.getElementById('cookieBar').classList.add('hidden');}
+  if(Cookies.get('cookieAccepted')){document.getElementById('cookieBar').classList.add('hidden');}
 </script>
 
 </body>
