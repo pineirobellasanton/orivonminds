@@ -84,6 +84,8 @@
     .form-row{display:flex;gap:10px;margin-bottom:10px}
     .form-row input,.form-row textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:0.95rem;transition:border .25s}
     .form-row input:focus,.form-row textarea:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 2px rgba(0,123,255,0.15)}
+    .form-row select{width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:0.95rem;transition:border .25s;background:#fff}
+    .form-row select:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 2px rgba(0,123,255,0.15)}
     .form-actions button{width:100%;padding:12px;border-radius:8px;border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer;transition:background .25s}
     .form-actions button:hover{background:var(--accent)}
     .form-note{margin-top:12px;font-size:0.9rem;color:var(--muted)}
@@ -179,17 +181,17 @@
       *, *::before, *::after{animation:none !important;transition:none !important}
     }
 
-    /* ========= FIX HEADER MÓVIL (AQUÍ ESTÁ LA SOLUCIÓN) ========= */
+    /* ========= FIX HEADER MÓVIL ========= */
     @media (max-width: 480px) {
       .brand span {
-        font-size: 0.9rem; /* Texto más pequeño */
+        font-size: 0.9rem;
       }
       .nav-right {
-        gap: 8px; /* Menos espacio entre botones */
+        gap: 8px;
       }
       .btn-ghost {
         padding: 8px 10px;
-        font-size: 0.85rem; /* Botón más pequeño */
+        font-size: 0.85rem;
       }
       .btn-primary {
         padding: 10px 12px;
@@ -198,7 +200,7 @@
     }
     @media (max-width: 380px) {
       .brand span {
-        display: none; /* Solo muestra logo en móviles muy pequeños */
+        display: none;
       }
     }
   </style>
@@ -226,15 +228,12 @@
       <div>
         <h1 class="hero-title">Automatizaciones con IA que <strong>reducen entre 20 y 40 horas al mes</strong></h1>
         <p class="hero-sub">Implemento flujos seguros con n8n y APIs oficiales. <em>Tu equipo podrá centrarse en lo que realmente importa.</em></p>
-        <!-- PRECIO EN EL HERO -->
         <p style="background:rgba(255,255,255,0.15);padding:12px 16px;border-radius:8px;display:inline-block;font-weight:700;margin:16px 0">Proyectos desde <strong>300€</strong> · ROI garantizado en 90 días</p>
-        <!-- GARANTÍA VISIBLE -->
         <div style="background:#FFD700;color:#000;padding:8px 16px;border-radius:6px;font-weight:700;margin-top:12px;display:inline-block">
           ⚡ Tu primer flujo en 7 días o 100% devolución
         </div>
         <div class="hero-actions">
-          <a class="btn-primary" href="#contact" data-cta="hero-primario" data-location="hero">Calcular ahorro (gratis)</a>
-          <!-- ESCRÍBEME AHORA MÁS DISCRETO -->
+          <a class="btn-primary" href="#contact" data-cta="hero-primario" data-location="hero">Solicitar auditoría gratis</a>
           <small style="color:rgba(255,255,255,0.7);margin-top:8px">
             ¿Prefieres correo? <a href="mailto:antonpineiro@orivonminds.com" style="text-decoration:underline" data-cta="hero-email">antonpineiro@orivonminds.com</a>
           </small>
@@ -243,15 +242,15 @@
       <aside class="card" aria-labelledby="formulario-hero">
         <h3 id="formulario-hero" style="margin:0 0 4px;font-size:1.15rem">Solicita tu auditoría</h3>
         <p style="margin:0 0 12px;color:var(--muted);font-size:0.92rem">30 min por videollamada · Sin compromiso · Respuesta en 24h</p>
-        <form action="https://api.web3forms.com/submit" method="POST" id="heroForm" novalidate>
+        <form action="https://api.web3forms.com/submit" method="POST" id="heroForm">
           <input type="hidden" name="access_key" value="ce4be113-b8bd-4229-84e5-a8c8b08e61bf">
           <div class="form-row">
             <label for="hero-name" class="sr-only">Nombre completo</label>
-            <input id="hero-name" name="name" placeholder="Tu nombre" required aria-required="true">
+            <input id="hero-name" name="name" placeholder="Tu nombre *" required aria-required="true">
           </div>
           <div class="form-row">
             <label for="hero-email" class="sr-only">Correo electrónico</label>
-            <input id="hero-email" type="email" name="email" placeholder="Tu correo" required aria-required="true">
+            <input id="hero-email" type="email" name="email" placeholder="Tu correo *" required aria-required="true">
           </div>
           <div class="form-row">
             <label for="hero-company" class="sr-only">Empresa (opcional)</label>
@@ -259,10 +258,10 @@
           </div>
           <div class="form-row">
             <label for="hero-message" class="sr-only">Proceso a automatizar</label>
-            <textarea id="hero-message" name="message" placeholder="¿Qué procesos quieres automatizar?" required aria-required="true"></textarea>
+            <textarea id="hero-message" name="message" placeholder="¿Qué procesos quieres automatizar? *" required aria-required="true"></textarea>
           </div>
           <div class="form-actions">
-            <button type="submit" data-cta="hero-form-enviar">Calcular ahorro</button>
+            <button type="submit" data-cta="hero-form-enviar">Solicitar auditoría</button>
           </div>
           <p id="heroStatus" class="form-note" role="status" aria-live="polite"></p>
         </form>
@@ -477,7 +476,7 @@
       <button class="faq-question" aria-expanded="false" aria-controls="faq4" data-cta="faq-seguridad">
         ¿Es seguro? <span class="arrow">⌄</span>
       </button>
-      <div class="faq-answer" id="faq4" hidden">
+      <div class="faq-answer" id="faq4" hidden>
         Sí: integraciones oficiales, entornos aislados, cifrado end-to-end y GDPR-ready. Te entrego documentación de seguridad de cada flujo. Puedes revisar cada paso del workflow antes de aprobarlo. <strong>Tu data no toca servidores ajenos ni se comparte con terceros.</strong>
       </div>
     </div>
@@ -553,13 +552,42 @@
     💬 WhatsApp rápido
   </a>
 
+  <!-- ========= MODAL CALCULADORA ROI (AHORA SÍ EXISTE) ========= -->
+  <div class="modal-form" id="modalForm" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-content card">
+      <button onclick="closeModal()" style="float:right;background:none;border:none;font-size:1.5rem;cursor:pointer" aria-label="Cerrar">×</button>
+      <h2 id="modalTitle" style="margin-top:0">Calcula tu ROI en 20 segundos</h2>
+      <form id="quickForm" novalidate>
+        <div class="form-row">
+          <label for="calc-hours" class="sr-only">Horas por semana</label>
+          <input type="number" id="calc-hours" placeholder="Horas perdidas/semana *" required min="1" max="168" aria-required="true" title="Ingresa las horas que pierdes a la semana en tareas repetitivas">
+        </div>
+        <div class="form-row">
+          <label for="calc-process" class="sr-only">Tipo de proceso</label>
+          <select id="calc-process" required aria-required="true" style="width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:0.95rem;background:#fff">
+            <option value="">Selecciona un proceso *</option>
+            <option value="data-entry">Data entry / Registros manuales</option>
+            <option value="leads">Seguimiento de leads</option>
+            <option value="reports">Generación de reportes</option>
+            <option value="inventory">Gestión de inventario/pedidos</option>
+            <option value="other">Otro proceso repetitivo</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="submit" style="font-size:1rem">Calcular mi ahorro 💎</button>
+        </div>
+        <div id="quickStatus" class="form-note" role="alert" aria-live="assertive" style="margin-top:16px;font-size:1rem;line-height:1.4"></div>
+      </form>
+    </div>
+  </div>
+
   <!-- ========= COOKIE BAR ========= -->
   <div class="cookie-bar" id="cookieBar" role="banner">
     <span>🍪 Usamos cookies para mejorar tu experiencia. <a href="privacy.html">Política de privacidad</a></span>
     <button class="btn-primary" style="padding:6px 12px;font-size:0.85rem" onclick="acceptCookies()" data-cta="cookies-aceptar">Aceptar</button>
   </div>
 
-  <!-- ========= JAVASCRIPT ========= -->
+  <!-- ========= JAVASCRIPT CORREGIDO ========= -->
   <script>
     // SANITIZACIÓN ANTI-XSS
     function sanitize(text) {
@@ -573,7 +601,6 @@
       btn.addEventListener('click', () => {
         const answer = document.getElementById(btn.getAttribute('aria-controls'));
         const isOpen = btn.getAttribute('aria-expanded') === 'true';
-        
         btn.setAttribute('aria-expanded', !isOpen);
         answer.hidden = isOpen;
       });
@@ -584,36 +611,23 @@
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
           });
         },
-        {
-          threshold: 0.1,
-          rootMargin: '0px 0px -100px 0px',
-          trackVisibility: true,
-          delay: 100
-        }
+        { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
       );
-
-      document.querySelectorAll('.fade-section').forEach(section => {
-        observer.observe(section);
-      });
-
+      document.querySelectorAll('.fade-section').forEach(section => observer.observe(section));
       setTimeout(() => {
-        document.querySelectorAll('.fade-section:not(.visible)').forEach(section => {
-          section.classList.add('visible');
-        });
+        document.querySelectorAll('.fade-section:not(.visible)').forEach(section => section.classList.add('visible'));
       }, 1000);
     };
-
     document.addEventListener('DOMContentLoaded', initScrollDetector);
 
     // MODAL FORM
     function openModal() {
       const modal = document.getElementById('modalForm');
       modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
       modal.querySelector('input').focus();
       document.body.style.overflow = 'hidden';
     }
@@ -621,6 +635,7 @@
     function closeModal() {
       const modal = document.getElementById('modalForm');
       modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
 
@@ -632,30 +647,59 @@
       if(e.target === e.currentTarget) closeModal();
     });
 
-    // CÁLCULO ROI CON SANITIZACIÓN
+    // CÁLCULO ROI CON RESULTADO IMPACTANTE Y BOTÓN
     document.getElementById('quickForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const hours = parseFloat(document.getElementById('calc-hours').value);
       const process = document.getElementById('calc-process').value;
       
+      // VALIDACIÓN OBLIGATORIA
       if(!hours || hours <= 0) {
-        showStatus('quickStatus', 'Por favor ingresa un número válido de horas', 'error');
+        showStatus('quickStatus', '❌ Por favor ingresa un número válido de horas', 'error');
+        return;
+      }
+      if(!process) {
+        showStatus('quickStatus', '❌ Por favor selecciona un tipo de proceso', 'error');
         return;
       }
 
       const hourlyRate = 35;
       const monthlySavings = hours * 4 * hourlyRate * 0.7;
-      
+      const yearlySavings = monthlySavings * 12;
+      const investment = monthlySavings * 0.3; // 30% del ahorro como inversión
+      const roiPercent = ((yearlySavings - investment) / investment * 100).toFixed(0);
+
+      // MENSAJE IMPACTANTE CON BOTÓN CTA
       showStatus('quickStatus', 
-        `💰 <strong>Ahorro: €${sanitize(monthlySavings.toFixed(0))}/mes</strong> | ROI: 300% en 90 días`, 
+        `<div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);padding:16px;border-radius:8px;border:2px solid #4caf50;margin-top:12px">
+          <div style="font-size:2rem;margin-bottom:8px">🚀</div>
+          <strong style="color:#2e7d32;font-size:1.2rem">¡ESTÁS PERDIENDO €${sanitize(monthlySavings.toFixed(0))} AL MES!</strong><br>
+          <span style="color:#388e3c">Ahorro anual: <strong>€${sanitize(yearlySavings.toFixed(0))}</strong></span><br>
+          <span style="color:#f57c00;font-weight:700">ROI: ${roiPercent}% en 90 días</span><br><br>
+          <span style="color:#1976d2;font-weight:600">⚡ Transforma esta pérdida en crecimiento</span><br>
+          <small style="color:#546e7a">Solicita tu auditoría gratuita ahora mismo</small><br><br>
+          <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); closeModal();" 
+                  style="background:var(--primary);color:#fff;padding:12px 20px;border:none;border-radius:6px;cursor:pointer;font-weight:700;font-size:1rem;box-shadow:0 4px 12px rgba(0,123,255,0.3)">
+            🎯 Solicitar auditoría gratuita
+          </button>
+        </div>`, 
         'success');
     });
 
-    // MANEJO WEB3FORMS DIRECTO (Opción C)
+    // MANEJO WEB3FORMS DIRECTO CON VALIDACIÓN
     document.getElementById('heroForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const status = document.getElementById('heroStatus');
       const formData = new FormData(e.target);
+      
+      // VALIDACIÓN EXTRA ANTES DE ENVIAR
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      if(!name || !email || !message) {
+        showStatus('heroStatus', '❌ Por favor completa todos los campos obligatorios', 'error');
+        return;
+      }
       
       showStatus('heroStatus', 'Enviando...', 'info');
 
@@ -691,7 +735,6 @@
       document.getElementById('cookieBar').classList.add('hidden');
       localStorage.setItem('cookieAccepted', 'true');
     }
-    
     if(localStorage.getItem('cookieAccepted')){
       document.getElementById('cookieBar').classList.add('hidden');
     }
@@ -701,11 +744,6 @@
       btn.addEventListener('click', () => {
         console.log('CTA Click:', btn.dataset.cta, 'Location:', btn.dataset.location || 'unknown');
       });
-    });
-
-    // CERRAR MODAL AL ENVIAR FORM
-    document.getElementById('quickForm').addEventListener('submit', () => {
-      setTimeout(closeModal, 2000);
     });
   </script>
 
