@@ -459,7 +459,7 @@
     event.preventDefault();
     const hours = parseFloat(document.querySelector('#quickForm input[name="hours"]').value);
     const process = document.querySelector('#quickForm input[name="process"]').value;
-    const hourlyRate = 25; // €/hora cargado
+    const hourlyRate = 35; // €/hora cargado
     const monthlySavings = hours * 4 * hourlyRate * 0.7; // 70% eficiencia real
     const status = document.getElementById('quickStatus');
     status.style.color = 'var(--primary)';
