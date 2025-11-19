@@ -24,21 +24,36 @@
   
   <style>
     :root{
-      --bg:#F7F9FB;
+      --bg:#f8fafc;
       --card:#FFFFFF;
       --muted:#4B5563;
       --text:#0D1117;
       --primary:#007BFF;
       --accent:#00BFFF;
-      --radius:10px;
-      --container:1200px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md:0 4px 16px rgba(0,0,0,0.12);
+      --shadow-lg:0 8px 32px rgba(0,0,0,0.16);
+      --radius:12px;
+      --container:1100px;
     }
     
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui;-webkit-font-smoothing:antialiased;background:var(--bg);color:var(--text)}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      background:var(--bg);
+      color:var(--text);
+      letter-spacing:-0.02em;
+      text-rendering:optimizeLegibility;
+    }
     img{max-width:100%;height:auto;display:block}
     a{text-decoration:none;color:inherit}
-    .container{width:92%;max-width:var(--container);margin:0 auto}
+    .container{
+      width:90%;
+      max-width:var(--container);
+      margin:0 auto
+    }
 
     .sr-only{
       position:absolute;
@@ -50,20 +65,40 @@
     }
 
     /* HEADER */
-    header{background:var(--card);border-bottom:1px solid rgba(0,0,0,0.06);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px)}
+    header{
+      background:var(--card);
+      position:sticky;top:0;z-index:1000;
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow-sm);
+      border:none;
+    }
     .nav{height:86px;display:flex;align-items:center;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.1rem}
     .brand img{height:56px;width:auto;transition:transform .25s}
-    .brand img:hover{transform:scale(1.05)}
+    .brand img:hover{transform:scale(1.08) rotate(2deg)}
 
     .nav-right{display:flex;align-items:center;gap:14px}
     .btn-ghost{padding:10px 14px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-weight:600;transition:all .25s}
     .btn-ghost:hover{background:#f0f4ff;border-color:var(--primary)}
-    .btn-primary{background:var(--primary);color:#fff;padding:11px 16px;border-radius:8px;font-weight:700;transition:background .25s;cursor:pointer;border:none}
-    .btn-primary:hover{background:var(--accent)}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      color:#fff;padding:11px 16px;border-radius:50px;font-weight:700;
+      cursor:pointer;border:none;letter-spacing:0.01em;
+      box-shadow:0 4px 16px rgba(0,123,255,0.3);
+      transition:all .25s;
+    }
+    .btn-primary:hover{
+      background:linear-gradient(135deg,var(--accent),#00d9ff);
+      box-shadow:0 6px 20px rgba(0,123,255,0.4);
+      transform:translateY(-2px);
+    }
 
     /* HERO */
-    .hero{padding:72px 0;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;position:relative;overflow:hidden}
+    .hero{
+      padding:72px 0;
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      color:#fff;position:relative;overflow:hidden
+    }
     .hero::before{
       content:"";
       position:absolute;
@@ -73,21 +108,42 @@
       mix-blend-mode:overlay;
     }
     .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;position:relative;z-index:2}
-    .hero-title{font-size:2.9rem;line-height:1.05;margin-bottom:16px;font-weight:700;animation:fadeUp .7s ease both}
+    .hero-title{
+      font-size:3rem;line-height:1.1;margin-bottom:16px;font-weight:700;
+      animation:fadeUp .7s ease both;
+      text-shadow:0 2px 4px rgba(0,0,0,0.1);
+      letter-spacing:-0.03em;
+    }
     .hero-sub{font-size:1.1rem;color:rgba(255,255,255,0.9);animation:fadeUp .9s ease both}
     @keyframes fadeUp{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
     .hero-actions{margin-top:20px;display:flex;gap:14px;flex-wrap:wrap}
     .hero-note{margin-top:14px;font-size:0.9rem;color:rgba(255,255,255,0.8)}
 
     /* FORMULARIOS */
-    .card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.08);animation:fadeUp 1s ease both}
+    .card{
+      background:#fff;padding:32px;border-radius:16px;
+      box-shadow:var(--shadow-lg);animation:fadeUp 1s ease both
+    }
     .form-row{display:flex;gap:10px;margin-bottom:10px}
-    .form-row input,.form-row textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:0.95rem;transition:border .25s}
-    .form-row input:focus,.form-row textarea:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 2px rgba(0,123,255,0.15)}
-    .form-row select{width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:0.95rem;transition:border .25s;background:#fff}
-    .form-row select:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 2px rgba(0,123,255,0.15)}
-    .form-actions button{width:100%;padding:12px;border-radius:8px;border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer;transition:background .25s}
-    .form-actions button:hover{background:var(--accent)}
+    .form-row input,.form-row textarea,.form-row select{
+      width:100%;padding:14px;border-radius:10px;border:1px solid #e0e0e0;
+      font-size:1rem;transition:border .25s;background:#fff
+    }
+    .form-row input:focus,.form-row textarea:focus,.form-row select:focus{
+      border-color:var(--primary);outline:none;
+      box-shadow:0 0 0 2px rgba(0,123,255,0.15)
+    }
+    .form-actions button{
+      width:100%;padding:14px;border-radius:50px;border:none;
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      color:#fff;font-weight:700;cursor:pointer;transition:all .25s;
+      box-shadow:0 4px 16px rgba(0,123,255,0.3);
+    }
+    .form-actions button:hover{
+      background:linear-gradient(135deg,var(--accent),#00d9ff);
+      box-shadow:0 6px 20px rgba(0,123,255,0.4);
+      transform:translateY(-2px);
+    }
     .form-note{margin-top:12px;font-size:0.9rem;color:var(--muted)}
 
     /* TRANSICIONES */
@@ -98,19 +154,39 @@
     /* PROCESO */
     .process{padding:64px 0;background:var(--card)}
     .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .step{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.04);text-align:center}
-    .step-number{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700}
+    .step{
+      background:var(--card);padding:18px;border-radius:10px;
+      box-shadow:var(--shadow-sm);text-align:center;cursor:pointer;
+      transition:all .3s ease;
+    }
+    .step:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+    .step-number{
+      width:36px;height:36px;background:var(--primary);color:#fff;
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      margin:0 auto 12px;font-weight:700;transition:transform .3s;
+    }
+    .step:hover .step-number{transform:scale(1.1)}
 
     /* UVP */
     .uvp{padding:64px 0;background:#F0F4F8}
     .uvp-grid{display:flex;gap:20px;flex-wrap:wrap}
-    .uvp-card{flex:1 1 260px;background:var(--card);padding:20px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.05);transition:all .3s;text-align:center}
-    .uvp-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.08)}
+    .uvp-card{
+      flex:1 1 260px;background:var(--card);padding:20px;border-radius:10px;
+      box-shadow:var(--shadow-sm);transition:all .3s;text-align:center;
+    }
+    .uvp-card:hover{
+      transform:translateY(-4px);box-shadow:var(--shadow-lg)
+    }
 
     /* PROBLEMS */
     .problems{padding:64px 0;background:var(--card)}
     .problems-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .problem{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.04);border-left:4px solid var(--primary)}
+    .problem{
+      background:var(--card);padding:18px;border-radius:10px;
+      box-shadow:var(--shadow-sm);border-left:4px solid var(--primary);
+      transition:all .3s;
+    }
+    .problem:hover{transform:translateX(8px)}
 
     /* STACK */
     .stack{padding:64px 0;background:var(--card)}
@@ -123,22 +199,53 @@
     /* ABOUT */
     .about{padding:64px 0;background:#F0F4F8}
     .about-grid{display:flex;align-items:center;gap:32px;max-width:900px;margin:0 auto}
-    .about img{width:260px;height:auto;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,0.08);flex-shrink:0}
+    .about img{
+      width:260px;height:auto;border-radius:14px;
+      box-shadow:var(--shadow-md);flex-shrink:0;
+      transition:transform .3s;
+    }
+    .about img:hover{transform:scale(1.02)}
     .about-text{flex:1}
 
     /* SERVICES */
     .services{padding:64px 0;background:var(--card)}
     .services-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-    .service{background:var(--card);padding:24px;border-radius:12px;text-align:center;width:250px;box-shadow:0 8px 26px rgba(0,0,0,0.05);transition:all .3s}
-    .service:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,0.08)}
+    .service{
+      background:var(--card);padding:24px;border-radius:12px;text-align:center;
+      width:250px;box-shadow:var(--shadow-sm);transition:all .3s;
+      position:relative;overflow:hidden;
+    }
+    .service:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .service::before{ /* Línea decorativa */
+      content:"";
+      position:absolute;top:0;left:0;right:0;height:4px;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      opacity:0;transition:opacity .3s;
+    }
+    .service:hover::before{opacity:1}
 
     /* FAQ */
     .faq{padding:64px 0;background:#F0F4F8}
-    .faq-item{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.04);margin-bottom:12px}
-    .faq-question{width:100%;text-align:left;background:none;border:none;font-weight:700;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+    .faq-item{
+      background:var(--card);padding:16px;border-radius:10px;
+      box-shadow:var(--shadow-sm);margin-bottom:12px;
+      transition:all .3s;
+    }
+    .faq-item:hover{box-shadow:var(--shadow-md)}
+    .faq-question{
+      width:100%;text-align:left;background:none;border:none;
+      font-weight:700;font-size:1rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:8px 0; /* Más espacio */
+      border-bottom:1px solid #f0f0f0;
+    }
+    .arrow{
+      color:var(--primary);
+      font-size:1.2rem;
+      transition:transform .3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
     .faq-question[aria-expanded="true"] .arrow{transform:rotate(180deg)}
     .faq-answer[hidden]{display:none}
-    .arrow{transition:transform .25s}
 
     /* CTA FINAL */
     .cta-final{padding:72px 0;text-align:center;background:var(--card)}
@@ -147,12 +254,24 @@
     footer{padding:36px 0;background:#fff;border-top:1px solid rgba(0,0,0,0.08)}
 
     /* FAB STICKY */
-    .fab-sticky{position:fixed;bottom:22px;right:22px;z-index:999}
-    .fab-sticky .btn-primary{padding:12px 18px;box-shadow:0 6px 20px rgba(0,123,255,0.25)}
+    .fab-sticky{
+      position:fixed;bottom:24px;right:24px;z-index:999
+    }
+    .fab-sticky .btn-primary{
+      border-radius:50px;padding:14px 20px;
+      box-shadow:var(--shadow-md);
+    }
     @media (max-width: 480px){.fab-sticky{display:none}}
 
     /* WHATSAPP STICKY (móvil) */
-    .wa-sticky{position:fixed;bottom:22px;left:22px;z-index:999;background:#25D366;color:#fff;padding:12px 16px;border-radius:50px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,0.4);display:none}
+    .wa-sticky{
+      position:fixed;bottom:22px;left:22px;z-index:999;
+      background:#25D366;color:#fff;padding:12px 16px;
+      border-radius:50px;font-weight:700;text-decoration:none;
+      box-shadow:var(--shadow-md);display:none;
+      transition:all .25s;
+    }
+    .wa-sticky:hover{transform:translateY(-2px)}
     @media (max-width: 768px){.wa-sticky{display:flex;align-items:center;gap:8px}}
 
     /* MODAL FORM */
@@ -202,6 +321,35 @@
       .brand span {
         display: none;
       }
+    }
+
+    /* ========= ANTES/DESPUÉS INTERACTIVO ========= */
+    .before-after-container {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+    .before-after-slider {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s;
+      z-index: 10;
+    }
+    .before-after-slider:hover {
+      transform: translate(-50%, -50%) scale(1.1);
     }
   </style>
 </head>
@@ -343,12 +491,12 @@
     </div>
   </section>
 
-  <!-- ========= ANTES Y DESPUÉS VISUAL (REEMPLAZA TESTIMONIOS) ========= -->
+  <!-- ========= ANTES Y DESPUÉS INTERACTIVO ========= -->
   <section class="fade-section" style="padding:64px 0;background:#F0F4F8">
     <h2 style="text-align:center;margin-bottom:32px">¿Qué cambia realmente?</h2>
     <div class="container" style="max-width:900px">
-      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center">
-        <div style="background:#FFE5E5;padding:24px;border-radius:12px;border:1px solid #FFC7C7">
+      <div class="before-after-container" onclick="toggleBeforeAfter(this)" style="display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center">
+        <div class="before-card" style="background:#FFE5E5;padding:24px;border-radius:12px;border:1px solid #FFC7C7;transition:all .4s">
           <h4 style="color:#C00;margin-top:0">ANTES (Manual)</h4>
           <ul style="list-style:none;padding:0">
             <li>❌ 3h/día en tareas repetitivas</li>
@@ -357,8 +505,8 @@
             <li>❌ Equipo desmotivado</li>
           </ul>
         </div>
-        <div style="font-size:3rem;font-weight:700;color:var(--primary)">→</div>
-        <div style="background:#E5FFE5;padding:24px;border-radius:12px;border:1px solid #A7F0A7">
+        <div class="before-after-slider">→</div>
+        <div class="after-card" style="background:#E5FFE5;padding:24px;border-radius:12px;border:1px solid #A7F0A7;opacity:0.5;transform:scale(0.95);transition:all .4s">
           <h4 style="color:#0A0;margin-top:0">DESPUÉS (Automatizado)</h4>
           <ul style="list-style:none;padding:0">
             <li>✓ 10 min/día supervisando</li>
@@ -552,7 +700,7 @@
     💬 WhatsApp rápido
   </a>
 
-  <!-- ========= MODAL CALCULADORA ROI (AHORA SÍ EXISTE) ========= -->
+  <!-- ========= MODAL CALCULADORA ROI ========= -->
   <div class="modal-form" id="modalForm" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-content card">
       <button onclick="closeModal()" style="float:right;background:none;border:none;font-size:1.5rem;cursor:pointer" aria-label="Cerrar">×</button>
@@ -647,7 +795,7 @@
       if(e.target === e.currentTarget) closeModal();
     });
 
-    // CÁLCULO ROI CON RESULTADO IMPACTANTE Y BOTÓN
+    // CÁLCULO ROI CON BOTÓN CTA
     document.getElementById('quickForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const hours = parseFloat(document.getElementById('calc-hours').value);
@@ -666,12 +814,11 @@
       const hourlyRate = 35;
       const monthlySavings = hours * 4 * hourlyRate * 0.7;
       const yearlySavings = monthlySavings * 12;
-      const investment = monthlySavings * 0.3; // 30% del ahorro como inversión
+      const investment = monthlySavings * 0.3;
       const roiPercent = ((yearlySavings - investment) / investment * 100).toFixed(0);
 
-      // MENSAJE IMPACTANTE CON BOTÓN CTA
       showStatus('quickStatus', 
-        `<div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);padding:16px;border-radius:8px;border:2px solid #4caf50;margin-top:12px">
+        `<div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);padding:16px;border-radius:8px;border:2px solid #4caf50;margin-top:12px;box-shadow:var(--shadow-md);text-align:center">
           <div style="font-size:2rem;margin-bottom:8px">🚀</div>
           <strong style="color:#2e7d32;font-size:1.2rem">¡ESTÁS PERDIENDO €${sanitize(monthlySavings.toFixed(0))} AL MES!</strong><br>
           <span style="color:#388e3c">Ahorro anual: <strong>€${sanitize(yearlySavings.toFixed(0))}</strong></span><br>
@@ -679,14 +826,14 @@
           <span style="color:#1976d2;font-weight:600">⚡ Transforma esta pérdida en crecimiento</span><br>
           <small style="color:#546e7a">Solicita tu auditoría gratuita ahora mismo</small><br><br>
           <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); closeModal();" 
-                  style="background:var(--primary);color:#fff;padding:12px 20px;border:none;border-radius:6px;cursor:pointer;font-weight:700;font-size:1rem;box-shadow:0 4px 12px rgba(0,123,255,0.3)">
+                  style="background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:12px 20px;border:none;border-radius:50px;cursor:pointer;font-weight:700;font-size:1rem;box-shadow:0 4px 16px rgba(0,123,255,0.3);transition:all .25s">
             🎯 Solicitar auditoría gratuita
           </button>
         </div>`, 
         'success');
     });
 
-    // MANEJO WEB3FORMS DIRECTO CON VALIDACIÓN
+    // MANEJO WEB3FORMS DIRECTO
     document.getElementById('heroForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const status = document.getElementById('heroStatus');
@@ -745,6 +892,27 @@
         console.log('CTA Click:', btn.dataset.cta, 'Location:', btn.dataset.location || 'unknown');
       });
     });
+
+    // TOGGLE ANTES/DESPUÉS
+    function toggleBeforeAfter(container) {
+      const beforeCard = container.querySelector('.before-card');
+      const afterCard = container.querySelector('.after-card');
+      const slider = container.querySelector('.before-after-slider');
+      
+      if (afterCard.style.opacity === '0.5') {
+        afterCard.style.opacity = '1';
+        afterCard.style.transform = 'scale(1)';
+        beforeCard.style.opacity = '0.5';
+        beforeCard.style.transform = 'scale(0.95)';
+        slider.textContent = '←';
+      } else {
+        beforeCard.style.opacity = '1';
+        beforeCard.style.transform = 'scale(1)';
+        afterCard.style.opacity = '0.5';
+        afterCard.style.transform = 'scale(0.95)';
+        slider.textContent = '→';
+      }
+    }
   </script>
 
 </body>
