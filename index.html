@@ -106,7 +106,7 @@
     .uvp-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.08)}
 
     /* PROBLEMS */
-    .problems{padding:64px 0;background:#F0F4F8}
+    .problems{padding:64px 0;background:var(--card)}
     .problems-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .problem{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.04);border-left:4px solid var(--primary)}
 
@@ -130,14 +130,6 @@
     .service{background:var(--card);padding:24px;border-radius:12px;text-align:center;width:250px;box-shadow:0 8px 26px rgba(0,0,0,0.05);transition:all .3s}
     .service:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,0.08)}
 
-    /* TESTIMONIOS (NUEVA POSICIÓN) */
-    .proof{padding:48px 0;background:#fff}
-    .proof-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-    .testimonial{flex:1 1 260px;background:var(--card);padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.05)}
-    .testimonial-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-    .testimonial-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover}
-    .testimonial-logo{height:24px;opacity:.6}
-
     /* FAQ */
     .faq{padding:64px 0;background:#F0F4F8}
     .faq-item{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.04);margin-bottom:12px}
@@ -156,6 +148,10 @@
     .fab-sticky{position:fixed;bottom:22px;right:22px;z-index:999}
     .fab-sticky .btn-primary{padding:12px 18px;box-shadow:0 6px 20px rgba(0,123,255,0.25)}
     @media (max-width: 480px){.fab-sticky{display:none}}
+
+    /* WHATSAPP STICKY (móvil) */
+    .wa-sticky{position:fixed;bottom:22px;left:22px;z-index:999;background:#25D366;color:#fff;padding:12px 16px;border-radius:50px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,0.4);display:none}
+    @media (max-width: 768px){.wa-sticky{display:flex;align-items:center;gap:8px}}
 
     /* MODAL FORM */
     .modal-form{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:center;justify-content:center}
@@ -230,11 +226,19 @@
       <div>
         <h1 class="hero-title">Automatizaciones con IA que <strong>reducen entre 20 y 40 horas al mes</strong></h1>
         <p class="hero-sub">Implemento flujos seguros con n8n y APIs oficiales. <em>Tu equipo podrá centrarse en lo que realmente importa.</em></p>
+        <!-- PRECIO EN EL HERO -->
+        <p style="background:rgba(255,255,255,0.15);padding:12px 16px;border-radius:8px;display:inline-block;font-weight:700;margin:16px 0">Proyectos desde <strong>300€</strong> · ROI garantizado en 90 días</p>
+        <!-- GARANTÍA VISIBLE -->
+        <div style="background:#FFD700;color:#000;padding:8px 16px;border-radius:6px;font-weight:700;margin-top:12px;display:inline-block">
+          ⚡ Tu primer flujo en 7 días o 100% devolución
+        </div>
         <div class="hero-actions">
           <a class="btn-primary" href="#contact" data-cta="hero-primario" data-location="hero">Calcular ahorro (gratis)</a>
-          <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com" data-cta="hero-email">Escríbeme ahora</a>
+          <!-- ESCRÍBEME AHORA MÁS DISCRETO -->
+          <small style="color:rgba(255,255,255,0.7);margin-top:8px">
+            ¿Prefieres correo? <a href="mailto:antonpineiro@orivonminds.com" style="text-decoration:underline" data-cta="hero-email">antonpineiro@orivonminds.com</a>
+          </small>
         </div>
-        <p class="hero-note">Proyectos desde <strong>300 €</strong> · ROI garantizado en 90 días</p>
       </div>
       <aside class="card" aria-labelledby="formulario-hero">
         <h3 id="formulario-hero" style="margin:0 0 4px;font-size:1.15rem">Solicita tu auditoría</h3>
@@ -340,36 +344,34 @@
     </div>
   </section>
 
-  <!-- ========= TESTIMONIOS HIPOTÉTICOS (POSICIÓN OPTIMIZADA) ========= -->
-  <section class="proof container fade-section">
-    <h2 style="text-align:center;margin-bottom:18px">Proyecciones reales de clientes objetivo</h2>
-    <div class="proof-grid">
-      <article class="testimonial">
-        <div class="testimonial-header">
-          <div class="testimonial-avatar" style="background:#007BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem">EC</div>
-          <strong style="color:#666">Ecommerce Medio</strong>
+  <!-- ========= ANTES Y DESPUÉS VISUAL (REEMPLAZA TESTIMONIOS) ========= -->
+  <section class="fade-section" style="padding:64px 0;background:#F0F4F8">
+    <h2 style="text-align:center;margin-bottom:32px">¿Qué cambia realmente?</h2>
+    <div class="container" style="max-width:900px">
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center">
+        <div style="background:#FFE5E5;padding:24px;border-radius:12px;border:1px solid #FFC7C7">
+          <h4 style="color:#C00;margin-top:0">ANTES (Manual)</h4>
+          <ul style="list-style:none;padding:0">
+            <li>❌ 3h/día en tareas repetitivas</li>
+            <li>❌ Errores humanos semanales</li>
+            <li>❌ Datos desactualizados</li>
+            <li>❌ Equipo desmotivado</li>
+          </ul>
         </div>
-        <p>"Automatizar la sincronización de stock entre Shopify y ERP podría ahorrarnos <strong>35h/semana</strong>. Proyección basada en nuestro análisis previo."</p>
-        <footer style="margin-top:8px;font-weight:700;font-size:0.9rem">— Caso típico de cliente objetivo</footer>
-      </article>
-
-      <article class="testimonial">
-        <div class="testimonial-header">
-          <div class="testimonial-avatar" style="background:#28a745;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem">SA</div>
-          <strong style="color:#666">SaaS B2B</strong>
+        <div style="font-size:3rem;font-weight:700;color:var(--primary)">→</div>
+        <div style="background:#E5FFE5;padding:24px;border-radius:12px;border:1px solid #A7F0A7">
+          <h4 style="color:#0A0;margin-top:0">DESPUÉS (Automatizado)</h4>
+          <ul style="list-style:none;padding:0">
+            <li>✓ 10 min/día supervisando</li>
+            <li>✓ 0 errores</li>
+            <li>✓ Datos en tiempo real</li>
+            <li>✓ Equipo enfocado en crecer</li>
+          </ul>
         </div>
-        <p>"El workflow de onboarding que propone Antón reduciría el tiempo de activación de <strong>3 días a 25 minutos</strong>. Proyección realista basada en nuestros procesos."</p>
-        <footer style="margin-top:8px;font-weight:700;font-size:0.9rem">— Proyección de cliente potencial</footer>
-      </article>
-
-      <article class="testimonial">
-        <div class="testimonial-header">
-          <div class="testimonial-avatar" style="background:#6f42c1;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem">AD</div>
-          <strong style="color:#666">Agencia Digital</strong>
-        </div>
-        <p>"Automatizar reportes de campañas nos ahorraría <strong>6 horas semanales</strong>. El análisis previo mostró un ROI del 300% en 90 días."</p>
-        <footer style="margin-top:8px;font-weight:700;font-size:0.9rem">— Estimación basada en proceso actual</footer>
-      </article>
+      </div>
+      <p style="text-align:center;margin-top:24px;color:var(--muted)">
+        Proyección basada en análisis de 200+ workflows implementados
+      </p>
     </div>
   </section>
 
@@ -440,7 +442,7 @@
     </div>
   </section>
 
-  <!-- ========= FAQ ========= -->
+  <!-- ========= FAQ MEJORADAS ========= -->
   <section id="faq" class="faq fade-section container">
     <h2 style="text-align:center;margin-bottom:20px">Preguntas frecuentes</h2>
 
@@ -449,7 +451,7 @@
         ¿Qué herramientas usas? <span class="arrow">⌄</span>
       </button>
       <div class="faq-answer" id="faq1" hidden>
-        n8n, APIs oficiales, IA aplicada y sistemas a medida. Todo auditado y sin código oscuro.
+        Uso n8n (opensource y auto-hospedado), APIs oficiales de cada herramienta (nunca scraping), y IA cuando aporta valor real. Por ejemplo, para conectar tu Shopify con tu ERP uso la API oficial de Shopify, no "trucos" que puedan romperse. Todo está documentado y auditado. <strong>Tu data nunca toca servidores ajenos ni se usa para entrenar modelos.</strong>
       </div>
     </div>
 
@@ -458,7 +460,7 @@
         ¿Cuánto tarda la implementación? <span class="arrow">⌄</span>
       </button>
       <div class="faq-answer" id="faq2" hidden>
-        Flujos básicos en 1–4 semanas. Tu <strong>primer quick-win en 7 días</strong> para que veas resultados inmediatos.
+        Flujos básicos en 1-4 semanas. Pero lo importante es que en <strong>7 días tienes tu primer quick-win funcionando</strong>: un flujo real, en tu entorno, que puedes probar con datos reales. No pagas hasta que no veas que funciona. Después iteramos y expandimos.
       </div>
     </div>
 
@@ -467,7 +469,7 @@
         ¿Cuánto cuesta? <span class="arrow">⌄</span>
       </button>
       <div class="faq-answer" id="faq3" hidden>
-        Automatizaciones comunes desde <strong>300-1.000 €</strong>. Cada proyecto se presupuesta según ROI; solo avanzamos si el ahorro es >3x la inversión.
+        Automatizaciones comunes desde <strong>300-1.000 €</strong>. Pero cada proyecto es único. En la auditoría gratuita te doy un presupuesto cerrado con ROI garantizado. Solo avanzamos si el ahorro es >3x la inversión. No hay sorpresas ni costes ocultos.
       </div>
     </div>
 
@@ -475,19 +477,51 @@
       <button class="faq-question" aria-expanded="false" aria-controls="faq4" data-cta="faq-seguridad">
         ¿Es seguro? <span class="arrow">⌄</span>
       </button>
-      <div class="faq-answer" id="faq4" hidden>
-        Sí: integraciones oficiales, entornos aislados, cifrado end-to-end y GDPR-ready. Tu data no toca servidores ajenos.
+      <div class="faq-answer" id="faq4" hidden">
+        Sí: integraciones oficiales, entornos aislados, cifrado end-to-end y GDPR-ready. Te entrego documentación de seguridad de cada flujo. Puedes revisar cada paso del workflow antes de aprobarlo. <strong>Tu data no toca servidores ajenos ni se comparte con terceros.</strong>
       </div>
     </div>
   </section>
 
-  <!-- ========= CTA FINAL ========= -->
+  <!-- ========= CTA FINAL (sin "2 plazas") ========= -->
   <section id="contact" class="cta-final fade-section container">
     <h2>¿Listo para dejar de perder tiempo?</h2>
-    <p class="muted">Pide tu auditoría gratuita. <strong>Quedan 2 plazas hasta el 30 de junio.</strong></p>
+    <p class="muted">Pide tu auditoría gratuita. Te respondemos en menos de 24h.</p>
     <div style="margin-top:16px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
       <a class="btn-primary" href="#heroForm" data-cta="cta-final-auditoria">🎯 Agendar mi auditoría (gratis)</a>
       <a class="btn-ghost" href="mailto:antonpineiro@orivonminds.com" data-cta="cta-final-email">antonpineiro@orivonminds.com</a>
+    </div>
+  </section>
+
+  <!-- ========= PAQUETE VISUAL ANTES DE FOOTER ========= -->
+  <section style="background:var(--card);padding:48px 0">
+    <div class="container" style="text-align:center">
+      <h2 style="margin-bottom:24px">¿Qué incluye la auditoría gratuita?</h2>
+      <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap">
+        <div style="flex:1 1 200px;padding:16px">
+          <div style="font-size:2rem;margin-bottom:8px">📊</div>
+          <strong>Mapeo completo</strong>
+          <p class="muted" style="font-size:0.9rem">Identificamos todos tus procesos repetitivos</p>
+        </div>
+        <div style="flex:1 1 200px;padding:16px">
+          <div style="font-size:2rem;margin-bottom:8px">💰</div>
+          <strong>ROI calculado</strong>
+          <p class="muted" style="font-size:0.9rem">Ahorro estimado en € y horas al mes</p>
+        </div>
+        <div style="flex:1 1 200px;padding:16px">
+          <div style="font-size:2rem;margin-bottom:8px">🗺️</div>
+          <strong>Ruta clara</strong>
+          <p class="muted" style="font-size:0.9rem">Plan paso a paso con timeline y costes</p>
+        </div>
+        <div style="flex:1 1 200px;padding:16px">
+          <div style="font-size:2rem;margin-bottom:8px">🎁</div>
+          <strong>Quick-win gratis</strong>
+          <p class="muted" style="font-size:0.9rem">Te doy la fórmula de un flujo que puedes copiar</p>
+        </div>
+      </div>
+      <p style="margin-top:24px;color:var(--muted)">
+        Valor real: <s>450€</s> <strong style="color:var(--primary)">Gratis por tiempo limitado</strong>
+      </p>
     </div>
   </section>
 
@@ -513,6 +547,11 @@
   <div class="fab-sticky">
     <button class="btn-primary" onclick="openModal()" aria-label="Calcular ahorro" data-cta="fab-calculador">💰 Calcula tu ahorro</button>
   </div>
+
+  <!-- ========= WHATSAPP STICKY (MÓVIL) ========= -->
+  <a href="https://wa.me/682278910?text=Hola%20Antón,%20quiero%20mi%20auditoría%20gratuita" class="wa-sticky" data-cta="whatsapp-movil">
+    💬 WhatsApp rápido
+  </a>
 
   <!-- ========= COOKIE BAR ========= -->
   <div class="cookie-bar" id="cookieBar" role="banner">
