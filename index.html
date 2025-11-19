@@ -215,12 +215,12 @@
         <h3 id="formulario-hero" style="margin:0 0 4px;font-size:1.15rem">Solicita tu auditoría</h3>
         <p style="margin:0 0 12px;color:var(--muted);font-size:0.92rem">30 min por videollamada · Sin compromiso · Respuesta en 24h</p>
         <!-- FORMULARIO CORREGIDO: POST a endpoint proxy -->
-        <form action="/api/submit-form" method="POST" id="heroForm" novalidate>
-          <!-- Mover access_key al servidor -->
-          <div class="form-row">
-            <label for="hero-name" class="sr-only">Nombre completo</label>
-            <input id="hero-name" name="name" placeholder="Tu nombre" required aria-required="true">
-          </div>
+       <form action="https://api.web3forms.com/submit" method="POST" id="heroForm" novalidate>
+  <input type="hidden" name="access_key" value="ce4be113-b8bd-4229-84e5-a8c8b08e61bf">
+  <div class="form-row">
+    <label for="hero-name" class="sr-only">Nombre completo</label>
+    <input id="hero-name" name="name" placeholder="Tu nombre" required aria-required="true">
+  </div>
           <div class="form-row">
             <label for="hero-email" class="sr-only">Correo electrónico</label>
             <input id="hero-email" type="email" name="email" placeholder="Tu correo" required aria-required="true">
