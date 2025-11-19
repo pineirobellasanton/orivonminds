@@ -241,40 +241,67 @@
   </section>
 
 
-  <!-- ========= UVP + CALCULADOR ========= -->
-  <section class="uvp container fade-section">
-    <h2 style="text-align:center;margin-bottom:16px">Resultados que importan</h2>
-    <div class="uvp-grid">
-      <div class="uvp-card">
-        <div class="icon-lottie" id="icon-time"></div>
-        <strong>Reduce tareas repetitivas</strong>
-        <p class="muted">Ahorra entre 20–40 horas mensuales con flujos automáticos.</p>
-      </div>
-      <div class="uvp-card">
-        <div class="icon-lottie" id="icon-shield"></div>
-        <strong>Automatización segura</strong>
-        <p class="muted">Integraciones auditables, GDPR-ready y sin riesgos.</p>
-      </div>
-      <div class="uvp-card">
-        <div class="icon-lottie" id="icon-money"></div>
-        <strong>ROI claro antes de empezar</strong>
-        <p class="muted">Entregamos estimación de ahorro y retorno en 24h.</p>
-      </div>
+  <!-- ========= UVP + CALCULADOR (REEMPLAZA ESTA SECCIÓN COMPLETA) ========= -->
+<section class="uvp container fade-section">
+  <h2 style="text-align:center;margin-bottom:16px">Resultados que importan</h2>
+  <div class="uvp-grid">
+
+    <!-- TARJETA 1: REDUCIR TAREAS (icono reload) -->
+    <div class="uvp-card">
+      <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+      <animated-icons
+        src="https://animatedicons.co/get-icon?name=reload&style=minimalistic&token=efb72304-7832-445a-a484-fbb49ebb508f"
+        trigger="click"
+        attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+        height="80"
+        width="80"
+      ></animated-icons>
+      <strong>Reduce tareas repetitivas</strong>
+      <p class="muted">Ahorra entre 20–40 horas mensuales con flujos automáticos.</p>
     </div>
-    
-    <!-- CALCULADOR ROI FUNCIONAL -->
-    <div style="margin-top:32px;text-align:center">
-      <h3 style="margin-bottom:8px">¿Cuánto ahorrarías? <em>Calcula tu ROI en 20 segundos</em></h3>
-      <div class="card" style="max-width:560px;margin:0 auto">
-        <form id="quickForm" onsubmit="calculateROI(event)">
-          <div class="form-row"><input name="process" placeholder="Proceso (ej: entrada datos, leads...)" required></div>
-          <div class="form-row"><input name="hours" type="number" placeholder="Horas semanales actuales" required></div>
-          <div class="form-actions"><button type="submit">Calcular ahorro mensual</button></div>
-          <p id="quickStatus" class="form-note" style="margin-top:12px;font-weight:600"></p>
-        </form>
-      </div>
+
+    <!-- TARJETA 2: SEGURIDAD (icono Shield) -->
+    <div class="uvp-card">
+      <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+      <animated-icons
+        src="https://animatedicons.co/get-icon?name=Shield&style=minimalistic&token=354025e5-2564-4fec-a8de-94d12f352768"
+        trigger="click"
+        attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+        height="80"
+        width="80"
+      ></animated-icons>
+      <strong>Automatización segura</strong>
+      <p class="muted">Integraciones auditables, GDPR-ready y sin riesgos.</p>
     </div>
-  </section>
+
+    <!-- TARJETA 3: DINERO (icono Income) -->
+    <div class="uvp-card">
+      <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+      <animated-icons
+        src="https://animatedicons.co/get-icon?name=Income&style=minimalistic&token=ca37a84b-da2e-4cf2-8edd-d0210474f04d"
+        trigger="click"
+        attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+        height="80"
+        width="80"
+      ></animated-icons>
+      <strong>ROI claro antes de empezar</strong>
+      <p class="muted">Entregamos estimación de ahorro y retorno en 24h.</p>
+    </div>
+  </div>
+
+  <!-- CALCULADOR ROI (igual que antes) -->
+  <div style="margin-top:32px;text-align:center">
+    <h3 style="margin-bottom:8px">¿Cuánto ahorrarías? <em>Calcula tu ROI en 20 segundos</em></h3>
+    <div class="card" style="max-width:560px;margin:0 auto">
+      <form id="quickForm" onsubmit="calculateROI(event)">
+        <div class="form-row"><input name="process" placeholder="Proceso (ej: entrada datos, leads...)" required></div>
+        <div class="form-row"><input name="hours" type="number" placeholder="Horas semanales actuales" required></div>
+        <div class="form-actions"><button type="submit">Calcular ahorro mensual</button></div>
+        <p id="quickStatus" class="form-note" style="margin-top:12px;font-weight:600"></p>
+      </form>
+    </div>
+  </div>
+</section>
 
 
   <!-- ========= PROBLEMS ========= -->
@@ -443,11 +470,6 @@
       this.reset();
     }, 1500);
   });
-
-  // LOTTI ANIMATIONS
-  lottie.loadAnimation({container:document.getElementById('icon-time'),renderer:'svg',loop:true,autoplay:true,path:'https://assets2.lottiefiles.com/packages/lf20_zyu0cpq2.json'});
-  lottie.loadAnimation({container:document.getElementById('icon-shield'),renderer:'svg',loop:true,autoplay:true,path:'https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json'});
-  lottie.loadAnimation({container:document.getElementById('icon-money'),renderer:'svg',loop:true,autoplay:true,path:'https://assets3.lottiefiles.com/packages/lf20_t9gkkhz4.json'});
 
   // COOKIES
   function acceptCookies(){Cookies.set('cookieAccepted','true',{expires:365});document.getElementById('cookieBar').classList.add('hidden');}
