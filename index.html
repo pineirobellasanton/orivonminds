@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com ">
   <link rel="preconnect" href="https://animatedicons.co ">
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300 ;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   
   <!-- Script de animatedicons UNA SOLA VEZ -->
   <script src="https://animatedicons.co/scripts/embed-animated-icons.js " defer></script>
@@ -384,11 +384,6 @@
       100% { box-shadow: 0 4px 16px rgba(0,123,255,0.4); }
     }
     
-    /* Parallax hero */
-    .hero-parallax {
-      will-change: transform;
-    }
-    
     /* Contador animado */
     .counter {
       display: inline-block;
@@ -413,8 +408,8 @@
     </div>
   </header>
 
-  <!-- ========= HERO ========= -->
-  <section id="top" class="hero fade-section hero-parallax">
+  <!-- ========= HERO ELIMINADO PARALLAX ========= -->
+  <section id="top" class="hero fade-section">
     <div class="container hero-grid">
       <div>
         <h1 class="hero-title" id="typewriter-title">Automatizaciones con IA que <strong>reducen entre 20 y 40 horas al mes</strong></h1>
@@ -877,31 +872,7 @@
     requestAnimationFrame(updateCounter);
   }
 
-  // ===== EFECTO PARALLAX =====
-  function initParallax() {
-    const hero = document.querySelector('.hero-parallax');
-    if (!hero) return;
-    
-    let ticking = false;
-    
-    function updateParallax() {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      hero.style.transform = `translateY(${rate}px)`;
-      ticking = false;
-    }
-    
-    function requestTick() {
-      if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }
-    
-    window.addEventListener('scroll', requestTick);
-  }
-
-  // ===== MÁQUINA DE ESCRIBIR CORREGIDA =====
+  // ===== MÁQUINA DE ESCRIBIR CORREGIDA (CURSOR DESAPARECE AL FINAL) =====
   function initTypewriter() {
     const title = document.getElementById('typewriter-title');
     if (!title) return;
@@ -917,6 +888,7 @@
     
     const cursor = document.createElement('span');
     cursor.className = 'typewriter-cursor';
+    cursor.id = 'typewriter-cursor';
     cursor.innerHTML = '&nbsp;';
     
     wrapper.appendChild(textSpan);
@@ -950,7 +922,11 @@
     
     function typeChar() {
       if (nodeIndex >= textNodes.length) {
-        cursor.style.animation = 'blink 0.75s step-end infinite';
+        // Animación completada - eliminar cursor
+        const cursorEl = document.getElementById('typewriter-cursor');
+        if (cursorEl) {
+          cursorEl.style.display = 'none';
+        }
         return;
       }
       
@@ -1112,10 +1088,9 @@
     }
   }
 
-  // INICIALIZAR TODOS LOS EFECTOS
+  // INICIALIZAR EFECTOS
   document.addEventListener('DOMContentLoaded', () => {
     initTypewriter();
-    initParallax();
   });
 </script>
 
