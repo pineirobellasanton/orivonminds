@@ -19,7 +19,7 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   
-  <!-- Script de animatedicons UNA SOLA VEZ -->
+  <!-- Script de animatedicons con defer -->
   <script src="https://animatedicons.co/scripts/embed-animated-icons.js" defer></script>
   
   <style>
@@ -90,7 +90,7 @@
     .btn-primary:hover{
       background:linear-gradient(135deg,var(--accent),#00d9ff);
       box-shadow:0 6px 20px rgba(0,123,255,0.4);
-      transform:translateY(-2px);
+      transform:translateY(-2px) scale(1.02);
     }
 
     /* HERO */
@@ -127,11 +127,15 @@
     .form-row{display:flex;gap:10px;margin-bottom:10px}
     .form-row input,.form-row textarea,.form-row select{
       width:100%;padding:14px;border-radius:10px;border:1px solid #e0e0e0;
-      font-size:1rem;transition:border .25s;background:#fff
+      font-size:1rem;transition:all .25s;background:#fff
     }
     .form-row input:focus,.form-row textarea:focus,.form-row select:focus{
       border-color:var(--primary);outline:none;
       box-shadow:0 0 0 2px rgba(0,123,255,0.15)
+    }
+    /* Feedback visual para campos correctos */
+    .form-row input:valid:not(:placeholder-shown),.form-row select:valid{
+      border-color:#28a745;
     }
     .form-actions button{
       width:100%;padding:14px;border-radius:50px;border:none;
@@ -260,19 +264,23 @@
     .fab-sticky .btn-primary{
       border-radius:50px;padding:14px 20px;
       box-shadow:var(--shadow-md);
+      animation:bounce 5s infinite;
     }
-    @media (max-width: 480px){.fab-sticky{display:none}}
+    @keyframes bounce{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+    }
 
-    /* WHATSAPP STICKY (móvil) */
+    /* WHATSAPP STICKY */
     .wa-sticky{
       position:fixed;bottom:22px;left:22px;z-index:999;
       background:#25D366;color:#fff;padding:12px 16px;
       border-radius:50px;font-weight:700;text-decoration:none;
-      box-shadow:var(--shadow-md);display:none;
+      box-shadow:var(--shadow-md);
       transition:all .25s;
+      display:none; /* Oculto por defecto */
     }
-    .wa-sticky:hover{transform:translateY(-2px)}
-    @media (max-width: 768px){.wa-sticky{display:flex;align-items:center;gap:8px}}
+    .wa-sticky:hover{transform:translateY(-2px);background:#128C7E}
 
     /* MODAL FORM */
     .modal-form{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:center;justify-content:center}
@@ -300,30 +308,18 @@
       *, *::before, *::after{animation:none !important;transition:none !important}
     }
 
-    /* ========= FIX HEADER MÓVIL ========= */
+    /* FIX HEADER MÓVIL */
     @media (max-width: 480px) {
-      .brand span {
-        font-size: 0.9rem;
-      }
-      .nav-right {
-        gap: 8px;
-      }
-      .btn-ghost {
-        padding: 8px 10px;
-        font-size: 0.85rem;
-      }
-      .btn-primary {
-        padding: 10px 12px;
-        font-size: 0.85rem;
-      }
+      .brand span {font-size: 0.9rem;}
+      .nav-right {gap: 8px;}
+      .btn-ghost {padding: 8px 10px;font-size: 0.85rem;}
+      .btn-primary {padding: 10px 12px;font-size: 0.85rem;}
     }
     @media (max-width: 380px) {
-      .brand span {
-        display: none;
-      }
+      .brand span {display: none;}
     }
 
-    /* ========= ANTES/DESPUÉS INTERACTIVO ========= */
+    /* ANTES/DESPUÉS INTERACTIVO */
     .before-after-container {
       position: relative;
       cursor: pointer;
@@ -352,14 +348,11 @@
       transform: translate(-50%, -50%) scale(1.1);
     }
 
-    /* ===== EFECTOS NUEVOS ===== */
-    
-    /* Máquina de escribir - versión simplificada */
+    /* EFECTOS NUEVOS */
     .typewriter-wrapper {
       position: relative;
       display: inline-block;
     }
-    
     .typewriter-cursor {
       display: inline-block;
       width: 3px;
@@ -369,12 +362,9 @@
       vertical-align: text-bottom;
       margin-left: 2px;
     }
-    
     @keyframes blink {
       50% { opacity: 0; }
     }
-    
-    /* Efecto pulse botón CTA principal */
     .pulse-btn {
       animation: pulse 2s infinite;
     }
@@ -383,14 +373,12 @@
       50% { box-shadow: 0 4px 24px rgba(0,123,255,0.6), 0 0 0 10px rgba(0,123,255,0.1); }
       100% { box-shadow: 0 4px 16px rgba(0,123,255,0.4); }
     }
-    
-    /* Contador animado */
     .counter {
       display: inline-block;
       transition: all 0.3s ease;
     }
 
-    /* ========= RED NEURONAL EFECTO ========= */
+    /* RED NEURONAL EFECTO */
     #neural-canvas {
       position: absolute;
       top: 0;
@@ -400,17 +388,44 @@
       z-index: 1;
       pointer-events: none;
     }
+
+    /* BADGE GARANTÍA STICKY */
+    .guarantee-badge {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      z-index: 998;
+      background: #FFD700;
+      color: #000;
+      padding: 12px 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: var(--shadow-md);
+      animation: pulse 3s infinite;
+      display: none; /* Oculto inicialmente */
+    }
+
+    /* RESPONSIVE MARGIN PARA NAV */
+    @media (max-width: 768px) {
+      .guarantee-badge {
+        bottom: 90px;
+        right: 12px;
+        font-size: 0.8rem;
+        padding: 10px 14px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ========= HEADER ========= -->
+  <!-- HEADER -->
   <header>
     <div class="container nav">
-     <a href="/orivonminds/" class="brand" aria-label="Orivon Minds - Inicio">
-  <img src="images/logo-footer.png" alt="Orivon Minds logo" width="56" height="56">
-  <span>Orivon Minds</span>
-</a>
+      <a href="/orivonminds/" class="brand" aria-label="Orivon Minds - Inicio">
+        <img src="images/logo-footer.png" alt="Orivon Minds logo" width="56" height="56">
+        <span>Orivon Minds</span>
+      </a>
       <nav class="nav-right" aria-label="Navegación principal">
         <a class="btn-ghost" href="#services" data-cta="nav-servicios">Servicios</a>
         <a class="btn-ghost" href="#process" data-cta="nav-proceso">¿Cómo trabajo?</a>
@@ -419,7 +434,7 @@
     </div>
   </header>
 
-  <!-- ========= HERO CON EFECTO RED NEURONAL ========= -->
+  <!-- HERO CON EFECTO RED NEURONAL -->
   <section id="top" class="hero fade-section">
     <canvas id="neural-canvas"></canvas>
     <div class="container hero-grid">
@@ -432,9 +447,6 @@
         </div>
         <div class="hero-actions">
           <a class="btn-primary pulse-btn" href="#contact" data-cta="hero-primario" data-location="hero">Solicitar auditoría gratis</a>
-          <small style="color:rgba(255,255,255,0.7);margin-top:8px">
-            ¿Prefieres correo? <a href="mailto:antonpineiro@orivonminds.com" style="text-decoration:underline" data-cta="hero-email">antonpineiro@orivonminds.com</a>
-          </small>
         </div>
       </div>
       <aside class="card" aria-labelledby="formulario-hero">
@@ -451,12 +463,15 @@
             <input id="hero-email" type="email" name="email" placeholder="Tu correo *" required aria-required="true">
           </div>
           <div class="form-row">
-            <label for="hero-company" class="sr-only">Empresa (opcional)</label>
-            <input id="hero-company" name="company" placeholder="Empresa (opcional)">
-          </div>
-          <div class="form-row">
-            <label for="hero-message" class="sr-only">Proceso a automatizar</label>
-            <textarea id="hero-message" name="message" placeholder="¿Qué procesos quieres automatizar? *" required aria-required="true"></textarea>
+            <label for="hero-process" class="sr-only">Proceso a automatizar</label>
+            <select id="hero-process" name="process" required aria-required="true">
+              <option value="">Selecciona tu proceso principal *</option>
+              <option value="leads">Seguimiento de leads/clientes</option>
+              <option value="inventory">Gestión de inventario/pedidos</option>
+              <option value="reports">Generación de reportes</option>
+              <option value="emails">Emails y comunicación</option>
+              <option value="other">Otro (especificamos después)</option>
+            </select>
           </div>
           <div class="form-actions">
             <button type="submit" data-cta="hero-form-enviar">Solicitar auditoría</button>
@@ -467,7 +482,7 @@
     </div>
   </section>
 
-  <!-- ========= PROCESO ========= -->
+  <!-- PROCESO -->
   <section id="process" class="process container fade-section">
     <h2 style="text-align:center;margin-bottom:24px">¿Cómo trabajo?</h2>
     <div class="process-steps">
@@ -494,27 +509,27 @@
     </div>
   </section>
 
-  <!-- ========= RESULTADOS QUE IMPORTAN (UVP) ========= -->
+  <!-- RESULTADOS QUE IMPORTAN (UVP) -->
   <section class="uvp container fade-section">
     <h2 style="text-align:center;margin-bottom:16px">Resultados que importan</h2>
     <div class="uvp-grid">
       <div class="uvp-card">
         <div style="display:flex;justify-content:center;margin-bottom:12px">
-          <animated-icons src="https://animatedicons.co/get-icon?name=reload&style=minimalistic&token=efb72304-7832-445a-a484-fbb49ebb508f" trigger="click" height="80" width="80"></animated-icons>
+          <animated-icons src="https://animatedicons.co/get-icon?name=reload&style=minimalistic&token=efb72304-7832-445a-a484-fbb49ebb508f" trigger="click" height="80" width="80" loading="lazy"></animated-icons>
         </div>
         <strong>Reduce tareas repetitivas</strong>
         <p class="muted">Ahorra entre 20–40 horas mensuales con flujos automáticos.</p>
       </div>
       <div class="uvp-card">
         <div style="display:flex;justify-content:center;margin-bottom:12px">
-          <animated-icons src="https://animatedicons.co/get-icon?name=Shield&style=minimalistic&token=354025e5-2564-4fec-a8de-94d12f352768" trigger="click" height="80" width="80"></animated-icons>
+          <animated-icons src="https://animatedicons.co/get-icon?name=Shield&style=minimalistic&token=354025e5-2564-4fec-a8de-94d12f352768" trigger="click" height="80" width="80" loading="lazy"></animated-icons>
         </div>
         <strong>Automatización segura</strong>
         <p class="muted">Integraciones auditables, GDPR-ready y sin riesgos.</p>
       </div>
       <div class="uvp-card">
         <div style="display:flex;justify-content:center;margin-bottom:12px">
-          <animated-icons src="https://animatedicons.co/get-icon?name=Income&style=minimalistic&token=ca37a84d-a2e2-4cf2-8edd-d0210474f04d" trigger="click" height="80" width="80"></animated-icons>
+          <animated-icons src="https://animatedicons.co/get-icon?name=Income&style=minimalistic&token=ca37a84d-a2e2-4cf2-8edd-d0210474f04d" trigger="click" height="80" width="80" loading="lazy"></animated-icons>
         </div>
         <strong>ROI claro antes de empezar</strong>
         <p class="muted">Entregamos estimación de ahorro y retorno en 24h.</p>
@@ -528,7 +543,7 @@
     </div>
   </section>
 
-  <!-- ========= PROBLEMAS ========= -->
+  <!-- PROBLEMAS -->
   <section class="problems fade-section">
     <div class="container">
       <h2 style="text-align:center;margin-bottom:20px">¿Tu empresa se enfrenta a alguno de estos problemas?</h2>
@@ -541,52 +556,52 @@
     </div>
   </section>
 
-  <!-- ========= ANTES Y DESPUÉS INTERACTIVO ========= -->
- <section class="fade-section" style="padding:64px 0;background:#F0F4F8">
-  <h2 style="text-align:center;margin-bottom:32px">¿Qué cambia realmente?</h2>
-  <div class="container" style="max-width:600px;margin:0 auto;position:relative">
-    
-    <!-- Card ANTES (visible inicialmente) -->
-    <div id="beforeCard" style="background:#FFE5E5;padding:32px;border-radius:16px;border:2px solid #FFC7C7;transition:all .4s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-md)">
-      <h4 style="color:#C00;margin-top:0;display:flex;align-items:center;gap:8px">
-        <span style="font-size:1.5rem">❌</span> ANTES (Manual)
-      </h4>
-      <ul style="list-style:none;padding:0;margin:0">
-        <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,0,0,0.1)">3h/día en tareas repetitivas</li>
-        <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,0,0,0.1)">Errores humanos semanales</li>
-        <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,0,0,0.1)">Datos desactualizados</li>
-        <li style="margin-bottom:0">Equipo desmotivado</li>
-      </ul>
+  <!-- ANTES Y DESPUÉS INTERACTIVO -->
+  <section class="fade-section" style="padding:64px 0;background:#F0F4F8">
+    <h2 style="text-align:center;margin-bottom:32px">¿Qué cambia realmente?</h2>
+    <div class="container" style="max-width:600px;margin:0 auto;position:relative">
+      
+      <!-- Card ANTES -->
+      <div id="beforeCard" style="background:#FFE5E5;padding:32px;border-radius:16px;border:2px solid #FFC7C7;transition:all .4s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-md)">
+        <h4 style="color:#C00;margin-top:0;display:flex;align-items:center;gap:8px">
+          <span style="font-size:1.5rem">❌</span> ANTES (Manual)
+        </h4>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,0,0,0.1)">3h/día en tareas repetitivas</li>
+          <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,0,0,0.1)">Errores humanos semanales</li>
+          <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,0,0,0.1)">Datos desactualizados</li>
+          <li style="margin-bottom:0">Equipo desmotivado</li>
+        </ul>
+      </div>
+
+      <!-- Card DESPUÉS -->
+      <div id="afterCard" style="background:#E5FFE5;padding:32px;border-radius:16px;border:2px solid #A7F0A7;transition:all .4s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-md);position:absolute;top:0;left:0;right:0;opacity:0;visibility:hidden">
+        <h4 style="color:#0A0;margin-top:0;display:flex;align-items:center;gap:8px">
+          <span style="font-size:1.5rem">✅</span> DESPUÉS (Automatizado)
+        </h4>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(0,255,0,0.1)">10 min/día supervisando</li>
+          <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(0,255,0,0.1)">0 errores</li>
+          <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(0,255,0,0.1)">Datos en tiempo real</li>
+          <li style="margin-bottom:0">Equipo enfocado en crecer</li>
+        </ul>
+      </div>
+
+      <!-- Botón de toggle -->
+      <div style="text-align:center;margin-top:24px">
+        <button onclick="toggleBeforeAfter()" style="background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:50%;width:60px;height:60px;font-size:2rem;cursor:pointer;box-shadow:var(--shadow-md);transition:all .3s;display:flex;align-items:center;justify-content:center;margin:0 auto" id="toggleButton">
+          <span id="toggleArrow">→</span>
+        </button>
+        <p style="margin-top:12px;color:var(--muted);font-size:0.9rem">Haz clic para ver la transformación</p>
+      </div>
+
     </div>
+    <p style="text-align:center;margin-top:32px;color:var(--muted);font-style:italic">
+      Proyección basada en análisis de 100+ workflows implementados
+    </p>
+  </section>
 
-    <!-- Card DESPUÉS (oculta inicialmente) -->
-    <div id="afterCard" style="background:#E5FFE5;padding:32px;border-radius:16px;border:2px solid #A7F0A7;transition:all .4s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-md);position:absolute;top:0;left:0;right:0;opacity:0;visibility:hidden">
-      <h4 style="color:#0A0;margin-top:0;display:flex;align-items:center;gap:8px">
-        <span style="font-size:1.5rem">✅</span> DESPUÉS (Automatizado)
-      </h4>
-      <ul style="list-style:none;padding:0;margin:0">
-        <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(0,255,0,0.1)">10 min/día supervisando</li>
-        <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(0,255,0,0.1)">0 errores</li>
-        <li style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(0,255,0,0.1)">Datos en tiempo real</li>
-        <li style="margin-bottom:0">Equipo enfocado en crecer</li>
-      </ul>
-    </div>
-
-    <!-- Botón de toggle -->
-    <div style="text-align:center;margin-top:24px">
-      <button onclick="toggleBeforeAfter()" style="background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:50%;width:60px;height:60px;font-size:2rem;cursor:pointer;box-shadow:var(--shadow-md);transition:all .3s;display:flex;align-items:center;justify-content:center;margin:0 auto" id="toggleButton">
-        <span id="toggleArrow">→</span>
-      </button>
-      <p style="margin-top:12px;color:var(--muted);font-size:0.9rem">Haz clic para ver la transformación</p>
-    </div>
-
-  </div>
-  <p style="text-align:center;margin-top:32px;color:var(--muted);font-style:italic">
-    Proyección basada en análisis de 200+ workflows implementados
-  </p>
-</section>
-
-  <!-- ========= STACK TECNOLÓGICO ========= -->
+  <!-- STACK TECNOLÓGICO -->
   <section class="stack fade-section">
     <div class="container">
       <h2 style="text-align:center;margin-bottom:12px">Stack tecnológico</h2>
@@ -614,7 +629,7 @@
     </div>
   </section>
 
-  <!-- ========= ABOUT ========= -->
+  <!-- ABOUT -->
   <section class="about fade-section">
     <div class="about-grid">
       <img src="images/anton.jpg" alt="Antón Piñeiro - fundador de Orivon Minds" id="anton-photo" width="260" height="260" loading="lazy">
@@ -630,7 +645,7 @@
     </div>
   </section>
 
-  <!-- ========= SERVICES ========= -->
+  <!-- SERVICES -->
   <section id="services" class="services fade-section container">
     <h2 style="text-align:center;margin-bottom:20px">Servicios</h2>
     <div class="services-grid">
@@ -653,7 +668,7 @@
     </div>
   </section>
 
-  <!-- ========= FAQ MEJORADAS ========= -->
+  <!-- FAQ MEJORADAS -->
   <section id="faq" class="faq fade-section container">
     <h2 style="text-align:center;margin-bottom:20px">Preguntas frecuentes</h2>
 
@@ -694,7 +709,7 @@
     </div>
   </section>
 
-  <!-- ========= CTA FINAL (sin "2 plazas") ========= -->
+  <!-- CTA FINAL -->
   <section id="contact" class="cta-final fade-section container">
     <h2>¿Listo para dejar de perder tiempo?</h2>
     <p class="muted">Pide tu auditoría gratuita. Te respondemos en menos de 24h.</p>
@@ -704,7 +719,7 @@
     </div>
   </section>
 
-  <!-- ========= PAQUETE VISUAL ANTES DE FOOTER ========= -->
+  <!-- PAQUETE VISUAL ANTES DE FOOTER -->
   <section style="background:var(--card);padding:48px 0">
     <div class="container" style="text-align:center">
       <h2 style="margin-bottom:24px">¿Qué incluye la auditoría gratuita?</h2>
@@ -736,7 +751,7 @@
     </div>
   </section>
 
-  <!-- ========= FOOTER ========= -->
+  <!-- FOOTER -->
   <footer>
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
       <div style="display:flex;align-items:center;gap:12px">
@@ -754,17 +769,22 @@
     </div>
   </footer>
 
-  <!-- ========= FAB STICKY ========= -->
+  <!-- FAB STICKY -->
   <div class="fab-sticky">
     <button class="btn-primary" onclick="openModal()" aria-label="Calcular ahorro" data-cta="fab-calculador">💰 Calcula tu ahorro</button>
   </div>
 
-  <!-- ========= WHATSAPP STICKY (MÓVIL) ========= -->
-  <a href="https://wa.me/682278910?text=Hola%20Ant%C3%B3n ,%20quiero%20mi%20auditor%C3%ADa%20gratuita" class="wa-sticky" data-cta="whatsapp-movil">
+  <!-- WHATSAPP STICKY -->
+  <a href="https://wa.me/682278910?text=Hola%20Ant%C3%B3n%2C%20quiero%20mi%20auditor%C3%ADa%20gratuita" class="wa-sticky" data-cta="whatsapp-global">
     💬 WhatsApp rápido
   </a>
 
-  <!-- ========= MODAL CALCULADORA ROI ========= -->
+  <!-- BADGE GARANTÍA STICKY -->
+  <div class="guarantee-badge" id="guaranteeBadge">
+    🛡️ 7 días o devolución 100%
+  </div>
+
+  <!-- MODAL CALCULADORA ROI -->
   <div class="modal-form" id="modalForm" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-content card">
       <button onclick="closeModal()" style="float:right;background:none;border:none;font-size:1.5rem;cursor:pointer" aria-label="Cerrar">×</button>
@@ -793,425 +813,447 @@
     </div>
   </div>
 
-  <!-- ========= COOKIE BAR ========= -->
+  <!-- COOKIE BAR -->
   <div class="cookie-bar" id="cookieBar" role="banner">
     <span>🍪 Usamos cookies para mejorar tu experiencia. <a href="privacy.html">Política de privacidad</a></span>
     <button class="btn-primary" style="padding:6px 12px;font-size:0.85rem" onclick="acceptCookies()" data-cta="cookies-aceptar">Aceptar</button>
   </div>
 
- <!-- ========= JAVASCRIPT ========= -->
-<script>
-  // SANITIZACIÓN ANTI-XSS
-  function sanitize(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
+  <!-- JAVASCRIPT -->
+  <script>
+    // SANITIZACIÓN ANTI-XSS
+    function sanitize(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
 
-  // FAQ ACCESIBLE CON ARIA
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const answer = document.getElementById(btn.getAttribute('aria-controls'));
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !isOpen);
-      answer.hidden = isOpen;
+    // FAQ ACCESIBLE CON ARIA
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = document.getElementById(btn.getAttribute('aria-controls'));
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !isOpen);
+        answer.hidden = isOpen;
+      });
     });
-  });
 
-  // SCROLL DETECTOR
-  const initScrollDetector = () => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-    );
-    document.querySelectorAll('.fade-section').forEach(section => observer.observe(section));
-    setTimeout(() => {
-      document.querySelectorAll('.fade-section:not(.visible)').forEach(section => section.classList.add('visible'));
-    }, 1000);
-  };
-  document.addEventListener('DOMContentLoaded', initScrollDetector);
+    // SCROLL DETECTOR
+    const initScrollDetector = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+      );
+      document.querySelectorAll('.fade-section').forEach(section => observer.observe(section));
+      setTimeout(() => {
+        document.querySelectorAll('.fade-section:not(.visible)').forEach(section => section.classList.add('visible'));
+      }, 1000);
+    };
+    document.addEventListener('DOMContentLoaded', initScrollDetector);
 
-  // MODAL FORM
-  function openModal() {
-    const modal = document.getElementById('modalForm');
-    modal.classList.add('show');
-    modal.setAttribute('aria-hidden', 'false');
-    modal.querySelector('input').focus();
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function closeModal() {
-    const modal = document.getElementById('modalForm');
-    modal.classList.remove('show');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
+    // NAVEGACIÓN SUAVE CON OFFSET
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (!target) return;
+        const headerOffset = 90;
+        const elementPosition = target.offsetTop;
+        const offsetPosition = elementPosition - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      });
+    });
 
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeModal();
-  });
-
-  document.getElementById('modalForm').addEventListener('click', (e) => {
-    if(e.target === e.currentTarget) closeModal();
-  });
-
-  // ===== CONTADOR ANIMADO =====
-  function animateCounter(element, start, end, duration = 1500) {
-    const range = end - start;
-    const startTime = performance.now();
-    
-    function updateCounter(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      const current = Math.floor(start + range * progress);
-      const formattedNumber = new Intl.NumberFormat('es-ES').format(current);
-      
-      element.textContent = `€${formattedNumber}`;
-      
-      if (progress < 1) {
-        requestAnimationFrame(updateCounter);
-      } else {
-        const finalNumber = new Intl.NumberFormat('es-ES').format(end);
-        element.textContent = `€${finalNumber}`;
-      }
+    // MODAL FORM
+    function openModal() {
+      const modal = document.getElementById('modalForm');
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      modal.querySelector('input').focus();
+      document.body.style.overflow = 'hidden';
     }
     
-    requestAnimationFrame(updateCounter);
-  }
+    function closeModal() {
+      const modal = document.getElementById('modalForm');
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
 
-  // ===== MÁQUINA DE ESCRIBIR CORREGIDA (CURSOR DESAPARECE AL FINAL) =====
-  function initTypewriter() {
-    const title = document.getElementById('typewriter-title');
-    if (!title) return;
-    
-    const originalHTML = title.innerHTML;
-    title.innerHTML = '';
-    
-    const wrapper = document.createElement('span');
-    wrapper.className = 'typewriter-wrapper';
-    
-    const textSpan = document.createElement('span');
-    textSpan.id = 'typewriter-text';
-    
-    const cursor = document.createElement('span');
-    cursor.className = 'typewriter-cursor';
-    cursor.id = 'typewriter-cursor';
-    cursor.innerHTML = '&nbsp;';
-    
-    wrapper.appendChild(textSpan);
-    wrapper.appendChild(cursor);
-    title.appendChild(wrapper);
-    
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = originalHTML;
-    const textNodes = [];
-    
-    function extractTextNodes(node) {
-      if (node.nodeType === Node.TEXT_NODE) {
-        textNodes.push({ type: 'text', content: node.textContent });
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        const tagName = node.tagName.toLowerCase();
-        if (tagName === 'strong') {
-          const strongText = node.textContent;
-          textNodes.push({ type: 'strong', content: strongText });
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeModal();
+    });
+
+    document.getElementById('modalForm').addEventListener('click', (e) => {
+      if(e.target === e.currentTarget) closeModal();
+    });
+
+    // CONTADOR ANIMADO
+    function animateCounter(element, start, end, duration = 1500) {
+      const range = end - start;
+      const startTime = performance.now();
+      
+      function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const current = Math.floor(start + range * progress);
+        const formattedNumber = new Intl.NumberFormat('es-ES').format(current);
+        
+        element.textContent = `€${formattedNumber}`;
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
         } else {
-          Array.from(node.childNodes).forEach(extractTextNodes);
+          const finalNumber = new Intl.NumberFormat('es-ES').format(end);
+          element.textContent = `€${finalNumber}`;
         }
       }
+      
+      requestAnimationFrame(updateCounter);
     }
-    
-    Array.from(tempDiv.childNodes).forEach(extractTextNodes);
-    
-    let charIndex = 0;
-    let nodeIndex = 0;
-    let currentNode = null;
-    const typingSpeed = 60;
-    
-    function typeChar() {
-      if (nodeIndex >= textNodes.length) {
-        const cursorEl = document.getElementById('typewriter-cursor');
-        if (cursorEl) {
-          cursorEl.style.display = 'none';
+
+    // MÁQUINA DE ESCRIBIR
+    function initTypewriter() {
+      const title = document.getElementById('typewriter-title');
+      if (!title) return;
+      
+      const originalHTML = title.innerHTML;
+      title.innerHTML = '';
+      
+      const wrapper = document.createElement('span');
+      wrapper.className = 'typewriter-wrapper';
+      
+      const textSpan = document.createElement('span');
+      textSpan.id = 'typewriter-text';
+      
+      const cursor = document.createElement('span');
+      cursor.className = 'typewriter-cursor';
+      cursor.id = 'typewriter-cursor';
+      cursor.innerHTML = '&nbsp;';
+      
+      wrapper.appendChild(textSpan);
+      wrapper.appendChild(cursor);
+      title.appendChild(wrapper);
+      
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = originalHTML;
+      const textNodes = [];
+      
+      function extractTextNodes(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          textNodes.push({ type: 'text', content: node.textContent });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const tagName = node.tagName.toLowerCase();
+          if (tagName === 'strong') {
+            const strongText = node.textContent;
+            textNodes.push({ type: 'strong', content: strongText });
+          } else {
+            Array.from(node.childNodes).forEach(extractTextNodes);
+          }
         }
+      }
+      
+      Array.from(tempDiv.childNodes).forEach(extractTextNodes);
+      
+      let charIndex = 0;
+      let nodeIndex = 0;
+      let currentNode = null;
+      const typingSpeed = 60;
+      
+      function typeChar() {
+        if (nodeIndex >= textNodes.length) {
+          const cursorEl = document.getElementById('typewriter-cursor');
+          if (cursorEl) {
+            cursorEl.style.display = 'none';
+          }
+          return;
+        }
+        
+        const node = textNodes[nodeIndex];
+        
+        if (!currentNode) {
+          if (node.type === 'strong') {
+            currentNode = document.createElement('strong');
+            textSpan.appendChild(currentNode);
+          } else {
+            currentNode = textSpan;
+          }
+        }
+        
+        if (charIndex < node.content.length) {
+          currentNode.textContent += node.content.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeChar, typingSpeed);
+        } else {
+          currentNode = null;
+          charIndex = 0;
+          nodeIndex++;
+          setTimeout(typeChar, typingSpeed);
+        }
+      }
+      
+      setTimeout(typeChar, 500);
+    }
+
+    // CÁLCULO ROI CON BOTÓN CTA
+    document.getElementById('quickForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const hours = parseFloat(document.getElementById('calc-hours').value);
+      const process = document.getElementById('calc-process').value;
+      
+      if(!hours || hours <= 0) {
+        showStatus('quickStatus', '❌ Por favor ingresa un número válido de horas', 'error');
+        return;
+      }
+      if(!process) {
+        showStatus('quickStatus', '❌ Por favor selecciona un tipo de proceso', 'error');
+        return;
+      }
+
+      const hourlyRate = 35;
+      const monthlySavings = hours * 4 * hourlyRate * 0.7;
+      const yearlySavings = monthlySavings * 12;
+      const investment = monthlySavings * 0.3;
+      const roiPercent = ((yearlySavings - investment) / investment * 100).toFixed(0);
+
+      const statusDiv = document.getElementById('quickStatus');
+      statusDiv.innerHTML = `
+        <div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);padding:16px;border-radius:8px;border:2px solid #4caf50;margin-top:12px;box-shadow:var(--shadow-md);text-align:center">
+          <div style="font-size:2rem;margin-bottom:8px">🚀</div>
+          <strong style="color:#2e7d32;font-size:1.2rem">¡ESTÁS PERDIENDO <span class="counter" data-value="${monthlySavings.toFixed(0)}">€0</span> AL MES!</strong><br>
+          <span style="color:#388e3c">Ahorro anual: <span class="counter" data-value="${yearlySavings.toFixed(0)}">€0</span></span><br>
+          <span style="color:#f57c00;font-weight:700">ROI: ${roiPercent}% en 90 días</span><br><br>
+          <span style="color:#1976d2;font-weight:600">⚡ Transforma esta pérdida en crecimiento</span><br>
+          <small style="color:#546e7a">Solicita tu auditoría gratuita ahora mismo</small><br><br>
+          <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); closeModal();" 
+                  style="background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:12px 20px;border:none;border-radius:50px;cursor:pointer;font-weight:700;font-size:1rem;box-shadow:0 4px 16px rgba(0,123,255,0.3);transition:all .25s">
+            🎯 Solicitar auditoría gratuita
+          </button>
+        </div>`;
+      
+      setTimeout(() => {
+        document.querySelectorAll('.counter').forEach(counter => {
+          const value = parseFloat(counter.getAttribute('data-value'));
+          animateCounter(counter, 0, value, 1500);
+        });
+      }, 100);
+    });
+
+    // MANEJO WEB3FORMS DIRECTO
+    document.getElementById('heroForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('heroStatus');
+      const formData = new FormData(e.target);
+      
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const process = formData.get('process');
+      
+      if(!name || !email || !process) {
+        showStatus('heroStatus', '❌ Por favor completa todos los campos obligatorios', 'error');
         return;
       }
       
-      const node = textNodes[nodeIndex];
-      
-      if (!currentNode) {
-        if (node.type === 'strong') {
-          currentNode = document.createElement('strong');
-          textSpan.appendChild(currentNode);
+      showStatus('heroStatus', 'Enviando...', 'info');
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+          showStatus('heroStatus', '✅ Enviado. Te respondo por email en menos de 24h.', 'success');
+          e.target.reset();
         } else {
-          currentNode = textSpan;
+          throw new Error(result.message || 'Error en el envío');
         }
+      } catch(error) {
+        console.error('Error:', error);
+        showStatus('heroStatus', '❌ Hubo un error. Por favor escribe a antonpineiro@orivonminds.com', 'error');
       }
+    });
+
+    // FUNCIÓN PARA MOSTRAR ESTADOS
+    function showStatus(elementId, message, type) {
+      const el = document.getElementById(elementId);
+      el.innerHTML = message;
+      el.style.color = type === 'error' ? '#dc3545' : type === 'success' ? '#28a745' : 'var(--muted)';
+    }
+
+    // COOKIES
+    function acceptCookies(){
+      document.getElementById('cookieBar').classList.add('hidden');
+      localStorage.setItem('cookieAccepted', 'true');
+    }
+    if(localStorage.getItem('cookieAccepted')){
+      document.getElementById('cookieBar').classList.add('hidden');
+    }
+
+    // TRACKING DE CTAs
+    document.querySelectorAll('[data-cta]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        console.log('CTA Click:', btn.dataset.cta, 'Location:', btn.dataset.location || 'unknown');
+      });
+    });
+
+    // TOGGLE ANTES/DESPUÉS
+    function toggleBeforeAfter() {
+      const before = document.getElementById('beforeCard');
+      const after = document.getElementById('afterCard');
+      const arrow = document.getElementById('toggleArrow');
+      const button = document.getElementById('toggleButton');
       
-      if (charIndex < node.content.length) {
-        currentNode.textContent += node.content.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeChar, typingSpeed);
+      if (after.style.visibility === 'visible') {
+        after.style.opacity = '0';
+        after.style.visibility = 'hidden';
+        before.style.opacity = '1';
+        before.style.visibility = 'visible';
+        arrow.textContent = '→';
+        button.style.background = 'linear-gradient(135deg,var(--primary),var(--accent))';
       } else {
-        currentNode = null;
-        charIndex = 0;
-        nodeIndex++;
-        setTimeout(typeChar, typingSpeed);
+        before.style.opacity = '0';
+        before.style.visibility = 'hidden';
+        after.style.opacity = '1';
+        after.style.visibility = 'visible';
+        arrow.textContent = '←';
+        button.style.background = 'linear-gradient(135deg,#4caf50,#66bb6a)';
       }
     }
-    
-    setTimeout(typeChar, 500);
-  }
 
-  // CÁLCULO ROI CON BOTÓN CTA
-  document.getElementById('quickForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const hours = parseFloat(document.getElementById('calc-hours').value);
-    const process = document.getElementById('calc-process').value;
-    
-    if(!hours || hours <= 0) {
-      showStatus('quickStatus', '❌ Por favor ingresa un número válido de horas', 'error');
-      return;
-    }
-    if(!process) {
-      showStatus('quickStatus', '❌ Por favor selecciona un tipo de proceso', 'error');
-      return;
-    }
+    // INICIALIZAR EFECTOS
+    document.addEventListener('DOMContentLoaded', () => {
+      initTypewriter();
+    });
 
-    const hourlyRate = 35;
-    const monthlySavings = hours * 4 * hourlyRate * 0.7;
-    const yearlySavings = monthlySavings * 12;
-    const investment = monthlySavings * 0.3;
-    const roiPercent = ((yearlySavings - investment) / investment * 100).toFixed(0);
-
-    const statusDiv = document.getElementById('quickStatus');
-    statusDiv.innerHTML = `
-      <div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);padding:16px;border-radius:8px;border:2px solid #4caf50;margin-top:12px;box-shadow:var(--shadow-md);text-align:center">
-        <div style="font-size:2rem;margin-bottom:8px">🚀</div>
-        <strong style="color:#2e7d32;font-size:1.2rem">¡ESTÁS PERDIENDO <span class="counter" data-value="${monthlySavings.toFixed(0)}">€0</span> AL MES!</strong><br>
-        <span style="color:#388e3c">Ahorro anual: <span class="counter" data-value="${yearlySavings.toFixed(0)}">€0</span></span><br>
-        <span style="color:#f57c00;font-weight:700">ROI: ${roiPercent}% en 90 días</span><br><br>
-        <span style="color:#1976d2;font-weight:600">⚡ Transforma esta pérdida en crecimiento</span><br>
-        <small style="color:#546e7a">Solicita tu auditoría gratuita ahora mismo</small><br><br>
-        <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); closeModal();" 
-                style="background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:12px 20px;border:none;border-radius:50px;cursor:pointer;font-weight:700;font-size:1rem;box-shadow:0 4px 16px rgba(0,123,255,0.3);transition:all .25s">
-          🎯 Solicitar auditoría gratuita
-        </button>
-      </div>`;
-    
+    // WHATSAPP Y BADGE DELAY
     setTimeout(() => {
-      document.querySelectorAll('.counter').forEach(counter => {
-        const value = parseFloat(counter.getAttribute('data-value'));
-        animateCounter(counter, 0, value, 1500);
-      });
-    }, 100);
-  });
+      document.querySelector('.wa-sticky').style.display = 'flex';
+      document.getElementById('guaranteeBadge').style.display = 'block';
+    }, 7000);
 
-  // MANEJO WEB3FORMS DIRECTO
-  document.getElementById('heroForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const status = document.getElementById('heroStatus');
-    const formData = new FormData(e.target);
+    // RED NEURONAL EFECTO (OPTIMIZADO)
+    const neuralCanvas = document.getElementById('neural-canvas');
+    const neuralCtx = neuralCanvas.getContext('2d');
     
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    if(!name || !email || !message) {
-      showStatus('heroStatus', '❌ Por favor completa todos los campos obligatorios', 'error');
-      return;
+    const neuralConfig = {
+      nodeRadius: 4,
+      nodeColor: 'rgba(255, 255, 255, 0.75)',
+      lineColor: 'rgba(255, 255, 255, 0.25)',
+      maxDistance: 120,
+      cursorRadius: 150, /* REDUCIDO para menos distracción */
+      fadeSpeed: 0.08,
+      nodeDensity: 0.0002, /* REDUCIDO para mejor performance */
+      growSpeed: 0.15
+    };
+
+    let neuralNodes = [];
+    let neuralMouse = { x: -1000, y: -1000, active: false };
+    let neuralAnimationId;
+
+    function resizeNeuralCanvas() {
+      neuralCanvas.width = neuralCanvas.offsetWidth;
+      neuralCanvas.height = neuralCanvas.offsetHeight;
+      generateNeuralNodes();
     }
-    
-    showStatus('heroStatus', 'Enviando...', 'info');
 
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const result = await response.json();
+    function generateNeuralNodes() {
+      neuralNodes = [];
+      const area = neuralCanvas.offsetWidth * neuralCanvas.offsetHeight;
+      const nodeCount = Math.floor(area * neuralConfig.nodeDensity);
       
-      if (result.success) {
-        showStatus('heroStatus', '✅ Enviado. Te respondo por email en menos de 24h.', 'success');
-        e.target.reset();
-      } else {
-        throw new Error(result.message || 'Error en el envío');
+      for (let i = 0; i < nodeCount; i++) {
+        neuralNodes.push({
+          x: Math.random() * neuralCanvas.offsetWidth,
+          y: Math.random() * neuralCanvas.offsetHeight,
+          opacity: 0,
+          targetOpacity: 0,
+          scale: 0
+        });
       }
-    } catch(error) {
-      console.error('Error:', error);
-      showStatus('heroStatus', '❌ Hubo un error. Por favor escribe a antonpineiro@orivonminds.com', 'error');
     }
-  });
 
-  // FUNCIÓN PARA MOSTRAR ESTADOS
-  function showStatus(elementId, message, type) {
-    const el = document.getElementById(elementId);
-    el.innerHTML = message;
-    el.style.color = type === 'error' ? '#dc3545' : type === 'success' ? '#28a745' : 'var(--muted)';
-  }
-
-  // COOKIES
-  function acceptCookies(){
-    document.getElementById('cookieBar').classList.add('hidden');
-    localStorage.setItem('cookieAccepted', 'true');
-  }
-  if(localStorage.getItem('cookieAccepted')){
-    document.getElementById('cookieBar').classList.add('hidden');
-  }
-
-  // TRACKING DE CTAs
-  document.querySelectorAll('[data-cta]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      console.log('CTA Click:', btn.dataset.cta, 'Location:', btn.dataset.location || 'unknown');
-    });
-  });
-
-  // TOGGLE ANTES/DESPUÉS
-  function toggleBeforeAfter() {
-    const before = document.getElementById('beforeCard');
-    const after = document.getElementById('afterCard');
-    const arrow = document.getElementById('toggleArrow');
-    const button = document.getElementById('toggleButton');
-    
-    if (after.style.visibility === 'visible') {
-      after.style.opacity = '0';
-      after.style.visibility = 'hidden';
-      before.style.opacity = '1';
-      before.style.visibility = 'visible';
-      arrow.textContent = '→';
-      button.style.background = 'linear-gradient(135deg,var(--primary),var(--accent))';
-    } else {
-      before.style.opacity = '0';
-      before.style.visibility = 'hidden';
-      after.style.opacity = '1';
-      after.style.visibility = 'visible';
-      arrow.textContent = '←';
-      button.style.background = 'linear-gradient(135deg,#4caf50,#66bb6a)';
-    }
-  }
-
-  // INICIALIZAR EFECTOS
-  document.addEventListener('DOMContentLoaded', () => {
-    initTypewriter();
-  });
-
-  // ========= RED NEURONAL EFECTO =========
-  const neuralCanvas = document.getElementById('neural-canvas');
-  const neuralCtx = neuralCanvas.getContext('2d');
-  
-  const neuralConfig = {
-    nodeRadius: 4,
-    nodeColor: 'rgba(255, 255, 255, 0.75)',
-    lineColor: 'rgba(255, 255, 255, 0.25)',
-    maxDistance: 120,
-    cursorRadius: 180,
-    fadeSpeed: 0.08,
-    nodeDensity: 0.0004,
-    growSpeed: 0.15
-  };
-
-  let neuralNodes = [];
-  let neuralMouse = { x: -1000, y: -1000, active: false };
-  let neuralAnimationId;
-
-  function resizeNeuralCanvas() {
-    neuralCanvas.width = neuralCanvas.offsetWidth;
-    neuralCanvas.height = neuralCanvas.offsetHeight;
-    generateNeuralNodes();
-  }
-
-  function generateNeuralNodes() {
-    neuralNodes = [];
-    const area = neuralCanvas.offsetWidth * neuralCanvas.offsetHeight;
-    const nodeCount = Math.floor(area * neuralConfig.nodeDensity);
-    
-    for (let i = 0; i < nodeCount; i++) {
-      neuralNodes.push({
-        x: Math.random() * neuralCanvas.offsetWidth,
-        y: Math.random() * neuralCanvas.offsetHeight,
-        opacity: 0,
-        targetOpacity: 0,
-        scale: 0
-      });
-    }
-  }
-
-  function drawNeural() {
-    neuralCtx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height);
-    
-    neuralNodes.forEach(node => {
-      const distance = Math.hypot(node.x - neuralMouse.x, node.y - neuralMouse.y);
+    function drawNeural() {
+      neuralCtx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height);
       
-      if (neuralMouse.active && distance < neuralConfig.cursorRadius) {
-        node.targetOpacity = 1 - (distance / neuralConfig.cursorRadius);
-      } else {
-        node.targetOpacity = 0;
-      }
-      
-      node.opacity += (node.targetOpacity - node.opacity) * neuralConfig.fadeSpeed;
-      
-      if (node.opacity > 0.01) {
-        const targetScale = node.opacity;
-        node.scale += (targetScale - node.scale) * neuralConfig.growSpeed;
-      } else {
-        node.scale = 0;
-      }
-    });
-
-    neuralNodes.forEach((node, i) => {
-      if (node.opacity < 0.05) return;
-      
-      for (let j = i + 1; j < neuralNodes.length; j++) {
-        const otherNode = neuralNodes[j];
-        if (otherNode.opacity < 0.05) continue;
+      neuralNodes.forEach(node => {
+        const distance = Math.hypot(node.x - neuralMouse.x, node.y - neuralMouse.y);
         
-        const distance = Math.hypot(node.x - otherNode.x, node.y - otherNode.y);
-        
-        if (distance < neuralConfig.maxDistance) {
-          const lineOpacity = Math.min(node.opacity, otherNode.opacity) * (1 - distance / neuralConfig.maxDistance);
-          neuralCtx.strokeStyle = neuralConfig.lineColor.replace('0.25', lineOpacity * 0.25);
-          neuralCtx.lineWidth = 1.2;
-          neuralCtx.beginPath();
-          neuralCtx.moveTo(node.x, node.y);
-          neuralCtx.lineTo(otherNode.x, otherNode.y);
-          neuralCtx.stroke();
+        if (neuralMouse.active && distance < neuralConfig.cursorRadius) {
+          node.targetOpacity = 1 - (distance / neuralConfig.cursorRadius);
+        } else {
+          node.targetOpacity = 0;
         }
-      }
-    });
+        
+        node.opacity += (node.targetOpacity - node.opacity) * neuralConfig.fadeSpeed;
+        
+        if (node.opacity > 0.01) {
+          const targetScale = node.opacity;
+          node.scale += (targetScale - node.scale) * neuralConfig.growSpeed;
+        } else {
+          node.scale = 0;
+        }
+      });
 
-    neuralNodes.forEach(node => {
-      if (node.opacity > 0.01 && node.scale > 0.01) {
-        neuralCtx.fillStyle = neuralConfig.nodeColor.replace('0.75', node.opacity * 0.75);
-        neuralCtx.beginPath();
-        const animatedRadius = neuralConfig.nodeRadius * node.scale;
-        neuralCtx.arc(node.x, node.y, animatedRadius, 0, Math.PI * 2);
-        neuralCtx.fill();
-      }
-    });
+      neuralNodes.forEach((node, i) => {
+        if (node.opacity < 0.05) return;
+        
+        for (let j = i + 1; j < neuralNodes.length; j++) {
+          const otherNode = neuralNodes[j];
+          if (otherNode.opacity < 0.05) continue;
+          
+          const distance = Math.hypot(node.x - otherNode.x, node.y - otherNode.y);
+          
+          if (distance < neuralConfig.maxDistance) {
+            const lineOpacity = Math.min(node.opacity, otherNode.opacity) * (1 - distance / neuralConfig.maxDistance);
+            neuralCtx.strokeStyle = neuralConfig.lineColor.replace('0.25', lineOpacity * 0.25);
+            neuralCtx.lineWidth = 1.2;
+            neuralCtx.beginPath();
+            neuralCtx.moveTo(node.x, node.y);
+            neuralCtx.lineTo(otherNode.x, otherNode.y);
+            neuralCtx.stroke();
+          }
+        }
+      });
+
+      neuralNodes.forEach(node => {
+        if (node.opacity > 0.01 && node.scale > 0.01) {
+          neuralCtx.fillStyle = neuralConfig.nodeColor.replace('0.75', node.opacity * 0.75);
+          neuralCtx.beginPath();
+          const animatedRadius = neuralConfig.nodeRadius * node.scale;
+          neuralCtx.arc(node.x, node.y, animatedRadius, 0, Math.PI * 2);
+          neuralCtx.fill();
+        }
+      });
+      
+      neuralAnimationId = requestAnimationFrame(drawNeural);
+    }
+
+    window.addEventListener('resize', resizeNeuralCanvas);
     
-    neuralAnimationId = requestAnimationFrame(drawNeural);
-  }
+    document.getElementById('top').addEventListener('mousemove', (e) => {
+      const rect = neuralCanvas.getBoundingClientRect();
+      neuralMouse.x = e.clientX - rect.left;
+      neuralMouse.y = e.clientY - rect.top;
+      neuralMouse.active = true;
+    });
 
-  window.addEventListener('resize', resizeNeuralCanvas);
-  
-  document.getElementById('top').addEventListener('mousemove', (e) => {
-    const rect = neuralCanvas.getBoundingClientRect();
-    neuralMouse.x = e.clientX - rect.left;
-    neuralMouse.y = e.clientY - rect.top;
-    neuralMouse.active = true;
-  });
+    document.getElementById('top').addEventListener('mouseleave', () => {
+      neuralMouse.active = false;
+    });
 
-  document.getElementById('top').addEventListener('mouseleave', () => {
-    neuralMouse.active = false;
-  });
-
-  resizeNeuralCanvas();
-  drawNeural();
-</script>
+    resizeNeuralCanvas();
+    drawNeural();
+  </script>
 
 </body>
 </html>
