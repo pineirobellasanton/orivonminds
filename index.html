@@ -94,11 +94,11 @@
 
     /* TICKER — infinite scroll sin cortes */
     .ticker-wrap { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 14px 0; overflow: hidden; }
-    .ticker-track { display: flex; width: max-content; animation: marquee 35s linear infinite; }
+    .ticker-track { display: flex; flex-shrink: 0; white-space: nowrap; }
     .ticker-track:hover { animation-play-state: paused; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .ticker-item { display: inline-flex; align-items: center; white-space: nowrap; font-size: 0.85rem; color: var(--muted); font-weight: 500; padding: 0 20px; }
-    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--primary); opacity: 0.5; flex-shrink: 0; }
+    .ticker-item { display: inline-flex; align-items: center; white-space: nowrap; font-size: 0.85rem; color: var(--muted); font-weight: 500; padding: 0 20px; flex-shrink: 0; }
+    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--primary); opacity: 0.5; flex-shrink: 0; display: inline-block; }
 
     /* SECTIONS */
     section { padding: 100px 0; }
@@ -585,7 +585,7 @@
         <div class="form-footer" style="margin-top:14px;"><span class="dot-green"></span>30 min · Sin compromiso · Respuesta en 24h</div>
         <p id="ctaStatus" class="status-msg" role="status" aria-live="polite" style="text-align:center;margin-top:10px;"></p>
       </form>
-      <div style="margin-top:20px;"><a href="mailto:antonpineiro@orivonminds.com" style="font-size:0.88rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px;">o escríbeme a antonpineiro@orivonminds.com</a></div>
+      <div style="margin-top:20px;"><a href="/cdn-cgi/l/email-protection#f4959a809b9a849d9a919d869bb49b869d829b9a999d9a9087da979b99" style="font-size:0.88rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px;">o escríbeme a <span class="__cf_email__" data-cfemail="ec8d829883829c858289859e83ac839e859a8382818582889fc28f8381">[email&#160;protected]</span></a></div>
     </div>
   </div>
 </section>
@@ -617,7 +617,7 @@
       <a href="#faq">FAQ</a>
       <a href="privacy.html">Privacidad</a>
     </div>
-    <div class="footer-right">antonpineiro@orivonminds.com<br><span style="font-size:0.8rem;margin-top:4px;display:block;">© 2026 Orivon Minds</span></div>
+    <div class="footer-right"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d9b8b7adb6b7a9b0b7bcb0abb699b6abb0afb6b7b4b0b7bdaaf7bab6b4">[email&#160;protected]</a><br><span style="font-size:0.8rem;margin-top:4px;display:block;">© 2026 Orivon Minds</span></div>
   </div>
 </footer>
 
@@ -654,7 +654,7 @@
   <button class="btn-primary" style="padding:8px 16px;font-size:0.85rem;" onclick="acceptCookies()">Aceptar</button>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   window.addEventListener('scroll', () => {
     document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
   });
@@ -742,7 +742,24 @@
   document.getElementById('heroForm').addEventListener('submit', e => { e.preventDefault(); submitForm('heroForm','heroStatus'); });
   document.getElementById('ctaForm').addEventListener('submit', e => { e.preventDefault(); submitForm('ctaForm','ctaStatus'); });
 
-  // NEURAL CANVAS
+  // TICKER FIX — forzar ancho y animación en desktop
+  (function() {
+    function initTicker() {
+      const track = document.querySelector('.ticker-track');
+      if (!track) return;
+      // Medir el ancho real del contenido
+      const fullWidth = track.scrollWidth;
+      track.style.width = fullWidth + 'px';
+      // Aplicar animación una vez conocido el ancho
+      track.style.animation = 'marquee 35s linear infinite';
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTicker);
+    } else {
+      initTicker();
+    }
+    window.addEventListener('resize', initTicker);
+  })();
   (function() {
     const canvas = document.getElementById('neural-canvas');
     const ctx = canvas.getContext('2d');
@@ -783,13 +800,3 @@
         ctx.beginPath(); ctx.arc(n.x,n.y,n.r*n.op,0,Math.PI*2); ctx.fill();
       });
       requestAnimationFrame(draw);
-    }
-    window.addEventListener('resize', resize);
-    const hero = document.getElementById('top');
-    hero.addEventListener('mousemove', e => { const r = canvas.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; mouse.active=true; });
-    hero.addEventListener('mouseleave', () => { mouse.active=false; });
-    resize(); draw();
-  })();
-</script>
-</body>
-</html>
