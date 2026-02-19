@@ -94,7 +94,7 @@
 
     /* TICKER — infinite scroll sin cortes */
     .ticker-wrap { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 14px 0; overflow: hidden; }
-    .ticker-track { display: flex; flex-shrink: 0; white-space: nowrap; }
+    .ticker-track { display: inline-flex; white-space: nowrap; animation: marquee 35s linear infinite; }
     .ticker-track:hover { animation-play-state: paused; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .ticker-item { display: inline-flex; align-items: center; white-space: nowrap; font-size: 0.85rem; color: var(--muted); font-weight: 500; padding: 0 20px; flex-shrink: 0; }
@@ -742,24 +742,6 @@
   document.getElementById('heroForm').addEventListener('submit', e => { e.preventDefault(); submitForm('heroForm','heroStatus'); });
   document.getElementById('ctaForm').addEventListener('submit', e => { e.preventDefault(); submitForm('ctaForm','ctaStatus'); });
 
-  // TICKER FIX — forzar ancho y animación en desktop
-  (function() {
-    function initTicker() {
-      const track = document.querySelector('.ticker-track');
-      if (!track) return;
-      // Medir el ancho real del contenido
-      const fullWidth = track.scrollWidth;
-      track.style.width = fullWidth + 'px';
-      // Aplicar animación una vez conocido el ancho
-      track.style.animation = 'marquee 35s linear infinite';
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initTicker);
-    } else {
-      initTicker();
-    }
-    window.addEventListener('resize', initTicker);
-  })();
   (function() {
     const canvas = document.getElementById('neural-canvas');
     const ctx = canvas.getContext('2d');
