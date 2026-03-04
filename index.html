@@ -62,10 +62,6 @@
       0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4); }
       70% { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
     }
-    @keyframes rotateBorder {
-      from { filter: hue-rotate(0deg); }
-      to { filter: hue-rotate(360deg); }
-    }
     @keyframes ticker {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -98,18 +94,39 @@
     }
     #header.scrolled { box-shadow: 0 4px 30px rgba(59,130,246,0.1); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 5%; }
-    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.04em;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e8edf5;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
     .nav-link { font-size: 0.9rem; color: var(--muted); transition: color 0.2s; letter-spacing: 0.02em; }
     .nav-link:hover { color: var(--text); }
-    .nav-cta { font-size: 0.85rem; padding: 8px 20px; border-radius: 8px; font-weight: 500;
+    .btn-nav { font-size: 0.85rem; padding: 8px 20px; border-radius: 8px; font-weight: 500;
       background: var(--primary); color: #fff; transition: opacity 0.2s, transform 0.2s; }
-    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-nav:hover { opacity: 0.85; transform: translateY(-1px); }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-cta { display: none; }
     }
 
     /* ── HERO ── */
@@ -292,26 +309,50 @@
 
     /* ── STACK ── */
     .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
-    .stack-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; font-size: 0.85rem; font-weight: 500; color: var(--muted); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
-    .stack-item:hover { transform: translateY(-6px); border-color: rgba(59,130,246,0.4); box-shadow: 0 20px 60px rgba(59,130,246,0.12), 0 0 0 1px rgba(59,130,246,0.1); color: var(--text); }
-    .stack-item img { display: block; margin: 0 auto 8px; width: 36px; height: 36px; object-fit: contain; }
+    .stack-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.5rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      text-decoration: none;
+      color: #e8edf5;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .stack-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59,130,246,0.35);
+      box-shadow: 0 12px 30px rgba(59,130,246,0.1);
+    }
+    .stack-item img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+    .stack-item span {
+      font-size: 0.85rem;
+      color: #6b7a96;
+    }
 
     /* ── ABOUT ── */
     .about-inner { display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; }
     .founder-img-wrap {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      padding: 3px;
-      background: linear-gradient(135deg, #3b82f6, #06d6a0, #f59e0b);
-      animation: rotateBorder 4s linear infinite;
+      width: 260px;
       flex-shrink: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
     }
     .founder-photo {
       width: 100%;
-      height: 100%;
-      border-radius: 50%;
+      height: 320px;
       object-fit: cover;
+      object-position: center top;
       display: block;
     }
     .about-text h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 12px; }
@@ -403,27 +444,44 @@
     .footer-links a:hover { color: var(--text); }
 
     /* ── WHATSAPP BUTTON ── */
-    .wa-btn {
-      position: fixed; bottom: 28px; right: 28px; z-index: 800;
-      display: none; flex-direction: column; align-items: flex-end; gap: 8px;
+    .wa-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 998;
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      text-decoration: none;
     }
-    .wa-btn.visible { display: flex; }
-    .wa-tooltip {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 8px 14px; font-size: 0.8rem; color: var(--text); white-space: nowrap;
-      opacity: 0; transition: opacity 0.2s; pointer-events: none;
-    }
-    @media (min-width: 769px) { .wa-tooltip { opacity: 1; pointer-events: none; } }
-    .wa-btn:hover .wa-tooltip { opacity: 1; }
     .wa-circle {
-      width: 58px; height: 58px; border-radius: 50%;
-      background: #25d366; display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-      animation: pulse-wa 2s infinite;
-      transition: transform 0.2s;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      animation: pulse-wa 2.5s infinite;
     }
-    .wa-circle:hover { transform: scale(1.08); }
-    @media (max-width: 768px) { .wa-btn { bottom: 80px; } }
+    .wa-tooltip {
+      background: rgba(13,20,32,0.95);
+      color: #e8edf5;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .wa-float:hover .wa-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
     /* ── MOBILE STICKY BOTTOM BAR ── */
     .mobile-cta-bar {
@@ -516,17 +574,20 @@
      HEADER
 ══════════════════════════════════════════ -->
 <header id="header">
-  <div class="nav-inner">
-    <a href="#top" class="nav-logo">
-      <img src="images/logo-footer.png" alt="Orivon Minds" style="height:36px;width:auto;">
-    </a>
-    <ul class="nav-links">
-      <li><a href="#services" class="nav-link">Servicios</a></li>
-      <li><a href="#process" class="nav-link">Proceso</a></li>
-      <li><a href="#faq" class="nav-link">FAQ</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Auditoría gratis</a>
-  </div>
+  <nav class="nav" id="mainNav">
+    <div class="nav-container">
+      <a href="#top" class="nav-logo">
+        <img src="images/logo-footer.png" alt="Orivon Minds logo" style="height:32px;width:auto;vertical-align:middle;">
+        <span class="nav-brand">Orivon Minds</span>
+      </a>
+      <div class="nav-links">
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#proceso" class="nav-link">Proceso</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#contacto" class="btn-nav">Auditoría gratis</a>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <!-- ══════════════════════════════════════════
@@ -837,30 +898,30 @@
       <p>Integro tu negocio con las plataformas que ya usas</p>
     </div>
     <div class="stack-grid">
-      <div class="stack-item"><img src="images/n8n.png" alt="n8n">n8n</div>
-      <div class="stack-item"><img src="images/openai.png" alt="OpenAI">OpenAI</div>
-      <div class="stack-item"><img src="images/google.png" alt="Google Workspace">Google Sheets</div>
-      <div class="stack-item"><img src="images/google.png" alt="Gmail">Gmail / SMTP</div>
-      <div class="stack-item"><img src="images/notion.png" alt="Notion">Notion</div>
-      <div class="stack-item"><img src="images/airtable.png" alt="Airtable">Airtable</div>
-      <div class="stack-item"><img src="images/slack.png" alt="Slack">Slack</div>
-      <div class="stack-item">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 8px;display:block;"><circle cx="18" cy="18" r="14" stroke="#3b82f6" stroke-width="2"/><path d="M12 18h12M18 12l6 6-6 6" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Webhooks
-      </div>
-      <div class="stack-item">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 8px;display:block;"><rect x="8" y="10" width="20" height="16" rx="3" stroke="#3b82f6" stroke-width="2"/><path d="M14 10V8M22 10V8" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
-        WooCommerce
-      </div>
-      <div class="stack-item">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 8px;display:block;"><rect x="8" y="8" width="20" height="20" rx="4" fill="#25d366"/><path d="M24 22c-1.5 1-3.5 1.5-5.5 1-2-.5-3.5-2-4-4-.5-2 0-4 1-5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
-        WhatsApp API
-      </div>
-      <div class="stack-item"><img src="images/google.png" alt="Google Drive">Google Drive</div>
-      <div class="stack-item">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 8px;display:block;"><rect x="8" y="8" width="20" height="20" rx="4" stroke="#3b82f6" stroke-width="2"/><path d="M13 18h10M13 13h10M13 23h6" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
-        Typeform
-      </div>
+      <a href="https://n8n.io" target="_blank" rel="noopener" class="stack-item">
+        <img src="images/n8n.png" alt="n8n">
+        <span>n8n</span>
+      </a>
+      <a href="https://openai.com" target="_blank" rel="noopener" class="stack-item">
+        <img src="images/openai.png" alt="OpenAI">
+        <span>OpenAI</span>
+      </a>
+      <a href="https://notion.so" target="_blank" rel="noopener" class="stack-item">
+        <img src="images/notion.png" alt="Notion">
+        <span>Notion</span>
+      </a>
+      <a href="https://airtable.com" target="_blank" rel="noopener" class="stack-item">
+        <img src="images/airtable.png" alt="Airtable">
+        <span>Airtable</span>
+      </a>
+      <a href="https://slack.com" target="_blank" rel="noopener" class="stack-item">
+        <img src="images/slack.png" alt="Slack">
+        <span>Slack</span>
+      </a>
+      <a href="https://workspace.google.com" target="_blank" rel="noopener" class="stack-item">
+        <img src="images/google.png" alt="Google Workspace">
+        <span>Google Workspace</span>
+      </a>
     </div>
   </div>
 </section>
@@ -1123,14 +1184,19 @@
 <!-- ══════════════════════════════════════════
      WHATSAPP BUTTON
 ══════════════════════════════════════════ -->
-<div class="wa-btn" id="waBtn">
+<a href="https://wa.me/682278910?text=Hola%2C%20me%20interesa%20automatizar%20mi%20negocio"
+   class="wa-float"
+   target="_blank"
+   rel="noopener"
+   id="waFloat"
+   aria-label="Contactar por WhatsApp">
   <div class="wa-tooltip">¿Prefieres hablar? Respondo en minutos</div>
-  <a href="https://wa.me/682278910?text=Hola%2C%20me%20interesa%20automatizar%20mi%20negocio" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    <div class="wa-circle">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 2C7.373 2 2 7.373 2 14c0 2.12.555 4.11 1.527 5.833L2 26l6.32-1.504A11.94 11.94 0 0 0 14 26c6.627 0 12-5.373 12-12S20.627 2 14 2z" fill="#fff"/><path d="M10.5 8.5c-.3-.7-.6-.7-.9-.7H8.8c-.3 0-.8.1-1.2.6C7.2 8.8 6 10 6 12.3c0 2.3 1.7 4.5 1.9 4.8.2.3 3.3 5.2 8 7 1 .4 1.8.6 2.4.8.9.3 1.8.2 2.4.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.1-.4-.2-.8-.4-.4-.2-2.2-1.1-2.6-1.2-.3-.1-.6-.2-.8.2-.3.4-1 1.2-1.3 1.5-.2.3-.5.3-.9.1-.4-.2-1.8-.7-3.4-2.1-1.3-1.1-2.1-2.5-2.4-2.9-.3-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.6.1-.2.1-.5 0-.7-.1-.3-.8-2-1.1-2.7z" fill="#25d366"/></svg>
-    </div>
-  </a>
-</div>
+  <div class="wa-circle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </div>
+</a>
 
 <!-- ══════════════════════════════════════════
      MOBILE STICKY BOTTOM BAR
@@ -1411,7 +1477,7 @@ document.getElementById('ctaForm').addEventListener('submit', e => { e.preventDe
 ══════════════════════════════════════════ -->
 <script>
 // WA button - show after 5s
-setTimeout(() => { const wa = document.getElementById('waBtn'); if (wa) wa.classList.add('visible'); }, 5000);
+setTimeout(() => { const wa = document.getElementById('waFloat'); if (wa) wa.style.display = 'flex'; }, 5000);
 
 // Scroll to top button
 const scrollTopBtn = document.getElementById('scrollTop');
