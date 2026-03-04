@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080c14">
   <title>Orivon Minds | Automatización IA · Ahorra 20-40 h/mes</title>
-  <meta name="description" content="Automatización con IA y n8n. Proyectos desde 300€. Resultados en 7 días.">
+  <meta name="description" content="Automatización con IA y n8n. Resultados en 7 días.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Orivon Minds | Automatización IA">
-  <meta property="og:description" content="Automatización con IA y n8n. Proyectos desde 300€. Resultados en 7 días.">
+  <meta property="og:description" content="Automatización con IA y n8n. Resultados en 7 días.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -286,7 +286,7 @@
     .uvp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
     .uvp-item { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
     .uvp-item:hover { transform: translateY(-6px); border-color: rgba(59,130,246,0.4); box-shadow: 0 20px 60px rgba(59,130,246,0.12), 0 0 0 1px rgba(59,130,246,0.1); }
-    .uvp-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .uvp-icon { margin-bottom: 14px; display: flex; justify-content: center; }
     .uvp-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
     .uvp-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
@@ -294,18 +294,26 @@
     .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
     .stack-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; font-size: 0.85rem; font-weight: 500; color: var(--muted); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
     .stack-item:hover { transform: translateY(-6px); border-color: rgba(59,130,246,0.4); box-shadow: 0 20px 60px rgba(59,130,246,0.12), 0 0 0 1px rgba(59,130,246,0.1); color: var(--text); }
-    .stack-item span { display: block; font-size: 1.6rem; margin-bottom: 6px; }
+    .stack-item img { display: block; margin: 0 auto 8px; width: 36px; height: 36px; object-fit: contain; }
 
     /* ── ABOUT ── */
     .about-inner { display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; }
     .founder-img-wrap {
-      width: 200px; height: 200px; flex-shrink: 0;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
       padding: 3px;
       background: linear-gradient(135deg, #3b82f6, #06d6a0, #f59e0b);
-      border-radius: 50%;
       animation: rotateBorder 4s linear infinite;
+      flex-shrink: 0;
     }
-    .founder-img-inner { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+    .founder-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
     .about-text h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 12px; }
     .about-text p { color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
     .about-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
@@ -348,10 +356,9 @@
       box-shadow: 0 20px 60px rgba(59,130,246,0.12), 0 0 0 1px rgba(59,130,246,0.1);
     }
     .service-card:hover .service-extra { max-height: 200px; opacity: 1; }
-    .service-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .service-icon { margin-bottom: 16px; }
     .service-title { font-size: 1.12rem; font-weight: 700; margin-bottom: 10px; }
     .service-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
-    .service-price { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
     .service-extra { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s ease, opacity 0.4s ease; }
     .service-extra ul { margin-top: 14px; list-style: none; padding: 0; border-top: 1px solid var(--border); padding-top: 14px; }
     .service-extra ul li { font-size: 0.82rem; color: var(--muted); padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; }
@@ -391,6 +398,7 @@
     /* ── FOOTER ── */
     footer { background: var(--bg); border-top: 1px solid var(--border); padding: 40px 0; }
     .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; font-size: 0.85rem; color: var(--muted); }
+    .footer-logo { display: flex; align-items: center; }
     .footer-links { display: flex; gap: 24px; }
     .footer-links a:hover { color: var(--text); }
 
@@ -455,7 +463,6 @@
       transition: color 0.2s, background 0.2s;
     }
     .exit-close:hover { color: var(--text); background: var(--surface2); }
-    .exit-icon { font-size: 2.8rem; margin-bottom: 16px; }
     .exit-popup h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
     .exit-popup p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 16px; }
     .exit-popup ul { list-style: none; text-align: left; margin-bottom: 24px; }
@@ -510,7 +517,9 @@
 ══════════════════════════════════════════ -->
 <header id="header">
   <div class="nav-inner">
-    <a href="#top" class="nav-logo">Orivon Minds</a>
+    <a href="#top" class="nav-logo">
+      <img src="images/logo-footer.png" alt="Orivon Minds" style="height:36px;width:auto;">
+    </a>
     <ul class="nav-links">
       <li><a href="#services" class="nav-link">Servicios</a></li>
       <li><a href="#process" class="nav-link">Proceso</a></li>
@@ -528,8 +537,8 @@
   <div class="container hero-inner">
     <div>
       <div style="display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:20px;">
-        <span class="hero-badge">⚡ Automatización con IA y n8n</span>
-        <span class="hero-urgency">⚡ Solo 3 proyectos disponibles este mes</span>
+        <span class="hero-badge">Automatización con IA y n8n</span>
+        <span class="hero-urgency">Solo 3 proyectos disponibles este mes</span>
       </div>
       <h1>Recupera 20-40 horas cada mes con automatización inteligente</h1>
       <p>Automatizo los procesos repetitivos de tu negocio con IA y n8n. Sin contratar más personal, sin código complicado. Resultados visibles en 7 días.</p>
@@ -539,8 +548,8 @@
           <div class="stat-label">Menos tareas manuales</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">desde 300€</div>
-          <div class="stat-label">Precio inicial</div>
+          <div class="stat-num counter" data-target="24" data-suffix="h">0h</div>
+          <div class="stat-label">Respuesta garantizada</div>
         </div>
         <div class="stat-item">
           <div class="stat-num counter" data-target="7" data-suffix=" días">0 días</div>
@@ -572,7 +581,7 @@
           <textarea id="h-proceso" name="proceso" class="form-textarea" placeholder="Ej: Facturas, emails de clientes, informes semanales…" required autocomplete="off"></textarea>
         </div>
         <button type="submit" class="btn-primary">Quiero mi auditoría gratis →</button>
-        <p class="form-trust">🔒 Sin spam · Respuesta en &lt; 24h · 100% gratis</p>
+        <p class="form-trust">Sin spam · Respuesta en menos de 24h · 100% gratis</p>
         <p id="heroStatus" class="status-msg" role="status" aria-live="polite" style="text-align:center;margin-top:8px;"></p>
       </form>
     </div>
@@ -585,22 +594,22 @@
 ══════════════════════════════════════════ -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item">⚡ n8n Workflows</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">🤖 OpenAI API</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">🔒 Automatización GDPR-ready</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">🔗 Integraciones CRM</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">📈 ROI garantizado en 90 días</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">📊 Google Workspace</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">📝 Notion · Airtable</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">💬 Slack Automations</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">⚡ n8n Workflows</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">🤖 OpenAI API</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">🔒 Automatización GDPR-ready</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">🔗 Integraciones CRM</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">📈 ROI garantizado en 90 días</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">📊 Google Workspace</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">📝 Notion · Airtable</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">💬 Slack Automations</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">n8n Workflows</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">OpenAI API</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Automatización GDPR-ready</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Integraciones CRM</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">ROI garantizado en 90 días</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Google Workspace</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Notion · Airtable</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Slack Automations</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">n8n Workflows</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">OpenAI API</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Automatización GDPR-ready</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Integraciones CRM</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">ROI garantizado en 90 días</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Google Workspace</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Notion · Airtable</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Slack Automations</span><span class="ticker-dot">·</span>
   </div>
 </div>
 
@@ -615,22 +624,30 @@
     </div>
     <div class="problems-grid">
       <div class="problem-card card">
-        <div class="problem-icon">⏰</div>
+        <div class="problem-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="#3b82f6" stroke-width="2"/><path d="M16 9v7l4 4" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
         <h3>Horas perdidas en tareas repetitivas</h3>
         <p>Copiar datos entre sistemas, enviar emails similares, generar informes manualmente… tareas que consumen horas cada semana.</p>
       </div>
       <div class="problem-card card">
-        <div class="problem-icon">❌</div>
+        <div class="problem-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="#ef4444" stroke-width="2"/><path d="M11 11l10 10M21 11l-10 10" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
         <h3>Errores humanos que cuestan dinero</h3>
         <p>Un dato mal copiado, un email olvidado, un informe con números erróneos. Los errores manuales generan costes reales.</p>
       </div>
       <div class="problem-card card">
-        <div class="problem-icon">🔀</div>
+        <div class="problem-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="#3b82f6" stroke-width="2"/><path d="M10 16h4m4 0h4M16 10v4m0 4v4" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
         <h3>Herramientas que no hablan entre sí</h3>
         <p>Tienes el CRM aquí, la hoja de cálculo allá y el email en otro sitio. Conectarlos lleva más tiempo del que debería.</p>
       </div>
       <div class="problem-card card">
-        <div class="problem-icon">📉</div>
+        <div class="problem-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="#f59e0b" stroke-width="2"/><path d="M10 22l6-12 6 12" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
         <h3>Escalar requiere contratar más personal</h3>
         <p>Cada cliente nuevo añade más trabajo manual. El negocio crece pero los márgenes no mejoran porque el coste operativo escala igual.</p>
       </div>
@@ -663,8 +680,8 @@
         <div class="case-stat-label">Tiempo de implementación</div>
       </div>
       <div class="case-stat">
-        <div class="case-stat-num">300€</div>
-        <div class="case-stat-label">Coste total del proyecto</div>
+        <div class="case-stat-num">10 min</div>
+        <div class="case-stat-label">Por reserva tras automatización</div>
       </div>
     </div>
   </div>
@@ -697,34 +714,28 @@
             <td>Variable</td>
           </tr>
           <tr data-delay="150">
-            <td>Precio</td>
-            <td class="col-yes">Desde 300€</td>
-            <td class="col-no">5.000€+</td>
-            <td>Impredecible</td>
+            <td>Especialización en n8n</td>
+            <td class="col-yes">&#10003; Especialista</td>
+            <td class="col-no">&#10007; Generalista</td>
+            <td class="col-no">&#10007; Raro</td>
           </tr>
           <tr data-delay="300">
-            <td>Especialización en n8n</td>
-            <td class="col-yes">✓ Especialista</td>
-            <td class="col-no">✗ Generalista</td>
-            <td class="col-no">✗ Raro</td>
+            <td>Soporte post-entrega</td>
+            <td class="col-yes">&#10003; Incluido</td>
+            <td class="col-no">&#10007; Extra</td>
+            <td class="col-no">&#10007; Raro</td>
           </tr>
           <tr data-delay="450">
-            <td>Soporte post-entrega</td>
-            <td class="col-yes">✓ Incluido</td>
-            <td class="col-no">✗ Extra</td>
-            <td class="col-no">✗ Raro</td>
+            <td>Escalabilidad</td>
+            <td class="col-yes">&#10003; Auto-hospedado</td>
+            <td>Depende</td>
+            <td class="col-no">&#10007; Vendor lock-in</td>
           </tr>
           <tr data-delay="600">
-            <td>Escalabilidad</td>
-            <td class="col-yes">✓ Auto-hospedado</td>
-            <td>Depende</td>
-            <td class="col-no">✗ Vendor lock-in</td>
-          </tr>
-          <tr data-delay="750">
             <td>GDPR / Privacidad</td>
-            <td class="col-yes">✓ Datos en tu servidor</td>
+            <td class="col-yes">&#10003; Datos en tu servidor</td>
             <td>Depende</td>
-            <td class="col-no">✗ Clouds externos</td>
+            <td class="col-no">&#10007; Clouds externos</td>
           </tr>
         </tbody>
       </table>
@@ -785,22 +796,30 @@
     </div>
     <div class="uvp-grid">
       <div class="uvp-item">
-        <div class="uvp-icon">⚡</div>
+        <div class="uvp-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="18" fill="rgba(59,130,246,0.15)"/><path d="M11 18l5 5 9-10" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
         <h3>Velocidad real</h3>
         <p>Primer resultado en 7 días. No promesas vagas, entrego algo funcional desde la primera semana.</p>
       </div>
       <div class="uvp-item">
-        <div class="uvp-icon">🔒</div>
+        <div class="uvp-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="18" fill="rgba(59,130,246,0.15)"/><path d="M18 10v9m0 0l-4-4m4 4l4-4" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="11" y="22" width="14" height="4" rx="2" stroke="#3b82f6" stroke-width="2"/></svg>
+        </div>
         <h3>Privacidad total</h3>
         <p>n8n auto-hospedado en tu servidor. Tus datos nunca salen de tu infraestructura.</p>
       </div>
       <div class="uvp-item">
-        <div class="uvp-icon">📈</div>
+        <div class="uvp-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="18" fill="rgba(59,130,246,0.15)"/><path d="M11 24l4-8 3 5 3-3 4 6" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
         <h3>ROI demostrable</h3>
         <p>Calculamos juntos el retorno antes de empezar. Si los números no cuadran, te lo digo.</p>
       </div>
       <div class="uvp-item">
-        <div class="uvp-icon">🛠️</div>
+        <div class="uvp-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="18" fill="rgba(59,130,246,0.15)"/><path d="M13 18h10M18 13v10" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
         <h3>Soporte incluido</h3>
         <p>30 días de soporte post-entrega sin coste extra. Cualquier ajuste o bug lo resuelvo.</p>
       </div>
@@ -818,18 +837,30 @@
       <p>Integro tu negocio con las plataformas que ya usas</p>
     </div>
     <div class="stack-grid">
-      <div class="stack-item"><span>⚙️</span>n8n</div>
-      <div class="stack-item"><span>🤖</span>OpenAI</div>
-      <div class="stack-item"><span>📊</span>Google Sheets</div>
-      <div class="stack-item"><span>📧</span>Gmail / SMTP</div>
-      <div class="stack-item"><span>📝</span>Notion</div>
-      <div class="stack-item"><span>🗃️</span>Airtable</div>
-      <div class="stack-item"><span>💬</span>Slack</div>
-      <div class="stack-item"><span>🔗</span>Webhooks</div>
-      <div class="stack-item"><span>🛒</span>WooCommerce</div>
-      <div class="stack-item"><span>📱</span>WhatsApp API</div>
-      <div class="stack-item"><span>☁️</span>Google Drive</div>
-      <div class="stack-item"><span>📋</span>Typeform</div>
+      <div class="stack-item"><img src="images/n8n.png" alt="n8n">n8n</div>
+      <div class="stack-item"><img src="images/openai.png" alt="OpenAI">OpenAI</div>
+      <div class="stack-item"><img src="images/google.png" alt="Google Workspace">Google Sheets</div>
+      <div class="stack-item"><img src="images/google.png" alt="Gmail">Gmail / SMTP</div>
+      <div class="stack-item"><img src="images/notion.png" alt="Notion">Notion</div>
+      <div class="stack-item"><img src="images/airtable.png" alt="Airtable">Airtable</div>
+      <div class="stack-item"><img src="images/slack.png" alt="Slack">Slack</div>
+      <div class="stack-item">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 8px;display:block;"><circle cx="18" cy="18" r="14" stroke="#3b82f6" stroke-width="2"/><path d="M12 18h12M18 12l6 6-6 6" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Webhooks
+      </div>
+      <div class="stack-item">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 8px;display:block;"><rect x="8" y="10" width="20" height="16" rx="3" stroke="#3b82f6" stroke-width="2"/><path d="M14 10V8M22 10V8" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
+        WooCommerce
+      </div>
+      <div class="stack-item">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 8px;display:block;"><rect x="8" y="8" width="20" height="20" rx="4" fill="#25d366"/><path d="M24 22c-1.5 1-3.5 1.5-5.5 1-2-.5-3.5-2-4-4-.5-2 0-4 1-5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        WhatsApp API
+      </div>
+      <div class="stack-item"><img src="images/google.png" alt="Google Drive">Google Drive</div>
+      <div class="stack-item">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 8px;display:block;"><rect x="8" y="8" width="20" height="20" rx="4" stroke="#3b82f6" stroke-width="2"/><path d="M13 18h10M13 13h10M13 23h6" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
+        Typeform
+      </div>
     </div>
   </div>
 </section>
@@ -840,7 +871,7 @@
 <section class="about reveal" style="background:var(--bg);">
   <div class="container about-inner">
     <div class="founder-img-wrap">
-      <div class="founder-img-inner">🧑‍💻</div>
+      <img src="images/anton.jpg" alt="Antón Piñeiro" class="founder-photo">
     </div>
     <div class="about-text">
       <h2>Hola, soy Antón</h2>
@@ -870,7 +901,7 @@
       <div class="testimonial-quote-mark">"</div>
       <p class="testimonial-text">Antes tardábamos entre 1 y 2 horas por reserva rellenando contratos a mano y registrando los datos en el SES. Ahora el cliente rellena el formulario online y en minutos tiene el contrato en su correo y nosotros el XML enviado automáticamente. Ha sido un cambio brutal para nuestro negocio.</p>
       <div class="testimonial-author">— Empresa de alquiler de autocaravanas, Vigo</div>
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
     </div>
   </div>
 </section>
@@ -886,10 +917,11 @@
     </div>
     <div class="services-grid">
       <div class="service-card">
-        <div class="service-icon">⚡</div>
+        <div class="service-icon">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="19" fill="rgba(59,130,246,0.12)"/><path d="M13 19l4 4 8-8" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
         <div class="service-title">Workflow Starter</div>
         <p class="service-desc">Un proceso automatizado de principio a fin. Ideal para empezar y ver resultados rápidos sin gran inversión.</p>
-        <div class="service-price">Desde 300€ · Entrega en 7 días</div>
         <div class="service-extra">
           <ul>
             <li>1 workflow completo en n8n</li>
@@ -901,10 +933,11 @@
         </div>
       </div>
       <div class="service-card">
-        <div class="service-icon">🔗</div>
+        <div class="service-icon">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="19" fill="rgba(59,130,246,0.12)"/><path d="M12 19h6m0 0h8M18 19v-6m0 6v6" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
         <div class="service-title">Integración Multi-Sistema</div>
         <p class="service-desc">Conecta varios sistemas de tu negocio para que los datos fluyan automáticamente sin intervención manual.</p>
-        <div class="service-price">Desde 600€ · Entrega en 14 días</div>
         <div class="service-extra">
           <ul>
             <li>Hasta 3 workflows interconectados</li>
@@ -916,10 +949,11 @@
         </div>
       </div>
       <div class="service-card">
-        <div class="service-icon">🤖</div>
+        <div class="service-icon">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="19" fill="rgba(59,130,246,0.12)"/><circle cx="19" cy="19" r="6" stroke="#3b82f6" stroke-width="2.5"/><path d="M19 10v3M19 25v3M10 19h3M25 19h3" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
         <div class="service-title">Automatización con IA</div>
         <p class="service-desc">Incorpora inteligencia artificial en tus flujos: clasificación, generación de texto, análisis de datos no estructurados.</p>
-        <div class="service-price">Desde 900€ · Entrega en 21 días</div>
         <div class="service-extra">
           <ul>
             <li>Integración OpenAI / LLMs</li>
@@ -967,7 +1001,7 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer" id="faq3" role="region">
-          <div class="faq-answer-inner">Automatizaciones comunes desde <strong>300-1.000€</strong>. Proyectos complejos con IA integrada desde 1.500€. Siempre presupuesto cerrado antes de empezar, sin sorpresas.</div>
+          <div class="faq-answer-inner">El presupuesto se elabora a medida según la complejidad del proyecto. Solicita tu auditoría gratuita y recibirás una propuesta con ROI detallado en menos de 24 horas.</div>
         </div>
       </div>
       <div class="faq-item" id="faqItem4">
@@ -1030,28 +1064,36 @@
     </div>
     <div class="includes-grid">
       <div class="include-item">
-        <div class="inc-icon">📋</div>
+        <div class="inc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="#3b82f6" stroke-width="2"/><path d="M8 8h8M8 12h8M8 16h5" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
         <div>
           <strong>Documentación completa</strong>
           <p>Diagrama del flujo y guía de uso para que siempre sepas qué hace cada parte.</p>
         </div>
       </div>
       <div class="include-item">
-        <div class="inc-icon">🔧</div>
+        <div class="inc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#3b82f6" stroke-width="2"/><path d="M9 12l2 2 4-4" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
         <div>
           <strong>30 días de soporte</strong>
           <p>Cualquier bug o ajuste post-entrega lo resuelvo sin coste adicional.</p>
         </div>
       </div>
       <div class="include-item">
-        <div class="inc-icon">🎓</div>
+        <div class="inc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#3b82f6" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
         <div>
           <strong>Sesión de traspaso</strong>
           <p>Videollamada para explicarte cómo funciona y cómo hacer cambios básicos.</p>
         </div>
       </div>
       <div class="include-item">
-        <div class="inc-icon">🔒</div>
+        <div class="inc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="10" rx="2" stroke="#3b82f6" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
         <div>
           <strong>Código fuente</strong>
           <p>El workflow exportado en JSON. Tuyo para siempre, sin dependencias de mi plataforma.</p>
@@ -1066,6 +1108,9 @@
 ══════════════════════════════════════════ -->
 <footer>
   <div class="container footer-inner">
+    <div class="footer-logo">
+      <img src="images/logo-footer.png" alt="Orivon Minds" style="height:40px;width:auto;">
+    </div>
     <span>© <span id="footerYear"></span> Orivon Minds · <a href="mailto:antonpineiro@orivonminds.com">antonpineiro@orivonminds.com</a></span>
     <div class="footer-links">
       <a href="/privacy.html">Privacidad</a>
@@ -1081,7 +1126,9 @@
 <div class="wa-btn" id="waBtn">
   <div class="wa-tooltip">¿Prefieres hablar? Respondo en minutos</div>
   <a href="https://wa.me/682278910?text=Hola%2C%20me%20interesa%20automatizar%20mi%20negocio" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    <div class="wa-circle">💬</div>
+    <div class="wa-circle">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 2C7.373 2 2 7.373 2 14c0 2.12.555 4.11 1.527 5.833L2 26l6.32-1.504A11.94 11.94 0 0 0 14 26c6.627 0 12-5.373 12-12S20.627 2 14 2z" fill="#fff"/><path d="M10.5 8.5c-.3-.7-.6-.7-.9-.7H8.8c-.3 0-.8.1-1.2.6C7.2 8.8 6 10 6 12.3c0 2.3 1.7 4.5 1.9 4.8.2.3 3.3 5.2 8 7 1 .4 1.8.6 2.4.8.9.3 1.8.2 2.4.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.1-.4-.2-.8-.4-.4-.2-2.2-1.1-2.6-1.2-.3-.1-.6-.2-.8.2-.3.4-1 1.2-1.3 1.5-.2.3-.5.3-.9.1-.4-.2-1.8-.7-3.4-2.1-1.3-1.1-2.1-2.5-2.4-2.9-.3-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.6.1-.2.1-.5 0-.7-.1-.3-.8-2-1.1-2.7z" fill="#25d366"/></svg>
+    </div>
   </a>
 </div>
 
@@ -1089,8 +1136,8 @@
      MOBILE STICKY BOTTOM BAR
 ══════════════════════════════════════════ -->
 <div class="mobile-cta-bar" id="mobileCta">
-  <a href="#top" class="btn-mobile-primary">📋 Auditoría gratis</a>
-  <a href="https://wa.me/682278910?text=Hola%2C%20me%20interesa%20automatizar%20mi%20negocio" class="btn-mobile-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+  <a href="#top" class="btn-mobile-primary">Auditoría gratis</a>
+  <a href="https://wa.me/682278910?text=Hola%2C%20me%20interesa%20automatizar%20mi%20negocio" class="btn-mobile-wa" target="_blank" rel="noopener">WhatsApp</a>
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -1103,14 +1150,13 @@
 ══════════════════════════════════════════ -->
 <div id="exitOverlay" style="display:none;" class="exit-overlay" role="dialog" aria-modal="true" aria-label="Oferta especial">
   <div class="exit-popup">
-    <button class="exit-close" onclick="closeExitPopup()" aria-label="Cerrar">✕</button>
-    <div class="exit-icon">🎯</div>
+    <button class="exit-close" onclick="closeExitPopup()" aria-label="Cerrar">&#10005;</button>
     <h3>¿Te vas sin tu auditoría gratis?</h3>
     <p>Descubre en 30 minutos exactamente qué procesos de tu negocio puedes automatizar y cuánto tiempo ahorrarías.</p>
     <ul>
-      <li>✅ Sin compromiso ni coste</li>
-      <li>✅ Respuesta personalizada en 24h</li>
-      <li>✅ Plan de acción incluido</li>
+      <li>&#10003; Sin compromiso ni coste</li>
+      <li>&#10003; Respuesta personalizada en 24h</li>
+      <li>&#10003; Plan de acción incluido</li>
     </ul>
     <a href="#top" class="exit-btn-primary" onclick="closeExitPopup()">Solicitar auditoría gratis</a>
     <br>
@@ -1123,7 +1169,7 @@
 ══════════════════════════════════════════ -->
 <div class="modal-overlay" id="roiModal" role="dialog" aria-labelledby="roiTitle" aria-hidden="true">
   <div class="modal-box">
-    <button class="modal-close" onclick="document.getElementById('roiModal').setAttribute('aria-hidden','true')" aria-label="Cerrar">✕</button>
+    <button class="modal-close" onclick="document.getElementById('roiModal').setAttribute('aria-hidden','true')" aria-label="Cerrar">&#10005;</button>
     <h2 id="roiTitle" style="font-size:1.5rem;margin-bottom:20px;">Calcula tu ROI en 20 segundos</h2>
     <form id="roiForm" novalidate>
       <div class="form-row"><label class="form-label">Horas semanales en tareas repetitivas</label>
@@ -1430,8 +1476,8 @@ document.getElementById('roiForm').addEventListener('submit', function(e) {
   result.innerHTML = '<div style="background:var(--surface2);border-radius:12px;padding:20px;text-align:center;">'
     + '<div style="font-size:2rem;font-family:Fraunces,serif;color:var(--accent);font-weight:700;">' + savedHours + ' horas/mes</div>'
     + '<div style="color:var(--muted);font-size:0.85rem;margin:6px 0 12px;">ahorradas con automatización</div>'
-    + '<div style="font-size:1.4rem;font-family:Fraunces,serif;color:var(--gold);font-weight:700;">~' + monthlySaving + '€/mes</div>'
-    + '<div style="color:var(--muted);font-size:0.82rem;margin-bottom:14px;">de valor recuperado (a 30€/h)</div>'
+    + '<div style="font-size:1.4rem;font-family:Fraunces,serif;color:var(--gold);font-weight:700;">~' + monthlySaving + '&#8364;/mes</div>'
+    + '<div style="color:var(--muted);font-size:0.82rem;margin-bottom:14px;">de valor recuperado (a 30&#8364;/h)</div>'
     + '<a href="#contact" class="btn-primary" onclick="document.getElementById(\'roiModal\').setAttribute(\'aria-hidden\',\'true\')" style="text-decoration:none;padding:12px 20px;font-size:0.88rem;">Quiero empezar →</a>'
     + '</div>';
 });
