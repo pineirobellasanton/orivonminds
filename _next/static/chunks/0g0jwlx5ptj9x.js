@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,24691,o=>{"use strict";var t=o.i(71645);o.s(["ScrollReset",0,function(){return(0,t.useEffect)(()=>{history.scrollRestoration="manual",window.scrollTo(0,0)},[]),null}])}]);
